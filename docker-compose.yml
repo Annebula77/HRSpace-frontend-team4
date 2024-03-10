@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  production:
+    build:
+      context: .
+      target: production
+    ports:
+      - "80:80"
