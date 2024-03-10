@@ -22,6 +22,19 @@ A step-by-step series of examples that tell you how to get a development environ
    or
    yarn dev
 
+## Docker usage
+
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and check updates
+
+2. Build development image: `docker compose -f docker-compose.dev.yml up --build`
+   Once you build development image, and no change is made to docker related files, you can just use the following: `docker compose -f docker-compose.dev.yml up`
+
+3. Now you should be able to access the development server `localhost:3000`
+
+4. Build production image: `docker-compose up --build`
+
+5. Now you should be able to request the site from `localhost:80`
+
 ## Code Organization
 
 ### HTML Tag Attributes Order
