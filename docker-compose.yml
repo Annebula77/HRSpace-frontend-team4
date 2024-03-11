@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   production:
+    restart: always
     build:
       context: .
       target: production
