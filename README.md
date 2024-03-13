@@ -91,6 +91,8 @@ Adhering to these guidelines ensures code quality and consistency across our pro
 - Vite: `^5.1.4`
 
 ## Authors
+👤 **Гоар Варданян** => -GitHub: [@Annebula77](https://github.com/Annebula77)
+👤 **Максим Набиулин** => -GitHub: [@MaximNabiulin](https://github.com/MaximNabiulin)
 
 # React + TypeScript + Vite
 
