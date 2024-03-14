@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // NOTE: Определяем пропсы, которые будут переданы в StyledInput
 interface InputProps {
-  name: string;
+  label: string;
   value: string;
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -27,11 +27,11 @@ const StyledInput = styled.input<InputProps>`
 // NOTE: Создаем компонент Input, который принимает пропсы и передает их в StyledInput
 
 const InputWithText: FC<InputProps> = ({
-  onChange, name, value, placeholder, error = false,
+  onChange, label, value, placeholder, error = false,
 }) => (
   <StyledInput
     type="text"
-    name={name}
+    label={label}
     value={value}
     placeholder={placeholder}
     pattern="[A-Za-zА-Яа-яЁё0-9-]*"
