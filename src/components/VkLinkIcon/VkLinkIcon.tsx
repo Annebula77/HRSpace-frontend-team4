@@ -1,5 +1,17 @@
-const VkLinkIcon = () => (
-  <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { type FC } from 'react';
+
+interface Props {
+  width: number;
+  height: number;
+}
+
+const VkLinkIcon: FC<Props> = ({ width, height }) => (
+  <svg
+    width={width}
+    height={height}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d={`M13.065 19C5.399 19 1.027 13.745.845 5h3.84c.125 6.418 2.956 9.137 5.198
         9.698V5H13.5v5.536c2.214-.239 4.54-2.761 5.325-5.536h3.616c-.603 3.42-3.125

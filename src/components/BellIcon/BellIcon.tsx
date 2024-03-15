@@ -1,7 +1,14 @@
-const BellIcon = () => (
+import { type FC } from 'react';
+
+interface Props {
+  width: number;
+  height: number;
+}
+
+const BellIcon: FC<Props> = ({ width, height }) => (
   <svg
-    width="30"
-    height="30"
+    width={width}
+    height={height}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >

@@ -1,21 +1,21 @@
 import { type FC } from 'react';
 
 interface Props {
-  style?: Record<string, string>;
+  width: number;
+  height: number;
+  color?: string;
 }
 
-const HrSpaceLogo: FC<Props> = ({ style }) => (
+const HrSpaceLogo: FC<Props> = ({ width = 138, height = 46, color = '#D6001D' }) => (
   <svg
-    width="138"
-    height="46"
+    width={width}
+    height={height}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={style}
   >
     <path
       d="M23 46c12.703 0 23-10.297 23-23S35.703 0 23 0 0 10.297 0 23s10.297 23 23 23Z"
-      fill="#D6001D"
-      // fill="#303233"
+      fill={color}
     />
     <path
       fillRule="evenodd"
