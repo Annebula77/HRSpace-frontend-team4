@@ -21,7 +21,7 @@ const StyledInput = styled.input<InputProps>`
   font-size: 14px;
   font-weight: 400;
   color: rgba(48, 50, 51, 1);
-  line-height: 1.4; 
+  line-height: 1.4;
   word-wrap: break-word;
 
   &:focus {
