@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CheckboxWithStyles from '../components/checkboxWithStyles/CheckboxWithStyles';
+import Counter from '../components/counter/Counter';
 
 
 const meta = {
-  title: 'Example/CheckboxWithStyles',
-  component: CheckboxWithStyles,
+  title: 'Example/Counter',
+  component: Counter,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof CheckboxWithStyles>;
+} satisfies Meta<typeof Counter>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -20,10 +20,9 @@ const onChange = () => { };
 
 export const Primary: Story = {
   args: {
-    id: '1',
-    label: 'hello',
-    name: 'input-name',
-    checked: true,
+    value: 1,
+    min: 1,
+    max: 10,
     onChange: onChange,
   },
 };
