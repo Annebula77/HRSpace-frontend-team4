@@ -20,7 +20,7 @@ const onChange = () => { };
 
 export const Primary: Story = {
   args: {
-    label: 'input-name',
+    name: 'input-name',
     value: '',
     placeholder: 'input value', //NOTE: просто подставляем дефолтные значения 
     onChange: onChange, // NOTE: В реальной ситуации здесь должна быть функция для обработки изменений
