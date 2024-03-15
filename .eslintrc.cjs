@@ -11,7 +11,7 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:storybook/recommended"
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'stories'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -24,6 +24,13 @@ module.exports = {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
+    ],
+       'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function', 
+        unnamedComponents: 'arrow-function', 
+      },
     ],
   },
   settings: {
