@@ -3,6 +3,7 @@ import { type FC } from 'react';
 interface Props {
   width: number;
   height: number;
+  /* eslint-disable react/require-default-props */
   color?: string;
 }
 
