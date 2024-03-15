@@ -17,8 +17,8 @@ const RadioContainer = styled.label<{ checked: boolean }>`
   align-items: center;
   padding: 10px 16px 10px 10px;
   border-radius: 8px;
-  border: 1px solid ${({ checked }) => checked ? 'transparent' : 'rgba(186, 189, 191, 1)'};
-  background-color: ${({ checked }) => checked ? 'rgba(232, 244, 255, 1)' : 'transparent'};
+  border: 1px solid ${({ checked }) => (checked ? 'transparent' : 'rgba(186, 189, 191, 1)')};
+  background-color: ${({ checked }) => (checked ? 'rgba(232, 244, 255, 1)' : 'transparent')};
   cursor: pointer;
   transition: all 0.3s;
 
@@ -37,15 +37,15 @@ const StyledRadio = styled.span<{ checked: boolean }>`
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 2px solid ${({ checked }) => checked ? 'rgba(23, 133, 229, 1)' : 'rgba(217, 224, 240, 1)'};
+  border: 2px solid ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'rgba(217, 224, 240, 1)')};
   border-radius: 50%;
-  background-color: ${({ checked }) => checked ? 'rgba(23, 133, 229, 1)' : 'transparent'};
+  background-color: ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'transparent')};
   position: relative;
   margin-right: 10px;
 
   &::after {
     content: '';
-    display: ${({ checked }) => checked ? 'block' : 'none'};
+    display: ${({ checked }) => (checked ? 'block' : 'none')};
     position: absolute;
     top: 50%;
     left: 50%;
@@ -61,7 +61,9 @@ const RadioLabel = styled.span`
   color: rgba(73, 75, 77, 1);
 `;
 
-const RadioInput: FC<RadioInputProps> = ({ id, name, value, checked, onChange, label }) => (
+const RadioInput: FC<RadioInputProps> = ({
+  id, name, value, checked, onChange, label,
+}) => (
   <RadioContainer checked={checked}>
     <HiddenRadio id={id} name={name} value={value} checked={checked} onChange={onChange} />
     <StyledRadio checked={checked} />
