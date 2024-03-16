@@ -5,13 +5,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { fetchRegions } from '../../store/slices/regionsSlice';
-import { type RegionModel } from '../../models/regionSchema';
+import { fetchCategories } from '../../store/slices/categorySlice';
+import { type CategoryInListModel } from '../../models/categoryListSchema';
 import OpenSelectIcon from '../icons/OpenSelectIcon';
 
-interface RegionSelectProps {
+interface CategorySelectProps {
   value: string | null;
-  onChange: (regionId: string | null) => void;
+  onChange: (categoryId: string | null) => void;
   error?: boolean;
   helperText?: string;
 }
@@ -29,14 +29,14 @@ const ErrorBox = styled.div`
   border-radius: 8px;
 `;
 
-const RegionSelect: FC<RegionSelectProps> = ({
+const CategorySelect: FC<CategorySelectProps> = ({
   value, onChange, error, helperText,
 }) => {
   const dispatch = useAppDispatch();
-  const { regions, isLoading, isError } = useAppSelector((state) => state.regions);
+  const { categories, isLoading, isError } = useAppSelector((state) => state.categories);
 
   useEffect(() => {
-    dispatch(fetchRegions());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (
@@ -44,13 +44,13 @@ const RegionSelect: FC<RegionSelectProps> = ({
       {isLoading && <LoadingSkeleton />}
       {isError && <ErrorBox />}
       {
-        regions && (
+        categories && (
           <Autocomplete
-            onChange={(_, newValue: RegionModel | null) => {
+            onChange={(_, newValue: CategoryInListModel | null) => {
               onChange(newValue?.id || null);
             }}
-            options={regions}
-            value={regions.find((c) => c.id === value) || null}
+            options={categories}
+            value={categories.find((c) => c.id === value) || null}
             getOptionLabel={(option) => option.name}
             renderOption={(props, option) => (
               /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -63,7 +63,7 @@ const RegionSelect: FC<RegionSelectProps> = ({
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...params}
                 variant="outlined"
-                placeholder="начните вводить название вашего города"
+                placeholder="начните вводить или выберите профессию"
                 error={!!error}
                 helperText={helperText || ''}
                 sx={{
@@ -92,7 +92,7 @@ const RegionSelect: FC<RegionSelectProps> = ({
               />
             )}
             popupIcon={<OpenSelectIcon style={{ width: '20px', height: '20px', marginRight: '16px' }} />}
-            noOptionsText="Город не найден"
+            noOptionsText="Профессия не найдена"
           />
 
         )
@@ -102,4 +102,4 @@ const RegionSelect: FC<RegionSelectProps> = ({
   );
 };
 
-export default RegionSelect;
+export default CategorySelect;
