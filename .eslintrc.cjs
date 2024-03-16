@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true },      
     ],
        'react/function-component-definition': [
       2,
@@ -32,6 +32,8 @@ module.exports = {
         unnamedComponents: 'arrow-function', 
       },
     ],
+    'no-param-reassign': ['error', { 'props': true, 'ignorePropertyModificationsFor': ['state'] }],
+    'import/no-cycle': 'off'
   },
   settings: {
     react: {
