@@ -9,9 +9,9 @@ interface CounterProps {
 }
 
 const CounterContainer = styled.div`
-  width: 100%;
   box-sizing: border-box;
   display: flex;
+  flex-grow: 1;
   align-items: center;
   border: 1px solid rgba(186, 189, 191, 1);
   border-radius: 8px;
