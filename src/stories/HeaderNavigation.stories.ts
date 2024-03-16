@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import HeaderNavigation from '../components/headerNavigation/HeaderNavigation';
 
 const meta = {
-  title: 'HeaderNavigation',
+  title: 'Example/HeaderNavigation',
   component: HeaderNavigation,
   tags: ['autodocs'],
 } satisfies Meta<typeof HeaderNavigation>;
