@@ -11,9 +11,9 @@ interface InputProps {
   error?: boolean;
 }
 
-// NOTE: Создаем стилизованный input
-const StyledInput = styled.input<InputProps>`
-  width: 100%;
+const StyledInput = styled.input<InputProps>` 
+  display: flex;
+  flex-grow: 1;
   padding: 10px 16px 10px 16px;
   margin: 5px;
   border: 1px solid ${(props) => (props.error ? 'rgba(255, 46, 46, 1)' : 'rgba(186, 189, 191, 1)')};
@@ -24,12 +24,14 @@ const StyledInput = styled.input<InputProps>`
   line-height: 1.4;
   word-wrap: break-word;
 
+  &:hover {
+    border: 1px solid rgba(23, 133, 229, 1);
+  }
+
   &:focus {
   border: 1px solid rgba(23, 133, 229, 1);
   }
  `;
-
-// NOTE: Создаем компонент Input, который принимает пропсы и передает их в StyledInput
 
 const InputWithText: FC<InputProps> = ({
   onChange, name, value, placeholder, error = false,
