@@ -20,7 +20,6 @@ const StyledListElement = styled.li`
   &:last-child {
     margin: 0;
   }
-
 `;
 
 const StyledNavButton = styled.button<ButtonProps>`
