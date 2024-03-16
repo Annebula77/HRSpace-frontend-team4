@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { type FC, useEffect } from 'react';
 import styled from 'styled-components';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -45,19 +46,21 @@ const RegionSelect: FC<RegionSelectProps> = ({
       {
         regions && (
           <Autocomplete
-            onChange={(event, newValue: RegionModel | null) => {
+            onChange={(_, newValue: RegionModel | null) => {
               onChange(newValue?.id || null);
             }}
             options={regions}
             value={regions.find((c) => c.id === value) || null}
             getOptionLabel={(option) => option.name}
             renderOption={(props, option) => (
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
               <Box key={option.id} component="li" {...props}>
                 <span>{option.name}</span>
               </Box>
             )}
             renderInput={(params) => (
               <TextField
+                /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...params}
                 variant="outlined"
                 placeholder="начните вводить название вашего города"
