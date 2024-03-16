@@ -3,11 +3,18 @@ import { type FC } from 'react';
 interface Props {
   width: number;
   height: number;
-  /* eslint-disable react/require-default-props */
+  // eslint-disable-next-line react/require-default-props
   color?: string;
+  // eslint-disable-next-line react/require-default-props
+  secondaryColor?: string;
 }
 
-const HrSpaceLogo: FC<Props> = ({ width = 138, height = 46, color = '#D6001D' }) => (
+const HrSpaceLogo: FC<Props> = ({
+  width = 138,
+  height = 46,
+  color = '#D6001D',
+  secondaryColor = '#fff',
+}) => (
   <svg
     width={width}
     height={height}
@@ -79,7 +86,7 @@ const HrSpaceLogo: FC<Props> = ({ width = 138, height = 46, color = '#D6001D' })
         2.997.598.763 1.406 1.145 2.425 1.145 1.099 0 2.028-.48 2.788-1.437l.921 1.023c-1.018
         1.25-2.303 1.876-3.855 1.876Zm2.643-6.895c-.016-1.055-.267-1.981-.752-2.777-.485-.812-1.212-1.218-2.182-1.218-.937
         0-1.657.414-2.158 1.242-.484.813-.743 1.73-.775 2.753h5.867Z`}
-      fill="#fff"
+      fill={secondaryColor}
     />
   </svg>
 );
