@@ -2,8 +2,8 @@ import React, { ReactNode, useState } from 'react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { Meta, StoryObj } from '@storybook/react';
-import RegionSelect from '../components/regionSelect/RegionSelect';
-import regionsReducer from '../store/slices/regionsSlice';
+import CategorySelect from '../components/categorySelect/CategorySelect';
+import categoriesReducer from '../store/slices/categorySlice';
 import { Store } from '@reduxjs/toolkit';
 
 
@@ -18,14 +18,14 @@ const MockStore: React.FC<MockStoreProps> = ({ children, store }) => (
 
 const store = configureStore({
   reducer: {
-    regions: regionsReducer,
+    categories: categoriesReducer,
   },
   preloadedState: {
-    regions: {
-      regions: [
-        { id: "1", name: 'Region 1' },
-        { id: "2", name: 'Region 2' },
-        { id: "3", name: 'Region 3' },
+    categories: {
+      categories: [
+        { id: '1', name: 'category 1' },
+        { id: '2', name: 'category 2' },
+        { id: '3', name: 'category 3' },
       ],
       isLoading: false,
       isError: false,
@@ -34,9 +34,9 @@ const store = configureStore({
   },
 });
 
-const meta: Meta<typeof RegionSelect> = {
-  title: 'Components/RegionSelect',
-  component: RegionSelect,
+const meta: Meta<typeof CategorySelect> = {
+  title: 'Components/CategorySelect',
+  component: CategorySelect,
   decorators: [
     (Story) => (
       <MockStore store={store}>
@@ -50,7 +50,7 @@ const meta: Meta<typeof RegionSelect> = {
 
 export default meta;
 
-const Template: StoryObj<typeof RegionSelect> = {
+const Template: StoryObj<typeof CategorySelect> = {
   render: (args) => {
 
     const [value, setValue] = useState<string | null>(args.value);
@@ -61,7 +61,7 @@ const Template: StoryObj<typeof RegionSelect> = {
     };
 
     return (
-      <RegionSelect
+      <CategorySelect
         {...args}
         value={value}
         onChange={handleChange}

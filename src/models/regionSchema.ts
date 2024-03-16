@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const regionSchema = z.object({
-  id: z.number().int(),
+  id: z.string(),
   name: z.string(),
 });
 export type RegionModel = z.infer<typeof regionSchema>;
