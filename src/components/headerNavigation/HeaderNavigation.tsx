@@ -5,7 +5,7 @@ interface ButtonProps {
   isActive: boolean;
 }
 
-const Styledlist = styled.ul`
+const StyledList = styled.ul`
   margin: 0;
   display: flex;
   justify-content: center;
@@ -32,8 +32,7 @@ const StyledNavButton = styled.button<ButtonProps>`
   text-align: left;
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  color: ${
-  (props) => (props.isActive
+  color: ${(props) => (props.isActive
     ? 'rgba(255, 255, 255, 1)'
     : 'rgba(149, 151, 153, 1)'
   )
@@ -42,7 +41,7 @@ const StyledNavButton = styled.button<ButtonProps>`
 
 const HeaderNavigation: FC<ButtonProps> = () => (
   <nav>
-    <Styledlist>
+    <StyledList>
       <StyledListElement>
         <StyledNavButton type="button" isActive>
           Создать заявку
@@ -68,7 +67,7 @@ const HeaderNavigation: FC<ButtonProps> = () => (
           Помощь
         </StyledNavButton>
       </StyledListElement>
-    </Styledlist>
+    </StyledList>
   </nav>
 );
 

@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
+  background-color: rgb(0, 0, 0);
 `;
 
 const StyledLogoWrapper = styled.div`

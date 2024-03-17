@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { Meta, StoryObj } from '@storybook/react';
 import CategorySelect from '../components/categorySelect/CategorySelect';
-import categoriesReducer from '../store/slices/categorySlice';
+import categoriesReducer from '../store/slices/categoriesSlice';
 import { Store } from '@reduxjs/toolkit';
 
 

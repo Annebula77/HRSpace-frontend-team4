@@ -1,11 +1,10 @@
-/* eslint-disable react/require-default-props */
 import { type FC, useEffect } from 'react';
 import styled from 'styled-components';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { fetchCategories } from '../../store/slices/categorySlice';
+import { fetchCategories } from '../../store/slices/categoriesSlice';
 import { type CategoryInListModel } from '../../models/categoryListSchema';
 import OpenSelectIcon from '../icons/OpenSelectIcon';
 
@@ -53,14 +52,13 @@ const CategorySelect: FC<CategorySelectProps> = ({
             value={categories.find((c) => c.id === value) || null}
             getOptionLabel={(option) => option.name}
             renderOption={(props, option) => (
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
+
               <Box key={option.id} component="li" {...props}>
                 <span>{option.name}</span>
               </Box>
             )}
             renderInput={(params) => (
               <TextField
-                /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...params}
                 variant="outlined"
                 placeholder="начните вводить или выберите профессию"

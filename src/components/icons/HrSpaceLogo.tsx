@@ -3,9 +3,9 @@ import { type FC } from 'react';
 interface Props {
   width: number;
   height: number;
-  // eslint-disable-next-line react/require-default-props
+
   color?: string;
-  // eslint-disable-next-line react/require-default-props
+
   secondaryColor?: string;
 }
 

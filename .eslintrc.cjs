@@ -33,7 +33,10 @@ module.exports = {
       },
     ],
     'no-param-reassign': ['error', { 'props': true, 'ignorePropertyModificationsFor': ['state'] }],
-    'import/no-cycle': 'off'
+    'import/no-cycle': 'off',
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }]
   },
   settings: {
     react: {
