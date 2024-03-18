@@ -2,15 +2,23 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/header/Header';
 import Builder from './pages/Builder';
 import Footer from './components/footer/Footer';
+import styled from 'styled-components';
+
+const StyledSection = styled.section`
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;  
+`;
 
 const App = () => (
-  <>
+  <StyledSection>
     <Header />
     <Routes>
       <Route path="/builder" element={<Builder />} />
     </Routes>
     <Footer />
-  </>
+  </StyledSection>
 )
 
 export default App;

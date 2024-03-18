@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledContactsList = styled.ul`
   width: 100%;
+  box-sizing: border-box;
   margin: 0 auto 40px;
   padding: 0;
   display: flex;
@@ -10,6 +11,7 @@ const StyledContactsList = styled.ul`
 
 const StyledContactElement = styled.li`
   display: flex;
+  box-sizing: border-box;
   margin: 0;
   list-style: none;
 `;

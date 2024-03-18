@@ -4,7 +4,8 @@ import { media } from './styles/breakpoints';
 const GlobalStyle = createGlobalStyle`
   body {
     box-sizing: border-box;
-    margin: 0;    
+    max-width: 1590px;
+    margin: 0 auto;    
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;

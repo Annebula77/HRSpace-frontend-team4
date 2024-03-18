@@ -7,9 +7,10 @@ import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
 
 const StyledHeader = styled.header`
   width: 100%;
+  box-sizing: border-box;
   height: 74px;
   padding: 0 96px;
-  margin: 16px 0;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

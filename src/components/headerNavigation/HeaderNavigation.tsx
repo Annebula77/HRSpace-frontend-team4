@@ -7,6 +7,7 @@ interface ButtonProps {
 
 const StyledList = styled.ul`
   margin: 0;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   background-color: #000000;
@@ -36,7 +37,7 @@ const StyledNavButton = styled.button<ButtonProps>`
     ? 'rgba(255, 255, 255, 1)'
     : 'rgba(149, 151, 153, 1)'
   )
-};
+  };
 `;
 
 const HeaderNavigation: FC<ButtonProps> = () => (

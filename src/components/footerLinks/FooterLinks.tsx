@@ -6,6 +6,7 @@ import OkLinkIcon from '../icons/OkLinkIcon';
 
 const StyledFooterNavigation = styled.nav`
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
