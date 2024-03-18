@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import OpenSelectIcon from '../icons/OpenSelectIcon';
 import CloseIcon from '../icons/CloseIcon';
 
-interface SelectWithChipsProps {
+export interface SelectWithChipsProps {
   options: string[];
   selectedValues: string[];
   label: string;
