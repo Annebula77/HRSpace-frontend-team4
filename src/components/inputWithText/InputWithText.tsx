@@ -7,7 +7,7 @@ interface InputProps {
   name: string;
   value: string;
   placeholder: string;
-  // eslint-disable-next-line react/require-default-props
+
   error?: boolean;
 }
 
