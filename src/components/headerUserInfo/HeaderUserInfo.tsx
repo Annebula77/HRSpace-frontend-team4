@@ -5,6 +5,7 @@ import BellIcon from '../icons/BellIcon';
 
 const StyledUserInfo = styled.div`
   display: flex;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   background-color: #000000;
@@ -30,6 +31,7 @@ const StyledUserNameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 12px;
+  box-sizing: border-box;
 `;
 
 const StyledUserName = styled.div`
