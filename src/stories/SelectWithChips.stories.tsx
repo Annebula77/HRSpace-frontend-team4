@@ -1,14 +1,7 @@
 import { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import SelectWithChips from '../components/selectWithChips/SelectWithChips';
+import SelectWithChips, { type SelectWithChipsProps } from '../components/selectWithChips/SelectWithChips';
 
-interface SelectWithChipsProps {
-  options: string[];
-  label: string;
-  placeholder: string;
-  error?: boolean;
-  onChange: (value: string[]) => void;
-}
 
 export default {
   title: 'Components/SelectWithChips',
@@ -31,6 +24,37 @@ export const Primary: StoryObj<SelectWithChipsProps> = {
         {...args}
         selectedValues={selectedValues}
         onChange={handleChange}
+      />
+    );
+  },
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    label: 'Рекомендованные навыки:',
+    placeholder: 'Введите текст',
+    error: false,
+  },
+};
+
+export const Errored: StoryObj<SelectWithChipsProps> = {
+  render: (args) => {
+    const [selectedValues, setSelectedValues] = useState<string[]>([]);
+    const [isError, setIsError] = useState(true);
+
+
+    const handleChange = (newValue: string[]) => {
+      setSelectedValues(newValue);
+      if (args.onChange) {
+        args.onChange(newValue);
+      }
+      setIsError(!newValue);
+    };
+
+    return (
+      <SelectWithChips
+        {...args}
+        selectedValues={selectedValues}
+        onChange={handleChange}
+        error={isError}
       />
     );
   },
