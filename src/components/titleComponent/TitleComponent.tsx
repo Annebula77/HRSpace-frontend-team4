@@ -29,7 +29,8 @@ const Title = styled.h2<TitleProps>`
 
 const TitleComponent: React.FC<TitleProps> = ({ includeAsterisk, children }) => (
   <Title>
-    {children}{includeAsterisk && <span>*</span>}
+    {children}
+    {includeAsterisk && <span>*</span>}
   </Title>
 );
 

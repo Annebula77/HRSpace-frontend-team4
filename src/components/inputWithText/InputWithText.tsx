@@ -12,7 +12,7 @@ interface InputProps {
 
 const StyledInput = styled.input<InputProps>` 
   width: 100%;
-  height: 50px;
+  height: 56px;
   box-sizing: border-box;
   display: flex;
   flex-grow: 1;

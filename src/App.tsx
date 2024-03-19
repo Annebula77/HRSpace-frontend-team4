@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import styled from 'styled-components';
 import Header from './components/header/Header';
 import Builder from './pages/Builder';
 import Footer from './components/footer/Footer';
-import styled from 'styled-components';
 
 const StyledSection = styled.section`
   width: 100%;
@@ -20,6 +20,6 @@ const App = () => (
     </Routes>
     <Footer />
   </StyledSection>
-)
+);
 
 export default App;

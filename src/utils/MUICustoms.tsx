@@ -1,6 +1,6 @@
-import { ListSubheader } from "@mui/material";
-import { type HTMLAttributes, forwardRef } from "react";
-import styled from "styled-components";
+import { ListSubheader } from '@mui/material';
+import { type HTMLAttributes, forwardRef } from 'react';
+import styled from 'styled-components';
 
 const StyledList = styled.ul`
   margin: 0;
@@ -30,10 +30,13 @@ export const SkillsListboxComponent = forwardRef<HTMLUListElement, HTMLAttribute
         {children}
       </StyledList>
     </>
-  )
+  ),
 );
 
-export const ResponsibilityListboxComponent = forwardRef<HTMLUListElement, HTMLAttributes<HTMLElement>>(
+SkillsListboxComponent.displayName = 'SkillsListboxComponent';
+
+export const ResponsibilityListboxComponent = forwardRef<
+HTMLUListElement, HTMLAttributes<HTMLElement>>(
   ({ children, ...rest }, ref) => (
     <>
       <StyledListSubheader>Основные обязанности</StyledListSubheader>
@@ -41,5 +44,7 @@ export const ResponsibilityListboxComponent = forwardRef<HTMLUListElement, HTMLA
         {children}
       </StyledList>
     </>
-  )
+  ),
 );
+
+ResponsibilityListboxComponent.displayName = 'ResponsibilityListboxComponent';

@@ -1,13 +1,10 @@
 import { type FC, type ComponentType, type HTMLAttributes } from 'react';
 import {
-  Autocomplete, Chip, Stack, TextField, Box
+  Autocomplete, Chip, Stack, TextField, Box,
 } from '@mui/material';
 import styled from 'styled-components';
 import OpenSelectIcon from '../icons/OpenSelectIcon';
 import CloseIcon from '../icons/CloseIcon';
-
-
-
 
 export interface SelectWithChipsProps {
   options: string[];
@@ -17,8 +14,6 @@ export interface SelectWithChipsProps {
   onChange: (value: string[]) => void;
   ListboxComponent: ComponentType<HTMLAttributes<HTMLElement>>;
 }
-
-
 
 const StyledLi = styled.li`
   margin: 0 -20px 0 0;
@@ -50,12 +45,11 @@ const InvisibleButton = styled.button`
     cursor: pointer;  
 `;
 
-const DynamicMarginBox = styled(Box) <{ hasSelectedValues: boolean }>`
+const DynamicMarginBox = styled(Box) <{ $hasSelectedValues: boolean }>`
   width: 100%;
-  margin: ${({ hasSelectedValues }) => (hasSelectedValues ? '0' : '-26px 0 0')};
+  margin: ${({ $hasSelectedValues }) => ($hasSelectedValues ? '0' : '-26px 0 0')};
   overflow: auto;
 `;
-
 
 const SelectWithChips: FC<SelectWithChipsProps> = ({
   options,
@@ -63,28 +57,26 @@ const SelectWithChips: FC<SelectWithChipsProps> = ({
   onChange,
   error,
   placeholder,
-  ListboxComponent
+  ListboxComponent,
 }) => {
-
   const handleChange = (_: React.SyntheticEvent, newValue: string[] | string) => {
     onChange(Array.isArray(newValue) ? newValue : [...selectedValues, newValue]);
   };
 
   return (
-    <DynamicMarginBox hasSelectedValues={selectedValues.length > 0}>
+    <DynamicMarginBox $hasSelectedValues={selectedValues.length > 0}>
       <Stack spacing={3} sx={{ width: '100%' }}>
         <Stack direction="row" spacing={1}>
           {selectedValues.map((option) => (
             <StyledSelectedChip
               key={option}
               label={option}
-              deleteIcon={
+              deleteIcon={(
                 <InvisibleButton>
                   <CloseIcon style={{ width: '18px', height: '18px' }} />
                 </InvisibleButton>
-              }
+              )}
               onDelete={() => {
-                console.log('Deleting:', option);
                 const newSelectedValues = selectedValues.filter((chip) => chip !== option);
                 onChange(newSelectedValues);
               }}
@@ -142,7 +134,7 @@ const SelectWithChips: FC<SelectWithChipsProps> = ({
           )}
           popupIcon={<OpenSelectIcon style={{ width: '20px', height: '20px', marginRight: '16px' }} />}
         />
-      </Stack >
+      </Stack>
     </DynamicMarginBox>
   );
 };

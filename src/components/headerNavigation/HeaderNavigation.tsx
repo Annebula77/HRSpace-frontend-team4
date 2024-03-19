@@ -40,7 +40,7 @@ const HeaderNavigation: FC<ButtonProps> = () => (
   <nav>
     <StyledList>
       <StyledListElement>
-        <StyledNavButton type="button" $primary={true}>
+        <StyledNavButton type="button" $primary>
           Создать заявку
         </StyledNavButton>
       </StyledListElement>
@@ -65,7 +65,7 @@ const HeaderNavigation: FC<ButtonProps> = () => (
         </StyledNavButton>
       </StyledListElement>
     </StyledList>
-  </nav >
+  </nav>
 );
 
 export default HeaderNavigation;

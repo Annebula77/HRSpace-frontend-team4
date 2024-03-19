@@ -1,6 +1,7 @@
 import { type FC, type ChangeEvent } from 'react';
 import styled from 'styled-components';
 import CheckIcon from '../icons/CheckIcon';
+import { media } from '../../styles/breakpoints';
 
 interface CheckboxProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -52,7 +53,11 @@ const CheckboxLabel = styled.span`
   line-height: 1.4;
   color: rgba(48, 50, 51, 1);
   margin-left: 8px;
+  white-space: pre-wrap;
+
+  ${media.md`
   white-space: nowrap;
+    `}
 `;
 
 const CheckboxWithStyles: FC<CheckboxProps> = ({

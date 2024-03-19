@@ -23,7 +23,6 @@ export const Primary: Story = {
     id: '1',
     label: 'hello',
     name: 'input-name',
-    value: '',
     checked: true,
     onChange: onChange,
   },

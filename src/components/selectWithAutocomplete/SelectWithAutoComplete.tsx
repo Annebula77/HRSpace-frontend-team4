@@ -2,8 +2,8 @@ import { type FC } from 'react';
 import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import OpenSelectIcon from '../icons/OpenSelectIcon';
 import styled from 'styled-components';
+import OpenSelectIcon from '../icons/OpenSelectIcon';
 
 export interface OptionType {
   id: string;

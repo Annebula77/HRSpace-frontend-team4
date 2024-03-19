@@ -1,117 +1,28 @@
-import { useEffect, useState } from "react";
-import InputWithText from "../inputWithText/InputWithText";
-import SelectWithAutoComplete, { type OptionType } from "../selectWithAutocomplete/SelectWithAutoComplete";
-import TitleComponent from "../titleComponent/TitleComponent";
-import SelectWithChips from "../selectWithChips/SelectWithChips";
-import { SkillsListboxComponent, ResponsibilityListboxComponent } from "../../utils/MUICustoms";
-import CheckboxWithStyles from "../checkboxWithStyles/CheckboxWithStyles";
-import RadioInput from "../radioChip/RadioInput";
-import { Button } from "../button/Button";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import InputWithText from '../inputWithText/InputWithText';
+import SelectWithAutoComplete, { type OptionType } from '../selectWithAutocomplete/SelectWithAutoComplete';
+import TitleComponent from '../titleComponent/TitleComponent';
+import SelectWithChips from '../selectWithChips/SelectWithChips';
+import { SkillsListboxComponent, ResponsibilityListboxComponent } from '../../utils/MUICustoms';
+import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
+import RadioInput from '../radioChip/RadioInput';
+import {
+  ForkInputStyles,
+  StyledArticle,
+  StyledDivTwoChildren,
+  StyledLiCheckboxList,
+  StyledLiInputList,
+  StyledParagraph,
+  StyledSection,
+  StyledULCheckboxList,
+  StyledUlInputList,
+} from '../../styles/formStepsStyles';
 
-const StyledSection = styled.section`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 86px 0 86px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
- 
-  & > *:nth-last-child(2) {  // Применяем только к предпоследнему элементу
-    margin-bottom: 54px;
-  }
-`;
-
-const StyledUlInputList = styled.ul`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 24px;
-`;
-
-const StyledLiInputList = styled.li`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: start;    
-`;
-
-const StyledDivTwoChildren = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
- `;
-
-const StyledArticle = styled.article`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0 0 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  `;
-
-const ForkInputStyles = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0 0 8px;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 24px;
-`;
-
-const StyledParagraph = styled.p` 
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.4;
-  color: rgba(110, 113, 115, 1);
-  `;
-
-const StyledULCheckboxList = styled.ul`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 12px;
-`
-
-const StyledLiCheckboxList = styled.li`
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-display: flex;
-flex-direction: column;
-align-items: start;
-`;
-
-const HrRequestForm = () => {
+const HrFormStepOne = () => {
   const [inputValue, setInputValue] = useState('');
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   useEffect(() => {
-    console.log(selectedValues);
   }, [selectedValues]);
 
   const mockOptions = [
@@ -123,8 +34,8 @@ const HrRequestForm = () => {
   const mockOptions1 = [
     'Option 4',
     'Option 5',
-    'Option 6'
-  ]
+    'Option 6',
+  ];
 
   // Заглушка для функции getOptionLabel, которая просто возвращает имя опции
   const mockGetOptionLabel = (option: OptionType) => option.name;
@@ -135,10 +46,8 @@ const HrRequestForm = () => {
   const mockOnChange = (value: OptionType | null) => console.log('Selected:', value);
 
   const handleChange = (newValues: string[]) => {
-    console.log('New values:', newValues);
     setSelectedValues(newValues);
   };
-
 
   return (
     <StyledSection>
@@ -201,11 +110,11 @@ const HrRequestForm = () => {
           <StyledParagraph>рублей</StyledParagraph>
         </ForkInputStyles>
         <CheckboxWithStyles
-          id='2'
-          name='salary'
+          id="2"
+          name="salary"
           checked={isChecked}
-          onChange={() => setIsChecked(prev => !prev)}
-          label='Скрыть зарплату для будущих кандидатов'
+          onChange={() => setIsChecked((prev) => !prev)}
+          label="Скрыть зарплату для будущих кандидатов"
         />
       </StyledArticle>
       <StyledDivTwoChildren>
@@ -213,38 +122,38 @@ const HrRequestForm = () => {
         <StyledUlInputList>
           <StyledLiInputList>
             <RadioInput
-              id='2'
-              name='without experience'
+              id="2"
+              name="without experience"
               checked={!isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='без опыта'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="без опыта"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id='3'
-              name='beginner'
+              id="3"
+              name="beginner"
               checked={isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='1-3 лет'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="1-3 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id='4'
-              name='middle'
+              id="4"
+              name="middle"
               checked={!isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='3-6 лет'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="3-6 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id='5'
-              name='senior'
+              id="5"
+              name="senior"
               checked={!isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='от 6 лет'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="от 6 лет"
             />
           </StyledLiInputList>
         </StyledUlInputList>
@@ -254,38 +163,38 @@ const HrRequestForm = () => {
         <StyledULCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id='10'
-              name='secondary'
+              id="10"
+              name="secondary"
               checked={isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='Среднее'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="Среднее"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id='11'
-              name='secondary prof'
+              id="11"
+              name="secondary prof"
               checked={isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='Среднее профессиональное'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="Среднее профессиональное"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id='12'
-              name='almost higher'
+              id="12"
+              name="almost higher"
               checked={isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='Неполное высшее'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="Неполное высшее"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id='13'
-              name='higher'
+              id="13"
+              name="higher"
               checked={isChecked}
-              onChange={() => setIsChecked(prev => !prev)}
-              label='Высшее'
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="Высшее"
             />
           </StyledLiCheckboxList>
         </StyledULCheckboxList>
@@ -293,15 +202,14 @@ const HrRequestForm = () => {
       <StyledDivTwoChildren>
         <TitleComponent>Возможность командировок</TitleComponent>
         <RadioInput
-          id='7'
-          name='trips'
+          id="7"
+          name="trips"
           checked={!isChecked}
-          onChange={() => setIsChecked(prev => !prev)}
-          label='Да'
+          onChange={() => setIsChecked((prev) => !prev)}
+          label="Да"
         />
       </StyledDivTwoChildren>
-      <Button primary size="large" label="Далее" >Далее</Button>
     </StyledSection>
-  )
+  );
 };
-export default HrRequestForm;
+export default HrFormStepOne;
