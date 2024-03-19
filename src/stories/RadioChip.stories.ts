@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import RadioChip from '../components/radioChip/RadioChip';
+import RadioChip from '../components/radioChip/RadioInput';
 
 
 const meta = {

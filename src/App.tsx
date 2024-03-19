@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/header/Header';
 import Builder from './pages/Builder';
 import Footer from './components/footer/Footer';
@@ -15,6 +15,7 @@ const App = () => (
   <StyledSection>
     <Header />
     <Routes>
+      <Route path="/" element={<Navigate to="/builder" replace />} />
       <Route path="/builder" element={<Builder />} />
     </Routes>
     <Footer />

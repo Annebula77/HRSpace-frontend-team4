@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 400;
+    color: rgba(73, 75, 77, 1);
     display: flex;
     flex-direction: column;
     flex-grow: 1;

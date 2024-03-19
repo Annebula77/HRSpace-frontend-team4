@@ -32,6 +32,7 @@ const getPadding = (size: ButtonProps['size']) => {
 };
 
 const StyledButton = styled.button<ButtonProps>` 
+  width: 100%;
   font-weight: ${({ primary }) => (primary ? '700' : '400')};
   border: 0;
   border-radius: 8px;

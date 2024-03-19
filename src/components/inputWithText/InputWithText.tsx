@@ -7,15 +7,18 @@ interface InputProps {
   name: string;
   value: string;
   placeholder: string;
-
   error?: boolean;
 }
 
 const StyledInput = styled.input<InputProps>` 
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
   display: flex;
   flex-grow: 1;
   padding: 10px 16px 10px 16px;
-  margin: 5px;
+  outline: none;
+  margin: 0;
   border: 1px solid ${(props) => (props.error ? 'rgba(255, 46, 46, 1)' : 'rgba(186, 189, 191, 1)')};
   border-radius: 8px;
   font-size: 14px;
@@ -24,17 +27,17 @@ const StyledInput = styled.input<InputProps>`
   line-height: 1.4;
   word-wrap: break-word;
 
-  &:hover {
-    border: 1px solid rgba(23, 133, 229, 1);
+  &:focus {
+    border: 2px solid rgba(23, 133, 229, 1);
   }
 
-  &:focus {
-  border: 1px solid rgba(23, 133, 229, 1);
+  &:hover {
+    border: 1px solid rgba(23, 133, 229, 1);
   }
  `;
 
 const InputWithText: FC<InputProps> = ({
-  onChange, name, value, placeholder, error = false,
+  onChange, name, value, placeholder, error,
 }) => (
   <StyledInput
     onChange={onChange}

@@ -46,8 +46,13 @@ const StyledCheckbox = styled.span<{ checked: boolean }>`
 `;
 
 const CheckboxLabel = styled.span`
-  color: rgba(34, 34, 34, 1);
-  margin-left: 8px; 
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(48, 50, 51, 1);
+  margin-left: 8px;
+  white-space: nowrap;
 `;
 
 const CheckboxWithStyles: FC<CheckboxProps> = ({

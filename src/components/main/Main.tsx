@@ -7,11 +7,11 @@ interface MainProps {
 
 const StyledMain = styled.main<MainProps>`
   box-sizing: border-box;
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;  
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 `;
 
 
