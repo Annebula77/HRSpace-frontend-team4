@@ -6,7 +6,6 @@ interface RadioInputProps {
   label: string;
   id: string;
   name: string;
-  value: string;
   checked: boolean;
 }
 
@@ -62,10 +61,10 @@ const RadioLabel = styled.span`
 `;
 
 const RadioInput: FC<RadioInputProps> = ({
-  id, name, value, checked, onChange, label,
+  id, name, checked, onChange, label,
 }) => (
   <RadioContainer checked={checked}>
-    <HiddenRadio id={id} name={name} value={value} checked={checked} onChange={onChange} />
+    <HiddenRadio id={id} name={name} checked={checked} onChange={onChange} />
     <StyledRadio checked={checked} />
     <RadioLabel>{label}</RadioLabel>
   </RadioContainer>

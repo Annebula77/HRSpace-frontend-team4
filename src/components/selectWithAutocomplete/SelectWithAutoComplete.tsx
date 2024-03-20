@@ -1,7 +1,8 @@
 import { type FC } from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import styled from 'styled-components';
 import OpenSelectIcon from '../icons/OpenSelectIcon';
 
 export interface OptionType {
@@ -23,6 +24,11 @@ export interface SelectWithAutoCompleteProps<T extends OptionType> {
   placeholder?: string;
 }
 
+const StyledAutocomplete = styled(Autocomplete) <AutocompleteProps<OptionType, false, false, false>>`
+  && {
+    width: 100%;
+  }
+`;
 const SelectWithAutoComplete: FC<SelectWithAutoCompleteProps<OptionType>> = ({
   value,
   options,
@@ -33,7 +39,7 @@ const SelectWithAutoComplete: FC<SelectWithAutoCompleteProps<OptionType>> = ({
   helperText,
   placeholder,
 }) => (
-  <Autocomplete
+  <StyledAutocomplete
     onChange={(_, newValue) => onChange(newValue)}
     options={options}
     value={value}

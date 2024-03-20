@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '../components/button/Button';
+import CustomButton from '../components/button/CustomButton';
 
-const meta: Meta<typeof Button> = {
+const meta: Meta<typeof CustomButton> = {
   title: 'Example/Button',
-  component: Button,
+  component: CustomButton,
   parameters: {
     layout: 'centered',
   },
@@ -15,34 +15,34 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-export const Primary: StoryObj<typeof Button> = {
+export const Primary: StoryObj<typeof CustomButton> = {
   args: {
     primary: true,
     children: 'Button',
   },
 };
 
-export const Secondary: StoryObj<typeof Button> = {
+export const Secondary: StoryObj<typeof CustomButton> = {
   args: {
     children: 'Button',
   },
 };
 
-export const Large: StoryObj<typeof Button> = {
+export const Large: StoryObj<typeof CustomButton> = {
   args: {
     size: 'large',
     children: 'Button',
   },
 };
 
-export const Small: StoryObj<typeof Button> = {
+export const Small: StoryObj<typeof CustomButton> = {
   args: {
     size: 'small',
     children: 'Button',
   },
 };
 
-export const Warning: StoryObj<typeof Button> = {
+export const Warning: StoryObj<typeof CustomButton> = {
   args: {
     primary: true,
     children: 'Delete now',

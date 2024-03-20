@@ -29,7 +29,6 @@ export const Primary: StoryObj<SelectWithChipsProps> = {
   },
   args: {
     options: ['Option 1', 'Option 2', 'Option 3'],
-    label: 'Рекомендованные навыки:',
     placeholder: 'Введите текст',
     error: false,
   },
@@ -60,7 +59,6 @@ export const Errored: StoryObj<SelectWithChipsProps> = {
   },
   args: {
     options: ['Option 1', 'Option 2', 'Option 3'],
-    label: 'Рекомендованные навыки:',
     placeholder: 'Введите текст',
     error: false,
   },

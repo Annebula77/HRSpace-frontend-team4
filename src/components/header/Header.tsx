@@ -28,7 +28,7 @@ const Header = () => (
       <HrSpaceLogo width={138} height={46} />
     </StyledLogoWrapper>
     {/* </Link> */}
-    <HeaderNavigation isActive={false} />
+    <HeaderNavigation />
     <HeaderUserInfo />
   </StyledHeader>
 );
