@@ -8,10 +8,11 @@ import {
   type StepIconProps,
   type Orientation,
 } from '@mui/material';
+import { media } from '../../styles/breakpoints';
 import styled from 'styled-components';
 import CustomButton from '../button/CustomButton';
-import HrFormStepOne from '../hrRequestForm/HrFormStepOne';
-import { media } from '../../styles/breakpoints';
+import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
+import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
 
 const Line = styled.div<{ $completed: boolean }>`
   width: 300px;
@@ -97,7 +98,7 @@ function getStepContent(step: number): JSX.Element | string {
     case 0:
       return <HrFormStepOne />;
     case 1:
-      return <p>1</p>;
+      return <HrFormStepTwo />;
     case 2:
       return <p>2</p>;
     case 3:

@@ -47,6 +47,24 @@ export const StyledDivTwoChildren = styled.div`
   align-items: start;
  `;
 
+export const StyledDivThreeChildren = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  & > * {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-top: 12px;
+  }
+`;
+
 export const StyledArticle = styled.article`
   width: 100%;
   box-sizing: border-box;
