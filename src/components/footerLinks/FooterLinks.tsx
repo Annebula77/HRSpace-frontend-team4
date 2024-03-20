@@ -51,17 +51,17 @@ const FooterLinks = () => (
     <p>© 2022 Группа компаний HeadHunter</p>
     <ul>
       <li>
-        <button type="button">
+        <button aria-label='telegram' type="button">
           <TelegramLinkIcon width={24} height={24} />
         </button>
       </li>
       <li>
-        <button type="button">
+        <button aria-label='vk' type="button">
           <VkLinkIcon width={24} height={24} />
         </button>
       </li>
       <li>
-        <button type="button">
+        <button aria-label='ok' type="button">
           <OkLinkIcon width={24} height={24} />
         </button>
       </li>
