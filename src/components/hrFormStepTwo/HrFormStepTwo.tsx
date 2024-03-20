@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { TextField } from '@mui/material';
 import InputWithText from '../inputWithText/InputWithText';
 import SelectWithAutoComplete, { type OptionType } from '../selectWithAutocomplete/SelectWithAutoComplete';
 import TitleComponent from '../titleComponent/TitleComponent';
@@ -11,23 +12,19 @@ import {
   StyledSection,
   StyledULCheckboxList,
   StyledUlInputList,
-  StyledDivThreeChildren
+  StyledDivThreeChildren,
 } from '../../styles/formStepsStyles';
-import { TextField } from '@mui/material';
 
 const HrFormStepTwo = () => {
   const [inputValue, setInputValue] = useState('');
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  useEffect(() => {
-  }, [selectedValues]);
 
   const mockOptions = [
     { id: '1', name: 'Option 1' },
     { id: '2', name: 'Option 2' },
     { id: '3', name: 'Option 3' },
   ];
-
 
   // Заглушка для функции getOptionLabel, которая просто возвращает имя опции
   const mockGetOptionLabel = (option: OptionType) => option.name;
@@ -36,7 +33,6 @@ const HrFormStepTwo = () => {
     setInputValue(e.target.value); // Обновляем значение инпута
   };
   const mockOnChange = (value: OptionType | null) => console.log('Selected:', value);
-
 
   return (
     <StyledSection>
@@ -237,7 +233,6 @@ const HrFormStepTwo = () => {
           label="Да"
         />
       </StyledDivTwoChildren>
-
 
       <StyledDivTwoChildren>
         <TitleComponent>Наличие автомобиля</TitleComponent>

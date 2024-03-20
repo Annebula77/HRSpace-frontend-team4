@@ -3,7 +3,7 @@ import InputWithText from '../inputWithText/InputWithText';
 import SelectWithAutoComplete, { type OptionType } from '../selectWithAutocomplete/SelectWithAutoComplete';
 import TitleComponent from '../titleComponent/TitleComponent';
 import SelectWithChips from '../selectWithChips/SelectWithChips';
-import { SkillsListboxComponent, ResponsibilityListboxComponent } from '../../utils/MUICustoms';
+import { SkillsListboxComponent, ResponsibilityListboxComponent } from '../../utils/MUICustomsForSelects';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
 import {
