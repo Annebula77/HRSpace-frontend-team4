@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-/* eslint-disable react/require-default-props */
+
 interface Props {
   className?: string;
   style?: Record<string, string>;

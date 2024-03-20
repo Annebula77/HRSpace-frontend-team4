@@ -2,11 +2,12 @@ import { type FC } from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps {
-  isActive: boolean;
+  $primary?: boolean;
 }
 
-const Styledlist = styled.ul`
+const StyledList = styled.ul`
   margin: 0;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   background-color: #000000;
@@ -32,43 +33,38 @@ const StyledNavButton = styled.button<ButtonProps>`
   text-align: left;
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  color: ${
-  (props) => (props.isActive
-    ? 'rgba(255, 255, 255, 1)'
-    : 'rgba(149, 151, 153, 1)'
-  )
-};
+  color: ${({ $primary }) => ($primary ? 'rgba(255, 255, 255, 1)' : 'rgba(149, 151, 153, 1)')};
 `;
 
 const HeaderNavigation: FC<ButtonProps> = () => (
   <nav>
-    <Styledlist>
+    <StyledList>
       <StyledListElement>
-        <StyledNavButton type="button" isActive>
+        <StyledNavButton type="button" $primary>
           Создать заявку
         </StyledNavButton>
       </StyledListElement>
       <StyledListElement>
-        <StyledNavButton type="button" isActive={false}>
+        <StyledNavButton type="button">
           Мои заявки
         </StyledNavButton>
       </StyledListElement>
       <StyledListElement>
-        <StyledNavButton type="button" isActive={false}>
+        <StyledNavButton type="button">
           Поиск по рынку
         </StyledNavButton>
       </StyledListElement>
       <StyledListElement>
-        <StyledNavButton type="button" isActive={false}>
+        <StyledNavButton type="button">
           Счёт
         </StyledNavButton>
       </StyledListElement>
       <StyledListElement>
-        <StyledNavButton type="button" isActive={false}>
+        <StyledNavButton type="button">
           Помощь
         </StyledNavButton>
       </StyledListElement>
-    </Styledlist>
+    </StyledList>
   </nav>
 );
 

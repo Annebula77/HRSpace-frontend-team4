@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import RadioChip from '../components/radioChip/RadioChip';
+import RadioChip from '../components/radioChip/RadioInput';
 
 
 const meta = {
@@ -23,7 +23,6 @@ export const Primary: Story = {
     id: '1',
     label: 'hello',
     name: 'input-name',
-    value: '',
     checked: true,
     onChange: onChange,
   },

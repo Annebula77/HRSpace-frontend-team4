@@ -5,6 +5,7 @@ import FooterLinks from '../footerLinks/FooterLinks';
 
 const StyledFooter = styled.footer`
   width: 100%;
+  box-sizing: border-box;
   padding: 40px 96px;
   margin: 0;
   display: flex;

@@ -7,13 +7,14 @@ import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
 
 const StyledHeader = styled.header`
   width: 100%;
+  box-sizing: border-box;
   height: 74px;
   padding: 0 96px;
-  margin: 16px 0;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
+  background-color: rgb(0, 0, 0);
 `;
 
 const StyledLogoWrapper = styled.div`
@@ -27,7 +28,7 @@ const Header = () => (
       <HrSpaceLogo width={138} height={46} />
     </StyledLogoWrapper>
     {/* </Link> */}
-    <HeaderNavigation isActive={false} />
+    <HeaderNavigation />
     <HeaderUserInfo />
   </StyledHeader>
 );

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-const StyledContactslist = styled.ul`
+const StyledContactsList = styled.ul`
   width: 100%;
+  box-sizing: border-box;
   margin: 0 auto 40px;
   padding: 0;
   display: flex;
@@ -10,6 +11,7 @@ const StyledContactslist = styled.ul`
 
 const StyledContactElement = styled.li`
   display: flex;
+  box-sizing: border-box;
   margin: 0;
   list-style: none;
 `;
@@ -34,7 +36,7 @@ const StyledPhoneNumber = styled.div`
 `;
 
 const FooterContactsList = () => (
-  <StyledContactslist>
+  <StyledContactsList>
     <StyledContactElement>
       <StyledContactDetails>Москва и область</StyledContactDetails>
       <StyledPhoneNumber>+7 495 974-64-27</StyledPhoneNumber>
@@ -50,7 +52,7 @@ const FooterContactsList = () => (
     <StyledContactElement>
       <StyledContactDetails>hrspace@hh.ru</StyledContactDetails>
     </StyledContactElement>
-  </StyledContactslist>
+  </StyledContactsList>
 );
 
 export default FooterContactsList;
