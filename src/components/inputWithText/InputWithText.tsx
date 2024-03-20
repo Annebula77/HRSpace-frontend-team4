@@ -1,9 +1,10 @@
-import { type FC, type ChangeEvent } from 'react';
+import { type FC, type ChangeEvent, FocusEvent } from 'react';
 import styled from 'styled-components';
 
 // NOTE: Определяем пропсы, которые будут переданы в StyledInput
 interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: FocusEvent<HTMLInputElement>) => void;
   name: string;
   value: string;
   placeholder: string;
@@ -11,7 +12,7 @@ interface InputProps {
   error?: boolean;
 }
 
-const StyledInput = styled.input<InputProps>` 
+const StyledInput = styled.input<InputProps>`
   display: flex;
   flex-grow: 1;
   padding: 10px 16px 10px 16px;
@@ -34,10 +35,11 @@ const StyledInput = styled.input<InputProps>`
  `;
 
 const InputWithText: FC<InputProps> = ({
-  onChange, name, value, placeholder, error = false,
+  onChange, onBlur, name, value, placeholder, error = false,
 }) => (
   <StyledInput
     onChange={onChange}
+    onBlur={onBlur}
     type="text"
     name={name}
     value={value}
