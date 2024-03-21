@@ -16,31 +16,6 @@ const StyledFeeSection = styled.section`
     box-sizing: border-box;
   `;
 
-const StyledFeeTitle = styled.div`
-  display:flex;
-  margin: 0 0 12px 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  & h2 {
-    margin: 0 4px 0 0;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: rgba(48, 50, 51, 1);
-  };
-
-  & span {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 22px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: rgba(214, 0, 29, 1);
-  }
-`;
 const StyledInputWrapper = styled.div`
   width: 170px;
   /* height: 48px; */
@@ -112,10 +87,6 @@ const FeeSection: FC<FeeSectionProps> = ({
 
   return (
     <StyledFeeSection>
-      <StyledFeeTitle>
-        <h2>Вознаграждение за одного сотрудника</h2>
-        <span>*</span>
-      </StyledFeeTitle>
       <StyledInputWrapper>
         <InputWithText
           onChange={handleInputChange}
@@ -131,6 +102,7 @@ const FeeSection: FC<FeeSectionProps> = ({
         onChange={handleSliderChange}
         minValue={calculateMinSliderValue()}
         maxValue={calculateMaxSliderValue()}
+        label={calculateRecommendedValue()}
         recommendedValue={calculateRecommendedValue()}
         sliderValue={sliderValue}
         isError={error}
