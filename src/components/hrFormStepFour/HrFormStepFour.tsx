@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { TextField } from '@mui/material';
-import InputWithText from '../inputWithText/InputWithText';
-import SelectWithAutoComplete, { type OptionType } from '../selectWithAutocomplete/SelectWithAutoComplete';
 import TitleComponent from '../titleComponent/TitleComponent';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
@@ -10,250 +8,198 @@ import {
   StyledLiCheckboxList,
   StyledLiInputList,
   StyledSection,
-  StyledULCheckboxList,
   StyledUlInputList,
-  StyledDivThreeChildren,
 } from '../../styles/formStepsStyles';
+import styled from 'styled-components';
+import FinalCalculations from '../finalCalculations/FinalCalculations';
+import FileUploader from '../fileUploader/FileUploader';
+
+
+const CheckInputsInColumn = styled.ul`
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 12px;
+`;
 
 const HrFormStepFour = () => {
   const [inputValue, setInputValue] = useState('');
 
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const mockOptions = [
-    { id: '1', name: 'Option 1' },
-    { id: '2', name: 'Option 2' },
-    { id: '3', name: 'Option 3' },
-  ];
 
-  // Заглушка для функции getOptionLabel, которая просто возвращает имя опции
-  const mockGetOptionLabel = (option: OptionType) => option.name;
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value); // Обновляем значение инпута
   };
-  const mockOnChange = (value: OptionType | null) => console.log('Selected:', value);
+
 
   return (
     <StyledSection>
-      <StyledDivTwoChildren>
-        <TitleComponent includeAsterisk>Место работы</TitleComponent>
-        <SelectWithAutoComplete
-          value={null}
-          options={mockOptions}
-          getOptionLabel={mockGetOptionLabel}
-          onChange={mockOnChange}
-          placeholder="Введите город"
-        />
-      </StyledDivTwoChildren>
 
       <StyledDivTwoChildren>
-        <TitleComponent includeAsterisk>Формат работы</TitleComponent>
+        <TitleComponent>Опыт работы рекрутёра</TitleComponent>
         <StyledUlInputList>
           <StyledLiInputList>
             <RadioInput
               id="1"
-              name="office"
-              checked={!isChecked}
+              name="beginner"
+              checked={isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="В офисе"
+              label="1-3 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
               id="2"
-              name="hybrid"
-              checked={isChecked}
+              name="middle"
+              checked={!isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="Гибрид"
+              label="3-6 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
               id="3"
-              name="remote"
+              name="senior"
               checked={!isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="Удаленка"
+              label="от 6 лет"
             />
           </StyledLiInputList>
         </StyledUlInputList>
       </StyledDivTwoChildren>
-
       <StyledDivTwoChildren>
-        <TitleComponent includeAsterisk>Тип занятости</TitleComponent>
-        <StyledUlInputList>
-          <StyledLiInputList>
-            <RadioInput
+        <TitleComponent>Что входит в работу рекрутера?</TitleComponent>
+        <CheckInputsInColumn>
+          <StyledLiCheckboxList>
+            <CheckboxWithStyles
               id="4"
-              name="fulltime"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="Полная"
-            />
-          </StyledLiInputList>
-          <StyledLiInputList>
-            <RadioInput
-              id="5"
-              name="partial"
+              name="resumesearch"
               checked={isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="Частичная"
+              label="Поиск и предоставление релевантного резюме"
             />
-          </StyledLiInputList>
-          <StyledLiInputList>
-            <RadioInput
+          </StyledLiCheckboxList>
+          <StyledLiCheckboxList>
+            <CheckboxWithStyles
               id="5"
-              name="shift"
-              checked={!isChecked}
+              name="interview"
+              checked={isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="По сменам"
+              label="Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика"
             />
-          </StyledLiInputList>
-          <StyledLiInputList>
-            <RadioInput
+          </StyledLiCheckboxList>
+          <StyledLiCheckboxList>
+            <CheckboxWithStyles
+              id="6"
+              name="recommendations"
+              checked={isChecked}
+              onChange={() => setIsChecked((prev) => !prev)}
+              label="Запрос рекомендаций с предыдущих мест работы"
+            />
+          </StyledLiCheckboxList>
+          <StyledLiCheckboxList>
+            <CheckboxWithStyles
               id="7"
-              name="fifo"
-              checked={!isChecked}
+              name="testing"
+              checked={isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="Вахта"
+              label="Отправка кандидату тестового задания"
             />
-          </StyledLiInputList>
-        </StyledUlInputList>
-      </StyledDivTwoChildren>
-
-      <StyledDivTwoChildren>
-        <TitleComponent>Оформление сотрудника</TitleComponent>
-        <StyledUlInputList>
-          <StyledLiInputList>
-            <RadioInput
+          </StyledLiCheckboxList>
+          <StyledLiCheckboxList>
+            <CheckboxWithStyles
               id="8"
-              name="ll"
-              checked={!isChecked}
+              name="security"
+              checked={isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="По ТК"
+              label="Отправка кандидату анкеты службы безопасности вашей компании"
             />
-          </StyledLiInputList>
-          <StyledLiInputList>
-            <RadioInput
+          </StyledLiCheckboxList>
+          <StyledLiCheckboxList>
+            <CheckboxWithStyles
               id="9"
-              name="agreement"
+              name="invitation"
               checked={isChecked}
               onChange={() => setIsChecked((prev) => !prev)}
-              label="По ГПХ"
+              label="Отправка финалисту приглашения на работу"
             />
-          </StyledLiInputList>
-          <StyledLiInputList>
-            <RadioInput
-              id="10"
-              name="self"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="Самозанятость"
-            />
-          </StyledLiInputList>
-          <StyledLiInputList>
-            <RadioInput
-              id="11"
-              name="individual"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="ИП"
-            />
-          </StyledLiInputList>
-        </StyledUlInputList>
+          </StyledLiCheckboxList>
+        </CheckInputsInColumn>
+      </StyledDivTwoChildren >
+
+      <StyledDivTwoChildren>
+        <TitleComponent>В каком виде необходимо предоставить резюме кандидатов?</TitleComponent>
+        <CheckInputsInColumn>
+          <RadioInput
+            id="10"
+            name="notInterviewed"
+            checked={!isChecked}
+            onChange={() => setIsChecked((prev) => !prev)}
+            label="Резюме без предварительного собеседовани"
+          />
+          <RadioInput
+            id="12"
+            name="interviewed"
+            checked={!isChecked}
+            onChange={() => setIsChecked((prev) => !prev)}
+            label="Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидат"
+          />
+        </CheckInputsInColumn>
       </StyledDivTwoChildren>
 
       <StyledDivTwoChildren>
-        <TitleComponent>Наличие ДМС</TitleComponent>
-        <RadioInput
-          id="12"
-          name="MedInsurance"
-          checked={!isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
-          label="Да"
-        />
-      </StyledDivTwoChildren>
-
-      <StyledDivThreeChildren>
-        <TitleComponent includeAsterisk>Компенсация затрат</TitleComponent>
-        <StyledULCheckboxList>
-          <StyledLiCheckboxList>
-            <CheckboxWithStyles
-              id="13"
-              name="meal"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="На питание"
-            />
-          </StyledLiCheckboxList>
-          <StyledLiCheckboxList>
-            <CheckboxWithStyles
-              id="14"
-              name="road"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="На транспорт"
-            />
-          </StyledLiCheckboxList>
-          <StyledLiCheckboxList>
-            <CheckboxWithStyles
-              id="15"
-              name="study"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="На обучение"
-            />
-          </StyledLiCheckboxList>
-          <StyledLiCheckboxList>
-            <CheckboxWithStyles
-              id="16"
-              name="living"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
-              label="На жилье"
-            />
-          </StyledLiCheckboxList>
-        </StyledULCheckboxList>
-        <InputWithText
-          onChange={onInputChange}
-          name="redeem"
-          value={inputValue}
-          placeholder="Или введите свое...."
-        />
-      </StyledDivThreeChildren>
-
-      <StyledDivTwoChildren>
-        <TitleComponent>Наличие водительских прав</TitleComponent>
-        <RadioInput
-          id="17"
-          name="dl"
-          checked={!isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
-          label="Да"
-        />
-      </StyledDivTwoChildren>
-
-      <StyledDivTwoChildren>
-        <TitleComponent>Наличие автомобиля</TitleComponent>
-        <RadioInput
-          id="18"
-          name="dl"
-          checked={!isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
-          label="Да"
-        />
-      </StyledDivTwoChildren>
-
-      <StyledDivTwoChildren>
-        <TitleComponent>Описание компании</TitleComponent>
+        <TitleComponent>Дополнительные требования к рекрутёру</TitleComponent>
         <TextField
           onChange={onInputChange}
           value={inputValue}
           multiline
           maxRows={500}
           variant="outlined"
-          placeholder="Опишите вашу компанию: её краткая история, основные принципы и ценности или просто о своём дружном коллективе :)"
+          placeholder="Дополнительная информация для рекрутёра: пожелания, основные принципы и ценности компании, рассказы о большом дружном коллективе :)"
+          sx={{
+            width: '100%',
+            marginBottom: '12px',
+            '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
+            '& .MuiOutlinedInput-root': {
+              minHeight: '128px',
+              alignItems: 'flex-start',
+              borderRadius: '8px',
+              '& fieldset': {
+                borderColor: 'rgba(186, 189, 191, 1)',
+              },
+              '&:hover fieldset': {
+                border: '1px solid rgba(23, 133, 229, 1)',
+              },
+              '&.Mui-focused fieldset': {
+                border: '2px solid rgba(23, 133, 229, 1)',
+              },
+            },
+          }}
+        />
+        <CheckboxWithStyles
+          id="13"
+          name="legalEntities"
+          checked={isChecked}
+          onChange={() => setIsChecked((prev) => !prev)}
+          label="Только для юридических лиц, ИП и самозанятых"
+        />
+      </StyledDivTwoChildren>
+
+      <StyledDivTwoChildren>
+        <TitleComponent>Стоп-лист компаний</TitleComponent>
+        <TextField
+          onChange={onInputChange}
+          value={inputValue}
+          multiline
+          maxRows={500}
+          variant="outlined"
+          placeholder="Список компаний, с которыми вы не хотите сотрудничать"
           sx={{
             width: '100%',
             '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
@@ -275,7 +221,46 @@ const HrFormStepFour = () => {
         />
       </StyledDivTwoChildren>
 
-    </StyledSection>
+      <StyledDivTwoChildren>
+        <TitleComponent>Стоп-лист сотрудников</TitleComponent>
+        <TextField
+          onChange={onInputChange}
+          value={inputValue}
+          multiline
+          maxRows={500}
+          variant="outlined"
+          placeholder="Имена и фамилии соискателей, которых вы не готовы рассматривать"
+          sx={{
+            width: '100%',
+            '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
+            '& .MuiOutlinedInput-root': {
+              minHeight: '128px',
+              alignItems: 'flex-start',
+              borderRadius: '8px',
+              '& fieldset': {
+                borderColor: 'rgba(186, 189, 191, 1)',
+              },
+              '&:hover fieldset': {
+                border: '1px solid rgba(23, 133, 229, 1)',
+              },
+              '&.Mui-focused fieldset': {
+                border: '2px solid rgba(23, 133, 229, 1)',
+              },
+            },
+          }}
+        />
+      </StyledDivTwoChildren>
+      <StyledDivTwoChildren>
+        <TitleComponent>Дополнительные файлы для рекрутёра</TitleComponent>
+        <FileUploader />
+      </StyledDivTwoChildren>
+      <FinalCalculations
+        finalAmount={0}
+        awardPerEmployee={0}
+        serviceFee={0}
+      />
+
+    </StyledSection >
   );
 };
 export default HrFormStepFour;
