@@ -11,9 +11,10 @@ interface RadioInputProps {
 
 const RadioContainer = styled.label<{ checked: boolean }>`
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 10px 16px 10px 10px;
   border-radius: 8px;
   border: 1px solid ${({ checked }) => (checked ? 'transparent' : 'rgba(186, 189, 191, 1)')};
@@ -58,6 +59,9 @@ const StyledRadio = styled.span<{ checked: boolean }>`
 
 const RadioLabel = styled.span`
   color: rgba(73, 75, 77, 1);
+  width: 80%;
+  white-space: pre-wrap;
+  padding-top: 2px;
 `;
 
 const RadioInput: FC<RadioInputProps> = ({

@@ -96,7 +96,7 @@ export const StyledParagraph = styled.p`
   font-style: normal;
   font-weight: 700;
   line-height: 1.4;
-  color: rgba(110, 113, 115, 1);
+  color: rgba(110, 113, 115, 1); 
   `;
 
 export const StyledULCheckboxList = styled.ul`

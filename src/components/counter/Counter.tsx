@@ -13,13 +13,14 @@ const CounterContainer = styled.div`
   display: flex;
   flex-grow: 1;
   align-items: center;
-  border: 1px solid rgba(186, 189, 191, 1);
   border-radius: 8px;
+  outline: 0.5px solid rgba(186, 189, 191, 1);  
 `;
 
 const Button = styled.button`
   background-color: rgba(255,255,255, 1);
   color: rgba(97, 174, 242, 1);
+  font-size: 20px;
   border: none;
   cursor: pointer;
   padding: 10px;

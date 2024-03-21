@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // NOTE: Определяем пропсы, которые будут переданы в StyledInput
 interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   name: string;
   value: string;
   placeholder: string;
