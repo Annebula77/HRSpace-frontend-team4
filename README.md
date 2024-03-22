@@ -1,4 +1,31 @@
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2361DAFB.svg?style=for-the-badge&logo=react&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23764ABC.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Material UI](https://img.shields.io/badge/material--ui-%230081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white)
+
 # HRSpace team 4
+
+A microservice for a recruiter search application, which serves as a convenient and interactive form for collecting information about an employer's requirements for a candidate and for the recruiter themselves. The service facilitates the interaction between the two parties, allowing employers to find relevant performers, and recruiters to select applications that are suitable in terms of profile.
+
+## Technologies and Solutions Used
+
+- **Main Language**: TypeScript
+- **UI Library**: React
+- **State Management**: Redux with Redux Toolkit
+- **Build Tool**: Vite
+- **UI Framework**: Material UI
+- **Date Management**: Day.js
+- **Form Validation**: Zod
+- **HTTP Client**: Axios
+- **Routing**: React Router
+
+## Libraries and Tools:
+
+- `@mui/x-date-pickers` for date pickers components.
+- `styled-components` for additional styling capabilities.
+- `eslint` with various plugins for code linting.
+- `typescript` for static type checking.
 
 ### Prerequisites
 
@@ -91,6 +118,7 @@ Adhering to these guidelines ensures code quality and consistency across our pro
 - Vite: `^5.1.4`
 
 ## Authors
+
 👤 **Гоар Варданян** => -GitHub: [@Annebula77](https://github.com/Annebula77)
 👤 **Максим Набиулин** => -GitHub: [@MaximNabiulin](https://github.com/MaximNabiulin)
 
