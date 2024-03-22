@@ -13,8 +13,9 @@ import { media } from '../../styles/breakpoints';
 import CustomButton from '../button/CustomButton';
 import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
 import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
-import CalendarInput from '../calendarInput/CalendarInput';
-import FeeSection from '../feeSection/FeeSection';
+
+import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
+import HrFormStepFour from '../hrFormStepFour/HrFormStepFour';
 
 const Line = styled.div<{ $completed: boolean }>`
   width: 300px;
@@ -102,9 +103,9 @@ function getStepContent(step: number): JSX.Element | string {
     case 1:
       return <HrFormStepTwo />;
     case 2:
-      return <CalendarInput value={null} onChange={() => { }} />;
+      return < HrFormStepThree />;
     case 3:
-      return <FeeSection model='model 1' minSalaryValue='40000' maxSalaryValue='70000' />;
+      return <HrFormStepFour />;
     default:
       return <p>4</p>;
   }

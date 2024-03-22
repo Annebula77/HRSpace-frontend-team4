@@ -4,11 +4,11 @@ import styled from 'styled-components';
 // NOTE: Определяем пропсы, которые будут переданы в StyledInput
 interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   name: string;
   value: string;
   placeholder: string;
-  error?: boolean;
+  error?: boolean | undefined;
 }
 
 
@@ -48,7 +48,7 @@ const InputWithText: FC<InputProps> = ({
     name={name}
     value={value}
     placeholder={placeholder}
-    pattern="[A-Za-zА-Яа-яЁё0-9-]*"
+    pattern='[A-Za-zА-Яа-яЁё0-9\-]*'
     title="Только буквы русского и латинского алфавита, а так же цифры и тире"
     error={error}
   />

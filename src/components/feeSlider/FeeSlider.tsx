@@ -1,8 +1,8 @@
 import { type FC } from 'react';
-import styledComponent from 'styled-components';
+import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import MuiSlider from '@mui/material/Slider';
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 import SliderIcon from '../icons/SliderIcon';
 
 interface SliderProps {
@@ -15,57 +15,65 @@ interface SliderProps {
   isError: boolean;
 }
 
-const Slider = styled(MuiSlider)(({ isError }:
-  { isError: boolean }) => ({
-    color: 'rgba(23, 133, 229, 1)',
-    height: 6,
-    margin: 0,
-    padding: '14px 0',
-    '& .MuiSlider-thumb': {
-      height: 34,
-      width: 34,
-      backgroundColor: '#fff',
-      '& svg': {
-        height: 34,
-        width: 34,
-      },
-    },
-    '& .MuiSlider-track': {
-      height: 6,
-    },
-    '& .MuiSlider-rail': {
-      color: isError ? 'rgba(235, 107, 107, 1)' : 'rgba(217, 224, 240, 1)',
-      height: 6,
-    },
-    '& .MuiSlider-mark': {
-      color: 'rgba(34, 34, 34, 1)',
-      width: 4,
-      height: 4,
-      borderRadius: 2,
-      boxSizing: 'border-box',
-    },
+const Slider = styled(MuiSlider) <{ $isError: boolean }>`
+${({ $isError }) => `
+    color: rgba(23, 133, 229, 1);
+    height: 6px;
+    margin: 0;
+    padding: 14px 0;
 
-    '& .MuiSlider-mark[data-index="0"]': {
-      marginLeft: '1px',
-    },
+    & .MuiSlider-thumb {
+      height: 34px;
+      width: 34px;
+      background-color: #fff;
 
-    '& .MuiSlider-markLabel': {
-      margin: '4px 0 0',
-      fontSize: '12px',
-      fontWeight: 400,
-      lineHeight: '16px',
-      letterSpacing: '0px',
-      textAlign: 'left',
-    },
-    '& .MuiSlider-markLabel[data-index="0"]': {
-      transform: 'translateX(0%)',
-    },
-    '& .MuiSlider-markLabel[data-index="2"]': {
-      transform: 'translateX(-100%)',
-    },
-  }));
+      & svg {
+        height: 34px;
+        width: 34px;
+      }
+    }
 
-const StyledValueText = styledComponent.p`
+    & .MuiSlider-track {
+      height: 6px;
+    }
+
+    & .MuiSlider-rail {
+      color: ${$isError ? 'rgba(235, 107, 107, 1)' : 'rgba(217, 224, 240, 1)'};
+      height: 6px;
+    }
+
+    & .MuiSlider-mark {
+      color: rgba(34, 34, 34, 1);
+      width: 4px;
+      height: 4px;
+      border-radius: 2px;
+      box-sizing: border-box;
+    }
+
+    & .MuiSlider-mark[data-index="0"] {
+      margin-left: 1px;
+    }
+
+    & .MuiSlider-markLabel {
+      margin: 4px 0 0;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0px;
+      text-align: left;
+    }
+
+    & .MuiSlider-markLabel[data-index="0"] {
+      transform: translateX(0%);
+    }
+
+    & .MuiSlider-markLabel[data-index="2"] {
+      transform: translateX(-100%);
+    }
+  `}
+`;
+
+const StyledValueText = styled.p`
   margin: 0;
   padding: -12px;
   font-family: Arial;
@@ -76,7 +84,7 @@ const StyledValueText = styledComponent.p`
   text-align: center;
 `;
 
-const StyledSubTitle = styledComponent.span`
+const StyledSubTitle = styled.span`
   margin: 0;
   font-family: Arial;
   font-size: 14px;
@@ -131,7 +139,7 @@ const FeeSlider: FC<SliderProps> = ({
           step={100}
           valueLabelDisplay="off"
           marks={marks}
-          isError={isError}
+          $isError={isError}
         />
         <StyledValueText>
           {numberWithSpaces(recommendedValue)}
