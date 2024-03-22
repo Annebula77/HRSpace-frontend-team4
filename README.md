@@ -119,7 +119,7 @@ Adhering to these guidelines ensures code quality and consistency across our pro
 
 ## Authors
 
-👤 **Гоар Варданян** => -GitHub: [@Annebula77](https://github.com/Annebula77)
+👩 **Гоар Варданян** => -GitHub: [@Annebula77](https://github.com/Annebula77)
 👤 **Максим Набиулин** => -GitHub: [@MaximNabiulin](https://github.com/MaximNabiulin)
 
 # React + TypeScript + Vite
