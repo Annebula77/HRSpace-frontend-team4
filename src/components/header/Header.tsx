@@ -14,20 +14,20 @@ const StyledHeader = styled.header`
   width: 100%;
   box-sizing: border-box;
   height: 74px;
-  padding: 0 68px;
+  padding: 0;
   margin: 0 ;
+  display: flex;
+  background-color: rgb(0, 0, 0);
+`;
+
+const StyledHeaderContent = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(0, 0, 0);
-
-  ${media.lg`
-    padding: 0 86px;
-  `}
-
-  ${media.xl`
-    padding: 0 96px;
-  `}
 `;
 
 const StyledLogoWrapper = styled.div`
@@ -62,24 +62,28 @@ const Header = () => {
   if (width > parseInt(breakpoints.md, 10)) {
     return (
       <StyledHeader>
-        <StyledLogoWrapper>
-          <HrSpaceLogo width={138} height={46} />
-        </StyledLogoWrapper>
-        <HeaderNavigation />
-        <HeaderUserInfo isBurgerMenu={false} />
+        <StyledHeaderContent>
+          <StyledLogoWrapper>
+            <HrSpaceLogo width={138} height={46} />
+          </StyledLogoWrapper>
+          <HeaderNavigation />
+          <HeaderUserInfo isBurgerMenu={false} />
+        </StyledHeaderContent>
       </StyledHeader>
     );
   }
   return (
     <StyledHeader>
-      <StyledLogoWrapper>
-        <HrSpaceLogo width={138} height={46} />
-      </StyledLogoWrapper>
-      <BurgerMenuIcon onClick={handleBurgerMenuClick} />
-      <BurgerMenu
-        isOpen={isBurgerMenuOpen}
-        onClose={closeBurgerMenu}
-      />
+      <StyledHeaderContent>
+        <StyledLogoWrapper>
+          <HrSpaceLogo width={138} height={46} />
+        </StyledLogoWrapper>
+        <BurgerMenuIcon onClick={handleBurgerMenuClick} />
+        <BurgerMenu
+          isOpen={isBurgerMenuOpen}
+          onClose={closeBurgerMenu}
+        />
+      </StyledHeaderContent>
     </StyledHeader>
   );
 };

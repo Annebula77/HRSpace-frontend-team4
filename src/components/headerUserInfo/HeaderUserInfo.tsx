@@ -49,26 +49,31 @@ const StyledUserNameWrapper = styled.div`
 `;
 
 const StyledUserName: FC<UserNameProps> = styled.div`
-  font-size: 14px;
+  font-size: ${(props) => (props.isBurgerMenu ? '16px' : '14px')};
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0px;
   text-align: left;
   color: ${(props) => (props.isBurgerMenu ? 'rgba(73, 75, 77, 1)' : 'rgba(255, 255, 255, 1)')};
   display: ${(props) => (props.isBurgerMenu ? 'flex' : 'none')};
-
-  ${media.lg`
-    display: flex;
-  `}
+  overflow: hidden;
+  white-space: nowrap;
 
   ${media.xl`
+    display: flex;
+    font-size: 15px;
+    line-height: 22px;
+  `}
+
+  ${media.xxl`
+    display: flex;
     font-size: 16px;
     line-height: 24px;
   `}
 `;
 
 const StyledUserId: FC<UserNameProps> = styled.div`
-  font-size: 14px;
+  font-size: ${(props) => (props.isBurgerMenu ? '14px' : '13px')};
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0px;
@@ -76,8 +81,13 @@ const StyledUserId: FC<UserNameProps> = styled.div`
   color: rgba(149, 151, 153, 1);
   display: ${(props) => (props.isBurgerMenu ? 'flex' : 'none')};
 
-  ${media.lg`
+  ${media.xl`
     display: flex;
+    font-size: 13px;
+  `}
+
+  ${media.xxl`
+    font-size: 14px;
   `}
 `;
 
