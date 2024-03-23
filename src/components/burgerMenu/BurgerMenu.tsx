@@ -105,14 +105,16 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  const handleOverlay = (event: React.MouseEvent<Element, MouseEvent>) => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-  };
-
   return (
-    <StyledBurgerMenuOverlay onClick={handleOverlay} isOpen={isOpen} aria-hidden="true">
+    <StyledBurgerMenuOverlay
+      onClick={(event: React.MouseEvent<Element, MouseEvent>) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+      isOpen={isOpen}
+      aria-hidden="true"
+    >
       <StyledBurgerMenuContent>
         <button id="close-button" type="button" onClick={onClose} aria-label="close-button">
           <CloseButtonIcon />

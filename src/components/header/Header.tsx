@@ -41,13 +41,6 @@ const StyledLogoWrapper = styled.div`
 const Header = () => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const width = useResize();
-  console.log(width);
-
-  // NOTE: ОБРАБОТЧИКИ КНОПОК ОТКРЫТИЯ И ЗАКРЫТИЯ БУРГЕР-МЕНЮ
-  // NOTE: Обработчик открытия бургер-меню
-  const handleBurgerMenuClick = () => {
-    setIsBurgerMenuOpen(true);
-  };
 
   // NOTE: Обработчик закрытия бургер-меню
   const closeBurgerMenu = () => {
@@ -78,7 +71,10 @@ const Header = () => {
         <StyledLogoWrapper>
           <HrSpaceLogo width={138} height={46} />
         </StyledLogoWrapper>
-        <BurgerMenuIcon onClick={handleBurgerMenuClick} />
+        <BurgerMenuIcon onClick={() => {
+          setIsBurgerMenuOpen(true);
+        }}
+        />
         <BurgerMenu
           isOpen={isBurgerMenuOpen}
           onClose={closeBurgerMenu}
