@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 import HrSpaceLogo from '../icons/HrSpaceLogo';
 import TelegramLinkIcon from '../icons/TelegramLinkIcon';
 import VkLinkIcon from '../icons/VkLinkIcon';
@@ -8,8 +9,13 @@ const StyledFooterNavigation = styled.nav`
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+
+  ${media.lg`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  `}
 
   & p {
   font-family: TWK Lausanne Pan;
@@ -17,14 +23,23 @@ const StyledFooterNavigation = styled.nav`
   font-weight: 300;
   line-height: 20px;
   letter-spacing: 0em;
-  text-align: center;
+  text-align: left;
   color: rgba(48, 50, 51, 0.4);
+
+  ${media.lg`
+    text-align: center;
+  `};
   }
 
   & ul {
+    padding: 0;
     margin: 0;
     display: flex;
+    justify-content: flex-start;
+
+  ${media.lg`
     justify-content: center;
+  `};
   }
 
   & li {
@@ -51,17 +66,17 @@ const FooterLinks = () => (
     <p>© 2022 Группа компаний HeadHunter</p>
     <ul>
       <li>
-        <button aria-label='telegram' type="button">
+        <button aria-label="telegram" type="button">
           <TelegramLinkIcon width={24} height={24} />
         </button>
       </li>
       <li>
-        <button aria-label='vk' type="button">
+        <button aria-label="vk" type="button">
           <VkLinkIcon width={24} height={24} />
         </button>
       </li>
       <li>
-        <button aria-label='ok' type="button">
+        <button aria-label="ok" type="button">
           <OkLinkIcon width={24} height={24} />
         </button>
       </li>
