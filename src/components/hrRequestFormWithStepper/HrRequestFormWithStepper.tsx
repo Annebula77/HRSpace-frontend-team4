@@ -12,7 +12,8 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchCategories } from '../../store/slices/categoriesSlice';
 import { fetchCities } from '../../store/slices/citiesSlice';
-import { FormErrors, setErrors } from '../../store/slices/firstPageSlice';
+import { setErrors } from '../../store/slices/firstPageSlice';
+import { type FormErrors } from '../../types/types';
 import { media } from '../../styles/breakpoints';
 import CustomButton from '../button/CustomButton';
 
@@ -113,7 +114,7 @@ const getStepContent = (step: number, errors: FormErrors): JSX.Element | string 
     case 1:
       return <HrFormStepTwo />;
     case 2:
-      return <HrFormStepThree />;
+      return <HrFormStepThree errors={errors} />;
     case 3:
       return <HrFormStepFour />;
     default:
@@ -311,7 +312,10 @@ const HrRequestFormWithStepper = () => {
           label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
           primary={!hasErrors}
           size="large"
-          onClick={handleSubmitAndPostData}
+          // onClick={handleSubmitAndPostData}
+          onClick={() => {
+            setActiveStep((prev) => prev + 1);
+          }}
           style={{ flex: activeStep > 0 ? '1' : 'auto' }}
         >
           {activeStep === steps.length - 1 ? 'Закончить' : 'Далее'}

@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
+import { type FC } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styled from 'styled-components';
 import TitleComponent from '../titleComponent/TitleComponent';
 import RadioInput from '../radioChip/RadioInput';
+import ErrorMessage from '../errorText/errorText';
+import { type HrFormStepsProps } from '../../types/types';
+
 import {
   StyledArticle,
   StyledDivTwoChildren,
@@ -10,11 +14,22 @@ import {
   StyledSection,
   StyledUlInputList,
 } from '../../styles/formStepsStyles';
+import {
+  updateEmployeeNumber,
+  updateStartSearch,
+  updateEndSearch,
+  updateRecruiterNumber,
+  updatePaymentModel,
+  updateReward,
+  setErrors
+} from '../../store/slices/thirdPageSlice';
+import { type FormErrors } from '../../types/types';
 import Counter from '../counter/Counter';
 import CalendarInput from '../calendarInput/CalendarInput';
 import FeeSection from '../feeSection/FeeSection';
 import FinalCalculations from '../finalCalculations/FinalCalculations';
 import { media } from '../../styles/breakpoints';
+
 
 const CalendarWrapper = styled.div`
    width: 100%;
@@ -31,22 +46,21 @@ const CalendarWrapper = styled.div`
     `}
 `;
 
-const HrFormStepThree = () => {
-  const [inputValue, setInputValue] = useState<string | number>('');
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  useEffect(() => {
-  }, [selectedValues]);
+const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
+
+  const dispatch = useAppDispatch();
+  const thirdPageState = useAppSelector((state) => state.thirdPage);
+
 
   return (
     <StyledSection>
       <StyledDivTwoChildren>
         <TitleComponent>Количество сотрудников</TitleComponent>
         <Counter
-          value={1}
+          value={thirdPageState.number_employees || 0}
           min={1}
           max={5}
-          onChange={() => { }}
+          onChange={(newValue) => dispatch(updateEmployeeNumber(newValue))}
         />
       </StyledDivTwoChildren>
 
@@ -55,13 +69,13 @@ const HrFormStepThree = () => {
         <CalendarWrapper>
           <StyledParagraph>c</StyledParagraph>
           <CalendarInput
-            value={null}
-            onChange={() => { }}
+            value={thirdPageState.start_search ? new Date(thirdPageState.start_search) : null}
+            onChange={(newDate) => dispatch(updateStartSearch(newDate))}
           />
           <StyledParagraph>по</StyledParagraph>
           <CalendarInput
-            value={null}
-            onChange={() => { }}
+            value={thirdPageState.end_search ? new Date(thirdPageState.end_search) : null}
+            onChange={(newDate) => dispatch(updateEndSearch(newDate))}
           />
         </CalendarWrapper>
       </StyledArticle>
@@ -69,10 +83,10 @@ const HrFormStepThree = () => {
       <StyledDivTwoChildren>
         <TitleComponent>Количество рекрутеров</TitleComponent>
         <Counter
-          value={1}
+          value={thirdPageState.number_recruits || 0}
           min={1}
           max={5}
-          onChange={() => { }}
+          onChange={(newValue) => dispatch(updateRecruiterNumber(newValue))}
         />
       </StyledDivTwoChildren>
 
@@ -81,28 +95,28 @@ const HrFormStepThree = () => {
         <StyledUlInputList>
           <StyledLiInputList>
             <RadioInput
-              id="1"
-              name="prepayment"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="prepayment"
+              name="payment"
+              checked={thirdPageState.payment_model === "100% за выход сотрудника"}
+              onChange={() => dispatch(updatePaymentModel("100% за выход сотрудника"))}
               label="100% за выход сотрудника"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="2"
-              name="partial"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="partial"
+              name="payment"
+              checked={thirdPageState.payment_model === "50% за выход 50% по окончании испытательного срока"}
+              onChange={() => dispatch(updatePaymentModel("50% за выход 50% по окончании испытательного срока"))}
               label="50% за выход 50% по окончании испытательного срока"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="3"
-              name="post-payment"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="post-payment"
+              name="payment"
+              checked={thirdPageState.payment_model === "100% по окончании испытательного срока (1 месяц)"}
+              onChange={() => dispatch(updatePaymentModel("100% по окончании испытательного срока (1 месяц)"))}
               label="100% по окончании испытательного срока (1 месяц)"
             />
           </StyledLiInputList>
@@ -112,7 +126,7 @@ const HrFormStepThree = () => {
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Вознаграждение за сотрудника</TitleComponent>
         <FeeSection
-          model="model 1"
+          model={thirdPageState.payment_model || ''}
           maxSalaryValue="700000"
           minSalaryValue="30000"
         />
