@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import citiesReducer from './slices/citiesSlice';
 import categoriesReducer from './slices/categoriesSlice';
 import firstPageReducer from './slices/firstPageSlice';
+import secondPageReducer from './slices/secondPageSlice';
 import singleCategorySlice from './slices/singleCategorySlice';
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     cities: citiesReducer,
     categories: categoriesReducer,
     firstPage: firstPageReducer,
+    secondPage: secondPageReducer,
     category: singleCategorySlice,
   },
 });

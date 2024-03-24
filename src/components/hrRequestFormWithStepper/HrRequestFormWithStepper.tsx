@@ -21,11 +21,12 @@ import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
 import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
 import HrFormStepFour from '../hrFormStepFour/HrFormStepFour';
 import hrFormStepOneValidation from '../hrFormStepOne/hrFormStepOneValidation';
+import hrFormStepTwoValidation from '../hrFormStepTwo/hrFormStepTwoValidation';
 import { firstPageSchema } from '../../models/firstPageSchema';
-import { POST_VACANCY } from '../../utils/variables';
+import { secondPageSchema } from '../../models/secondPageSchema';
+import { POST_VACANCY, POST_CONDITIONS } from '../../utils/variables';
 import FormSkeleton from '../formSkeleton/FormSkeleton';
 import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
-
 
 const Line = styled.div<{ $completed: boolean }>`
   width: 300px;
@@ -111,7 +112,7 @@ const getStepContent = (step: number, errors: FormErrors): JSX.Element | string 
     case 0:
       return <HrFormStepOne errors={errors} />;
     case 1:
-      return <HrFormStepTwo />;
+      return <HrFormStepTwo errors={errors} />;
     case 2:
       return <HrFormStepThree />;
     case 3:
@@ -169,6 +170,7 @@ const getStepContent = (step: number, errors: FormErrors): JSX.Element | string 
 const HrRequestFormWithStepper = () => {
   const dispatch = useAppDispatch();
   const firstPageState = useAppSelector((state) => state.firstPage);
+  const secondPageState = useAppSelector((state) => state.secondPage);
 
   const categoriesIsLoading = useAppSelector((state) => state.categories.isLoading);
   const categoriesIsError = useAppSelector((state) => state.categories.isError);
@@ -203,6 +205,7 @@ const HrRequestFormWithStepper = () => {
 
     switch (activeStep) {
       case 0:
+      {
         const validationResultsStep1 = hrFormStepOneValidation(firstPageState);
         isValid = validationResultsStep1.isValid;
         newErrors = validationResultsStep1.newErrors;
@@ -210,7 +213,19 @@ const HrRequestFormWithStepper = () => {
         currentFormData = firstPageState;
         url = POST_VACANCY;
         break;
+      }
+      case 1:
+      {
+        const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
+        isValid = validationResultsStep2.isValid;
+        newErrors = validationResultsStep2.newErrors;
+        schema = secondPageSchema;
+        currentFormData = secondPageState;
+        url = POST_CONDITIONS;
+        break;
+      }
       default:
+        // eslint-disable-next-line no-console
         console.error('Unknown step');
         return;
     }
@@ -219,12 +234,14 @@ const HrRequestFormWithStepper = () => {
     setHasErrors(!isValid);
 
     if (!isValid) {
+      // eslint-disable-next-line no-console
       console.log('Form has errors');
       return;
     }
 
     const result = schema.safeParse(currentFormData);
     if (!result.success) {
+      // eslint-disable-next-line no-console
       console.error('Parsing errors', result.error);
       return;
     }
@@ -243,9 +260,11 @@ const HrRequestFormWithStepper = () => {
       }
 
       const responseData = await response.json();
+      // eslint-disable-next-line no-console
       console.log('Data posted successfully', responseData);
       setActiveStep((prev) => prev + 1);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error posting data', error);
     } finally {
       setIsLoading(false);
@@ -308,10 +327,14 @@ const HrRequestFormWithStepper = () => {
           </CustomButton>
         )}
         <CustomButton
+          // eslint-disable-next-line no-nested-ternary
           label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
           primary={!hasErrors}
           size="large"
-          onClick={handleSubmitAndPostData}
+          // onClick={handleSubmitAndPostData}
+          onClick={() => {
+            setActiveStep((prev) => prev + 1);
+          }}
           style={{ flex: activeStep > 0 ? '1' : 'auto' }}
         >
           {activeStep === steps.length - 1 ? 'Закончить' : 'Далее'}

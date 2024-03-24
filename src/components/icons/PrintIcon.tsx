@@ -5,15 +5,6 @@ interface Props {
   style?: Record<string, string>;
 }
 
-// const style = {
-//   margin: 0,
-//   top: 'auto',
-//   right: 20,
-//   bottom: 20,
-//   left: 'auto',
-//   position: 'fixed',
-// };
-
 const PrintIcon : FC<Props> = ({ style, className }) => (
   <svg
     width="24"

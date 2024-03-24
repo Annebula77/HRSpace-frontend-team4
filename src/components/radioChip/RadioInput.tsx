@@ -35,6 +35,7 @@ const HiddenRadio = styled.input.attrs({ type: 'radio' })`
 
 const StyledRadio = styled.span<{ checked: boolean }>`
   display: inline-block;
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
   border: 2px solid ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'rgba(217, 224, 240, 1)')};
