@@ -96,7 +96,7 @@ const FeeSection: FC<FeeSectionProps> = ({
           value={sliderValue.toString()} //  NOTE: Нужно ли спейсинг в значениях в инпуте?
           placeholder=""
           onBlur={handleBlur}
-          error={error ? error : undefined}
+          error={error || undefined}
         />
         <span>рублей</span>
       </StyledInputWrapper>

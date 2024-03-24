@@ -123,3 +123,13 @@ display: flex;
 flex-direction: column;
 align-items: start;
 `;
+
+export const ErrorContainer = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;

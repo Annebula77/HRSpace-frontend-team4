@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TextField } from '@mui/material';
+import styled from 'styled-components';
 import TitleComponent from '../titleComponent/TitleComponent';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
@@ -10,10 +11,8 @@ import {
   StyledSection,
   StyledUlInputList,
 } from '../../styles/formStepsStyles';
-import styled from 'styled-components';
 import FinalCalculations from '../finalCalculations/FinalCalculations';
 import FileUploader from '../fileUploader/FileUploader';
-
 
 const CheckInputsInColumn = styled.ul`
   width: 100%;
@@ -31,12 +30,9 @@ const HrFormStepFour = () => {
 
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-
-
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value); // Обновляем значение инпута
   };
-
 
   return (
     <StyledSection>
@@ -131,7 +127,7 @@ const HrFormStepFour = () => {
             />
           </StyledLiCheckboxList>
         </CheckInputsInColumn>
-      </StyledDivTwoChildren >
+      </StyledDivTwoChildren>
 
       <StyledDivTwoChildren>
         <TitleComponent>В каком виде необходимо предоставить резюме кандидатов?</TitleComponent>
@@ -260,7 +256,7 @@ const HrFormStepFour = () => {
         serviceFee={0}
       />
 
-    </StyledSection >
+    </StyledSection>
   );
 };
 export default HrFormStepFour;

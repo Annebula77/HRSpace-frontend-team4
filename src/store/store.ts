@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import regionsReducer from './slices/regionsSlice';
+import citiesReducer from './slices/citiesSlice';
 import categoriesReducer from './slices/categoriesSlice';
+import firstPageReducer from './slices/firstPageSlice';
+import singleCategorySlice from './slices/singleCategorySlice';
 
 export const store = configureStore({
   reducer: {
-    regions: regionsReducer,
+    cities: citiesReducer,
     categories: categoriesReducer,
+    firstPage: firstPageReducer,
+    category: singleCategorySlice,
   },
 });
 

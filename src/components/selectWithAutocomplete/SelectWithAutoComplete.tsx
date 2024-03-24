@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import OpenSelectIcon from '../icons/OpenSelectIcon';
 
 export interface OptionType {
-  id: string;
+  id: number;
   name: string;
 }
 
@@ -15,10 +15,6 @@ export interface SelectWithAutoCompleteProps<T extends OptionType> {
   options: T[];
   getOptionLabel: (option: T) => string;
   onChange: (value: T | null) => void;
-  // renderOption?: (
-  //   optionProps: HTMLAttributes<HTMLLIElement>,
-  //   option: T,
-  //   state: AutocompleteRenderOptionState) => ReactNode;
   error?: boolean;
   helperText?: string;
   placeholder?: string;
