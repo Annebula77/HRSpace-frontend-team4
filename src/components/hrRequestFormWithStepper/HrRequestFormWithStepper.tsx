@@ -27,9 +27,12 @@ import hrFormStepThreeValidation from '../hrFormStepThree/hrFormStepThreeValidat
 import { firstPageSchema } from '../../models/firstPageSchema';
 import { thirdPageSchema } from '../../models/thirdPageSchema';
 import { POST_PAYMENT, POST_VACANCY } from '../../utils/variables';
+import hrFormStepTwoValidation from '../hrFormStepTwo/hrFormStepTwoValidation';
+import { firstPageSchema } from '../../models/firstPageSchema';
+import { secondPageSchema } from '../../models/secondPageSchema';
+import { POST_VACANCY, POST_CONDITIONS } from '../../utils/variables';
 import FormSkeleton from '../formSkeleton/FormSkeleton';
 import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
-
 
 const Line = styled.div<{ $completed: boolean }>`
   width: 300px;
@@ -115,7 +118,7 @@ const getStepContent = (step: number, errors: FormErrors): JSX.Element | string 
     case 0:
       return <HrFormStepOne errors={errors} />;
     case 1:
-      return <HrFormStepTwo />;
+      return <HrFormStepTwo errors={errors} />;
     case 2:
       return <HrFormStepThree errors={errors} />;
     case 3:
@@ -174,6 +177,7 @@ const HrRequestFormWithStepper = () => {
   const dispatch = useAppDispatch();
   const firstPageState = useAppSelector((state) => state.firstPage);
   const thirdPageState = useAppSelector((state) => state.thirdPage);
+  const secondPageState = useAppSelector((state) => state.secondPage);
 
   const categoriesIsLoading = useAppSelector((state) => state.categories.isLoading);
   const categoriesIsError = useAppSelector((state) => state.categories.isError);
@@ -208,6 +212,7 @@ const HrRequestFormWithStepper = () => {
 
     switch (activeStep) {
       case 0:
+      {
         const validationResultsStep1 = hrFormStepOneValidation(firstPageState);
         isValid = validationResultsStep1.isValid;
         newErrors = validationResultsStep1.newErrors;
@@ -216,16 +221,23 @@ const HrRequestFormWithStepper = () => {
         url = POST_VACANCY;
         break;
       case 1:
-        break;
-      case 2:
-        const validationResultsStep2 = hrFormStepThreeValidation(thirdPageState);
+        const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
         isValid = validationResultsStep2.isValid;
         newErrors = validationResultsStep2.newErrors;
+        schema = secondPageSchema;
+        currentFormData = secondPageState;
+        url = POST_CONDITIONS;
+        break
+      case 2:
+        const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
+        isValid = validationResultsStep3.isValid;
+        newErrors = validationResultsStep3.newErrors;
         schema = thirdPageSchema;
         currentFormData = thirdPageState;
         url = POST_PAYMENT;
         break;
       default:
+        // eslint-disable-next-line no-console
         console.error('Unknown step');
         return;
     }
@@ -234,12 +246,14 @@ const HrRequestFormWithStepper = () => {
     setHasErrors(!isValid);
 
     if (!isValid) {
+      // eslint-disable-next-line no-console
       console.log('Form has errors');
       return;
     }
 
     const result = schema.safeParse(currentFormData);
     if (!result.success) {
+      // eslint-disable-next-line no-console
       console.error('Parsing errors', result.error);
       return;
     }
@@ -258,9 +272,11 @@ const HrRequestFormWithStepper = () => {
       }
 
       const responseData = await response.json();
+      // eslint-disable-next-line no-console
       console.log('Data posted successfully', responseData);
       setActiveStep((prev) => prev + 1);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error posting data', error);
     } finally {
       setIsLoading(false);
@@ -329,7 +345,7 @@ const HrRequestFormWithStepper = () => {
           arrow
           placement="top"
           disableHoverListener={!hasErrors} // Отключаем Tooltip, если нет ошибок
-        >
+          >
           <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}> {/* Оборачиваем кнопку в span, так как Tooltip требует, чтобы его дочерний элемент мог принимать ref */}
             <CustomButton
               label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}

@@ -4,6 +4,9 @@ import categoriesReducer from './slices/categoriesSlice';
 import firstPageReducer from './slices/firstPageSlice';
 import singleCategoryReducer from './slices/singleCategorySlice';
 import thirdPageReducer from './slices/thirdPageSlice';
+import secondPageReducer from './slices/secondPageSlice';
+import singleCategorySlice from './slices/singleCategorySlice';
+
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +14,9 @@ export const store = configureStore({
     categories: categoriesReducer,
     category: singleCategoryReducer,
     firstPage: firstPageReducer,
-    thirdPage: thirdPageReducer,
+    secondPage: secondPageReducer,
+    thirdPage: thirdPageReducer,    
+    category: singleCategorySlice,
   },
 });
 
