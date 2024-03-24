@@ -1,7 +1,7 @@
 import { type FC, type ChangeEvent, FocusEvent } from 'react';
 import styled from 'styled-components';
 
-// NOTE: Определяем пропсы, которые будут переданы в StyledInput
+// NOTE: Определяем пропсы, которые будут переданы в StyledInput & so
 interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
