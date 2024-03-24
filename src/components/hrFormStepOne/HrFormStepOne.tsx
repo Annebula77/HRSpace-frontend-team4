@@ -1,9 +1,26 @@
-import { useEffect, useState } from 'react';
+import { type FC } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import InputWithText from '../inputWithText/InputWithText';
-import SelectWithAutoComplete, { type OptionType } from '../selectWithAutocomplete/SelectWithAutoComplete';
+import SelectWithAutoComplete from '../selectWithAutocomplete/SelectWithAutoComplete';
 import TitleComponent from '../titleComponent/TitleComponent';
 import SelectWithChips from '../selectWithChips/SelectWithChips';
 import { SkillsListboxComponent, ResponsibilityListboxComponent } from '../../utils/MUICustomsForSelects';
+import { fetchCategory } from '../../store/slices/singleCategorySlice';
+import ErrorMessage from '../errorText/errorText';
+import {
+  updateJobTitle,
+  updateSpecialization,
+  updateSkills,
+  updateResponsibilities,
+  updateMinSalary,
+  updateMaxSalary,
+  toggleHideSalary,
+  updateExperience,
+  updateEducation,
+  toggleBusinessTrips,
+  FormErrors,
+
+} from '../../store/slices/firstPageSlice';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
 import {
@@ -16,38 +33,19 @@ import {
   StyledSection,
   StyledULCheckboxList,
   StyledUlInputList,
+  ErrorContainer,
 } from '../../styles/formStepsStyles';
 
-const HrFormStepOne = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  useEffect(() => {
-  }, [selectedValues]);
+interface HrFormStepOneProps {
+  errors: FormErrors;
+}
 
-  const mockOptions = [
-    { id: '1', name: 'Option 1' },
-    { id: '2', name: 'Option 2' },
-    { id: '3', name: 'Option 3' },
-  ];
-
-  const mockOptions1 = [
-    'Option 4',
-    'Option 5',
-    'Option 6',
-  ];
-
-  // Заглушка для функции getOptionLabel, которая просто возвращает имя опции
-  const mockGetOptionLabel = (option: OptionType) => option.name;
-
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value); // Обновляем значение инпута
-  };
-  const mockOnChange = (value: OptionType | null) => console.log('Selected:', value);
-
-  const handleChange = (newValues: string[]) => {
-    setSelectedValues(newValues);
-  };
+const HrFormStepOne: FC<HrFormStepOneProps> = ({ errors }) => {
+  const dispatch = useAppDispatch();
+  const firstPageState = useAppSelector((state) => state.firstPage);
+  const categories = useAppSelector((state) => state.categories.categories);
+  const skills = useAppSelector((state) => state.category.skills);
+  const responsibilities = useAppSelector((state) => state.category.responsibilities);
 
   return (
     <StyledSection>
@@ -55,65 +53,87 @@ const HrFormStepOne = () => {
         <StyledLiInputList>
           <TitleComponent includeAsterisk>Название должности</TitleComponent>
           <InputWithText
-            onChange={onInputChange}
+            onChange={(evt) => dispatch(updateJobTitle(evt.target.value))}
             name="occupation"
-            value={inputValue}
+            value={firstPageState.job_title || ''}
             placeholder="Менеджер по продажам"
           />
+          <ErrorMessage errorText={errors.job_title} />
         </StyledLiInputList>
+
         <StyledLiInputList>
           <TitleComponent includeAsterisk>Специализация</TitleComponent>
           <SelectWithAutoComplete
-            value={null}
-            options={mockOptions}
-            getOptionLabel={mockGetOptionLabel}
-            onChange={mockOnChange}
+            value={categories.find((spec) => spec.name === firstPageState.specialization) || null}
+            options={categories}
+            getOptionLabel={(option) => option.name}
+            onChange={(selectedOption) => {
+              if (!selectedOption) {
+                dispatch(updateSpecialization(null));
+              } else {
+                dispatch(updateSpecialization(selectedOption.name));
+                dispatch(fetchCategory(selectedOption.id));
+              }
+            }}
             placeholder="Выберите специалиацию"
           />
+          <ErrorMessage errorText={errors.specialization} />
         </StyledLiInputList>
       </StyledUlInputList>
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Навыки</TitleComponent>
         <SelectWithChips
-          options={mockOptions1}
-          selectedValues={selectedValues}
-          placeholder="Введите навыки или выберите из предложенных"
-          onChange={handleChange}
+          options={skills}
+          selectedValues={firstPageState.skills}
+          onChange={(newSkills: string[]) => {
+            dispatch(updateSkills(newSkills));
+          }}
           ListboxComponent={SkillsListboxComponent}
+          placeholder="Введите навыки или выберите из предложенных"
         />
+        <ErrorMessage errorText={errors.skills} />
       </StyledDivTwoChildren>
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Обязанности</TitleComponent>
         <SelectWithChips
-          options={mockOptions1}
-          selectedValues={selectedValues}
+          options={responsibilities}
+          selectedValues={firstPageState.responsibilities}
+          onChange={(newResponsibilities: string[]) => {
+            dispatch(updateResponsibilities(newResponsibilities));
+          }}
           placeholder="Введите обязанности или выберите из предложенных"
-          onChange={handleChange}
           ListboxComponent={ResponsibilityListboxComponent}
         />
+        <ErrorMessage errorText={errors.responsibilities} />
       </StyledDivTwoChildren>
       <StyledArticle>
         <TitleComponent includeAsterisk>Зарплата кандидата (до вычета НДФЛ)</TitleComponent>
         <ForkInputStyles>
-          <InputWithText
-            onChange={onInputChange}
-            name=""
-            value={inputValue}
-            placeholder="от"
-          />
-          <InputWithText
-            onChange={onInputChange}
-            name=""
-            value={inputValue}
-            placeholder="до"
-          />
+          <ErrorContainer>
+            <InputWithText
+              onChange={((evt) => dispatch(updateMinSalary(+evt.target.value)))}
+              name="min-salary"
+              value={firstPageState.min_salary || ''}
+              placeholder="от"
+            />
+            <ErrorMessage errorText={errors.min_salary} />
+          </ErrorContainer>
+          <ErrorContainer>
+            <InputWithText
+              onChange={((evt) => dispatch(updateMaxSalary(+evt.target.value)))}
+              name="max-salary"
+              value={firstPageState.max_salary || ''}
+              placeholder="до"
+            />
+            <ErrorMessage errorText={errors.max_salary} />
+          </ErrorContainer>
           <StyledParagraph>рублей</StyledParagraph>
         </ForkInputStyles>
         <CheckboxWithStyles
-          id="2"
+          id="hide-salary"
           name="salary"
-          checked={isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
+          checked={firstPageState.hide_salary}
+          onChange={() => dispatch(toggleHideSalary(!firstPageState.hide_salary))}
           label="Скрыть зарплату для будущих кандидатов"
         />
       </StyledArticle>
@@ -122,90 +142,92 @@ const HrFormStepOne = () => {
         <StyledUlInputList>
           <StyledLiInputList>
             <RadioInput
-              id="2"
-              name="without experience"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="experience-none"
+              name="experience"
+              checked={firstPageState.experience === 'без опыта'}
+              onChange={() => dispatch(updateExperience('без опыта'))}
               label="без опыта"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="3"
-              name="beginner"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="experience-junior"
+              name="experience"
+              checked={firstPageState.experience === '1-3 лет'}
+              onChange={() => dispatch(updateExperience('1-3 лет'))}
               label="1-3 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="4"
-              name="middle"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="experience-mid"
+              name="experience"
+              checked={firstPageState.experience === '3-6 лет'}
+              onChange={() => dispatch(updateExperience('3-6 лет'))}
               label="3-6 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="5"
-              name="senior"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="experience-senior"
+              name="experience"
+              checked={firstPageState.experience === 'от 6 лет'}
+              onChange={() => dispatch(updateExperience('от 6 лет'))}
               label="от 6 лет"
             />
           </StyledLiInputList>
         </StyledUlInputList>
+        <ErrorMessage errorText={errors.experience} />
       </StyledDivTwoChildren>
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Образование кандидата</TitleComponent>
         <StyledULCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="10"
+              id="edu-secondary"
               name="secondary"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={firstPageState.education.includes('Среднее')}
+              onChange={() => dispatch(updateEducation('Среднее'))}
               label="Среднее"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="11"
+              id="edu-prof"
               name="secondary prof"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={firstPageState.education.includes('Среднее профессиональное')}
+              onChange={() => dispatch(updateEducation('Среднее профессиональное'))}
               label="Среднее профессиональное"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="12"
+              id="edu-almostH"
               name="almost higher"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={firstPageState.education.includes('Неполное высшее')}
+              onChange={() => dispatch(updateEducation('Неполное высшее'))}
               label="Неполное высшее"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="13"
+              id="edu-higher"
               name="higher"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={firstPageState.education.includes('Высшее')}
+              onChange={() => dispatch(updateEducation('Высшее'))}
               label="Высшее"
             />
           </StyledLiCheckboxList>
         </StyledULCheckboxList>
+        <ErrorMessage errorText={errors.education} />
       </StyledDivTwoChildren>
       <StyledDivTwoChildren>
         <TitleComponent>Возможность командировок</TitleComponent>
         <RadioInput
           id="7"
           name="trips"
-          checked={!isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
+          checked={firstPageState.business_trips}
+          onChange={() => dispatch(toggleBusinessTrips(!firstPageState.business_trips))}
           label="Да"
         />
       </StyledDivTwoChildren>

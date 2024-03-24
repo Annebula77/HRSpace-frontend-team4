@@ -75,24 +75,22 @@ const RemoveButton = styled.button`
   color: #FF0000; // Пример цвета крестика
 `;
 
-const FileItemComponent: React.FC<{ file: File; onRemove: () => void }> = ({ file, onRemove }) => {
-  return (
-    <FileItem>
-      <span>{file.name}</span>
-      <RemoveButton onClick={onRemove}>X</RemoveButton>
-    </FileItem>
-  );
-};
+const FileItemComponent: React.FC<{ file: File; onRemove: () => void }> = ({ file, onRemove }) => (
+  <FileItem>
+    <span>{file.name}</span>
+    <RemoveButton onClick={onRemove}>X</RemoveButton>
+  </FileItem>
+);
 
 const FileUploader: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(prevFiles => [...prevFiles, ...acceptedFiles]);
+    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
   }, []);
 
   const removeFile = (fileToRemove: File) => {
-    setFiles(prevFiles => prevFiles.filter(file => file !== fileToRemove));
+    setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -110,13 +108,16 @@ const FileUploader: React.FC = () => {
         <input {...getInputProps()} />
         <FileIcon />
         <StyledTextContainer>
-          <StyledH3>Перетащите или <span>выберите 1 файл</span></StyledH3>
+          <StyledH3>
+            Перетащите или
+            <span>выберите 1 файл</span>
+          </StyledH3>
           <StyledP>Допустимые форматы: doc, pdf до 10 мб</StyledP>
         </StyledTextContainer>
       </StyledWrapping>
       {files.length > 0 && (
         <FileListContainer>
-          {files.map(file => (
+          {files.map((file) => (
             <FileItemComponent key={file.name} file={file} onRemove={() => removeFile(file)} />
           ))}
         </FileListContainer>

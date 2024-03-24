@@ -66,7 +66,7 @@ const SelectWithChips: FC<SelectWithChipsProps> = ({
   return (
     <DynamicMarginBox $hasSelectedValues={selectedValues.length > 0}>
       <Stack spacing={3} sx={{ width: '100%' }}>
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', rowGap: '12px' }}>
           {selectedValues.map((option) => (
             <StyledSelectedChip
               key={option}

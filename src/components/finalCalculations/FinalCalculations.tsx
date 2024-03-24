@@ -1,5 +1,5 @@
-import { type FC } from "react";
-import styled from "styled-components";
+import { type FC } from 'react';
+import styled from 'styled-components';
 
 const StyledSection = styled.section`
   width: 100%;
@@ -41,14 +41,17 @@ const StyledH3 = styled.h3`
   padding: 0;
 `;
 
-
 interface FinalCalculationsProps {
   finalAmount: number;
   awardPerEmployee: number;
   serviceFee: number;
 }
 
-const FinalCalculations: FC<FinalCalculationsProps> = ({ finalAmount, awardPerEmployee, serviceFee }) => (
+const FinalCalculations: FC<FinalCalculationsProps> = ({
+  finalAmount,
+  awardPerEmployee,
+  serviceFee
+}) => (
   <StyledSection>
     <StyledArticle>
       <StyledH2>Итоговая сумма:</StyledH2>
@@ -63,6 +66,6 @@ const FinalCalculations: FC<FinalCalculationsProps> = ({ finalAmount, awardPerEm
       <StyledH3>{serviceFee}</StyledH3>
     </StyledArticle>
   </StyledSection>
-)
+);
 
 export default FinalCalculations;

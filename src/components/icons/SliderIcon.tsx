@@ -7,7 +7,7 @@ const SliderIcon: FC<SliderThumbComponentProps> = (props) => {
   const { children, ...other } = props;
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
+
     <SliderThumb {...other}>
       {children}
       <svg

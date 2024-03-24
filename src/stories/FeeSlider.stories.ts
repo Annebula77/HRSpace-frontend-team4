@@ -47,6 +47,7 @@ const onChange = () => { };
 
 export const Primary: Story = {
   args: {
+    label: 70000,
     onChange: onChange, // NOTE: В реальной ситуации здесь должна быть функция для обработки изменений
     minValue: 50000,
     maxValue: 150000,

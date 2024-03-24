@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import TitleComponent from '../titleComponent/TitleComponent';
 import RadioInput from '../radioChip/RadioInput';
 import {
-  ForkInputStyles,
   StyledArticle,
   StyledDivTwoChildren,
   StyledLiInputList,
@@ -14,7 +14,6 @@ import Counter from '../counter/Counter';
 import CalendarInput from '../calendarInput/CalendarInput';
 import FeeSection from '../feeSection/FeeSection';
 import FinalCalculations from '../finalCalculations/FinalCalculations';
-import styled from 'styled-components';
 import { media } from '../../styles/breakpoints';
 
 const CalendarWrapper = styled.div`
@@ -38,7 +37,6 @@ const HrFormStepThree = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   useEffect(() => {
   }, [selectedValues]);
-
 
   return (
     <StyledSection>
@@ -114,9 +112,9 @@ const HrFormStepThree = () => {
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Вознаграждение за сотрудника</TitleComponent>
         <FeeSection
-          model={'model 1'}
-          maxSalaryValue='700000'
-          minSalaryValue='30000'
+          model="model 1"
+          maxSalaryValue="700000"
+          minSalaryValue="30000"
         />
       </StyledDivTwoChildren>
 

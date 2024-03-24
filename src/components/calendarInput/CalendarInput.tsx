@@ -14,7 +14,7 @@ const CalendarInput: FC<CalendarInputProps> = ({ value, onChange }) => (
     <DatePicker
       format="DD.MM.YY"
       value={value}
-      disablePast={true}
+      disablePast
       onChange={(newValue) => {
         if (newValue instanceof Date && !Number.isNaN(newValue.valueOf())) {
           onChange(newValue);
