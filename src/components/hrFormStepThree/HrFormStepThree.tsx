@@ -1,4 +1,5 @@
-import { type FC } from 'react';
+import { useMemo, type FC, useEffect } from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styled from 'styled-components';
 import TitleComponent from '../titleComponent/TitleComponent';
@@ -21,14 +22,16 @@ import {
   updateRecruiterNumber,
   updatePaymentModel,
   updateReward,
-  setErrors
+  updateMinReward,
+  updateMaxReward,
+  updateRecommendedReward,
 } from '../../store/slices/thirdPageSlice';
-import { type FormErrors } from '../../types/types';
 import Counter from '../counter/Counter';
 import CalendarInput from '../calendarInput/CalendarInput';
 import FeeSection from '../feeSection/FeeSection';
 import FinalCalculations from '../finalCalculations/FinalCalculations';
 import { media } from '../../styles/breakpoints';
+import calculateSliderValues from '../../utils/calculateSliderValues';
 
 
 const CalendarWrapper = styled.div`
@@ -50,6 +53,22 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
 
   const dispatch = useAppDispatch();
   const thirdPageState = useAppSelector((state) => state.thirdPage);
+  const firstPageState = useAppSelector((state) => state.firstPage);
+
+
+  const { minSliderValue, maxSliderValue, recommendedValue } = useMemo(() => calculateSliderValues(
+    firstPageState.min_salary ?? 0,
+    firstPageState.max_salary ?? 0,
+    thirdPageState.start_search,
+    thirdPageState.end_search,
+    thirdPageState.payment_model ?? ''
+  ), [firstPageState.min_salary, firstPageState.max_salary, thirdPageState.start_search, thirdPageState.end_search, thirdPageState.payment_model]);
+
+  useEffect(() => {
+    dispatch(updateMinReward(minSliderValue));
+    dispatch(updateMaxReward(maxSliderValue));
+    dispatch(updateRecommendedReward(recommendedValue));
+  }, [minSliderValue, maxSliderValue, recommendedValue]);
 
 
   return (
@@ -68,18 +87,37 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
         <TitleComponent includeAsterisk>Желаемый период поиска сотрудника</TitleComponent>
         <CalendarWrapper>
           <StyledParagraph>c</StyledParagraph>
-          <CalendarInput
-            value={thirdPageState.start_search ? new Date(thirdPageState.start_search) : null}
-            onChange={(newDate) => dispatch(updateStartSearch(newDate))}
-          />
+          <div>
+            <CalendarInput
+              value={thirdPageState.start_search ? dayjs(new Date(thirdPageState.start_search)) : null}
+              onChange={(newDate: Dayjs | null) => {
+                if (newDate) {
+                  dispatch(updateStartSearch(newDate.format('YYYY-MM-DD')));
+                } else {
+                  dispatch(updateStartSearch(null));
+                }
+              }}
+              error={Boolean(errors.start_search)}
+            />
+            <ErrorMessage errorText={errors.start_search} />
+          </div>
           <StyledParagraph>по</StyledParagraph>
-          <CalendarInput
-            value={thirdPageState.end_search ? new Date(thirdPageState.end_search) : null}
-            onChange={(newDate) => dispatch(updateEndSearch(newDate))}
-          />
+          <div>
+            <CalendarInput
+              value={thirdPageState.end_search ? dayjs(new Date(thirdPageState.end_search)) : null}
+              onChange={(newDate: Dayjs | null) => {
+                if (newDate) {
+                  dispatch(updateEndSearch(newDate.format('YYYY-MM-DD')));
+                } else {
+                  dispatch(updateEndSearch(null));
+                }
+              }}
+              error={Boolean(errors.end_search)}
+            />
+            <ErrorMessage errorText={errors.end_search} />
+          </div>
         </CalendarWrapper>
       </StyledArticle>
-
       <StyledDivTwoChildren>
         <TitleComponent>Количество рекрутеров</TitleComponent>
         <Counter
@@ -121,21 +159,25 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             />
           </StyledLiInputList>
         </StyledUlInputList>
+        <ErrorMessage errorText={errors.payment_model} />
       </StyledDivTwoChildren>
-
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Вознаграждение за сотрудника</TitleComponent>
         <FeeSection
-          model={thirdPageState.payment_model || ''}
-          maxSalaryValue="700000"
-          minSalaryValue="30000"
+          sliderValue={recommendedValue}
+          onChange={(newValue: number) => {
+            dispatch(updateReward(newValue))
+          }}
+          minValue={minSliderValue}
+          maxValue={maxSliderValue}
+          recommendedValue={recommendedValue}
+          isError={Boolean(errors.recommendedReward)}
+          errorMessage={errors.recommendedReward}
         />
       </StyledDivTwoChildren>
 
       <FinalCalculations
-        finalAmount={0}
-        awardPerEmployee={0}
-        serviceFee={0}
+        finalAmount={thirdPageState.reward}
       />
     </StyledSection>
   );

@@ -1,8 +1,7 @@
-import { type FC } from 'react';
+import { useMemo, type FC } from 'react';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import MuiSlider from '@mui/material/Slider';
-// import { styled } from '@mui/material/styles';
 import SliderIcon from '../icons/SliderIcon';
 
 interface SliderProps {
@@ -11,7 +10,6 @@ interface SliderProps {
   maxValue: number;
   recommendedValue: number;
   sliderValue: number;
-  label: number;
   isError: boolean;
 }
 
@@ -100,25 +98,15 @@ const FeeSlider: FC<SliderProps> = ({
   maxValue,
   recommendedValue,
   sliderValue,
-  label,
   isError,
 }) => {
   const numberWithSpaces = (value: number) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-  const marks = [
-    {
-      value: minValue,
-      label: `${numberWithSpaces(minValue)}`,
-    },
-    {
-      value: recommendedValue,
-      label: `${numberWithSpaces(label)}`,
-    },
-    {
-      value: maxValue,
-      label: `${numberWithSpaces(maxValue)}`,
-    },
-  ];
+  const marks = useMemo(() => [
+    { value: minValue, label: `${numberWithSpaces(minValue)} руб.` },
+    { value: recommendedValue },
+    { value: maxValue, label: `${numberWithSpaces(maxValue)} руб.` }
+  ], [minValue, maxValue, recommendedValue]);
 
   return (
     <div>
@@ -135,7 +123,6 @@ const FeeSlider: FC<SliderProps> = ({
           slots={{ thumb: SliderIcon }}
           min={minValue}
           max={maxValue}
-          // getAriaValueText={valuetext}
           step={100}
           valueLabelDisplay="off"
           marks={marks}

@@ -1,5 +1,6 @@
-import { type FirstPageFormData, type FormErrors } from '../../store/slices/firstPageSlice';
+import { type FirstPageFormData } from '../../store/slices/firstPageSlice';
 import { isValidNumber, isValidText } from '../../utils/regexValidationFuncs';
+import { type FormErrors } from '../../types/types';
 
 const hrFormStepOneValidation = (firstPageState: FirstPageFormData): {
   isValid: boolean;

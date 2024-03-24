@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const thirdPageSchema = z.object({
+export const thirdPageSchema = z.object({
   number_employees: z.number().nullable(),
   start_search: z.string().nullable(),
   end_search: z.string().nullable(),

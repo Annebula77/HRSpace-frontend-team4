@@ -7,6 +7,8 @@ import {
   stepConnectorClasses,
   type StepIconProps,
   type Orientation,
+  Tooltip,
+  Fade,
 } from '@mui/material';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -16,14 +18,15 @@ import { setErrors } from '../../store/slices/firstPageSlice';
 import { type FormErrors } from '../../types/types';
 import { media } from '../../styles/breakpoints';
 import CustomButton from '../button/CustomButton';
-
 import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
 import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
 import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
 import HrFormStepFour from '../hrFormStepFour/HrFormStepFour';
 import hrFormStepOneValidation from '../hrFormStepOne/hrFormStepOneValidation';
+import hrFormStepThreeValidation from '../hrFormStepThree/hrFormStepThreeValidation';
 import { firstPageSchema } from '../../models/firstPageSchema';
-import { POST_VACANCY } from '../../utils/variables';
+import { thirdPageSchema } from '../../models/thirdPageSchema';
+import { POST_PAYMENT, POST_VACANCY } from '../../utils/variables';
 import FormSkeleton from '../formSkeleton/FormSkeleton';
 import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
 
@@ -170,6 +173,7 @@ const getStepContent = (step: number, errors: FormErrors): JSX.Element | string 
 const HrRequestFormWithStepper = () => {
   const dispatch = useAppDispatch();
   const firstPageState = useAppSelector((state) => state.firstPage);
+  const thirdPageState = useAppSelector((state) => state.thirdPage);
 
   const categoriesIsLoading = useAppSelector((state) => state.categories.isLoading);
   const categoriesIsError = useAppSelector((state) => state.categories.isError);
@@ -210,6 +214,16 @@ const HrRequestFormWithStepper = () => {
         schema = firstPageSchema;
         currentFormData = firstPageState;
         url = POST_VACANCY;
+        break;
+      case 1:
+        break;
+      case 2:
+        const validationResultsStep2 = hrFormStepThreeValidation(thirdPageState);
+        isValid = validationResultsStep2.isValid;
+        newErrors = validationResultsStep2.newErrors;
+        schema = thirdPageSchema;
+        currentFormData = thirdPageState;
+        url = POST_PAYMENT;
         break;
       default:
         console.error('Unknown step');
@@ -308,20 +322,30 @@ const HrRequestFormWithStepper = () => {
             Назад
           </CustomButton>
         )}
-        <CustomButton
-          label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
-          primary={!hasErrors}
-          size="large"
-          // onClick={handleSubmitAndPostData}
-          onClick={() => {
-            setActiveStep((prev) => prev + 1);
-          }}
-          style={{ flex: activeStep > 0 ? '1' : 'auto' }}
+        <Tooltip
+          title={hasErrors ? 'Для перехода нужно заполнить все обязательные поля' : ''}
+          TransitionComponent={Fade}
+          TransitionProps={{ timeout: 300 }}
+          arrow
+          placement="top"
+          disableHoverListener={!hasErrors} // Отключаем Tooltip, если нет ошибок
         >
-          {activeStep === steps.length - 1 ? 'Закончить' : 'Далее'}
-        </CustomButton>
+          <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}> {/* Оборачиваем кнопку в span, так как Tooltip требует, чтобы его дочерний элемент мог принимать ref */}
+            <CustomButton
+              label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
+              primary={!hasErrors}
+              size="large"
+              onClick={handleSubmitAndPostData}
+            //   onClick={() => {
+            //     setActiveStep((prev) => prev + 1);
+            //   }}
+            >
+              {activeStep === steps.length - 1 ? 'Закончить' : 'Далее'}
+            </CustomButton>
+          </span>
+        </Tooltip>
       </ButtonBox>
-    </StepsWrapper>
+    </StepsWrapper >
   );
 };
 export default HrRequestFormWithStepper;

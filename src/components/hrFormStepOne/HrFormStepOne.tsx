@@ -19,7 +19,6 @@ import {
   updateEducation,
   toggleBusinessTrips
 } from '../../store/slices/firstPageSlice';
-import { type FormErrors } from '../../types/types';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
 import {
