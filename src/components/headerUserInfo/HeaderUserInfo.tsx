@@ -1,17 +1,31 @@
+import { type FC } from 'react';
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 import avatar from '../../assets/images/header_user_ava_vk.png';
 import BellIcon from '../icons/BellIcon';
+
+interface Props {
+  isBurgerMenu: boolean,
+}
+
+interface UserNameProps {
+  isBurgerMenu: boolean,
+  children: string,
+}
 
 const StyledUserInfo = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  background-color: #000000;
+  /* background-color: #000000; */
+
+  ${media.lg`
+    margin: 0 0 0 10px;
+  `}
 `;
 const StyledUserDetails = styled.div`
-  /* height: 44px; */
   margin-left: 16px;
   display: flex;
 `;
@@ -34,32 +48,59 @@ const StyledUserNameWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const StyledUserName = styled.div`
-  font-size: 16px;
+const StyledUserName: FC<UserNameProps> = styled.div`
+  font-size: ${(props) => (props.isBurgerMenu ? '16px' : '14px')};
   font-weight: 400;
-  line-height: 24px;
+  line-height: 20px;
   letter-spacing: 0px;
   text-align: left;
-  color: rgba(255, 255, 255, 1);
+  color: ${(props) => (props.isBurgerMenu ? 'rgba(73, 75, 77, 1)' : 'rgba(255, 255, 255, 1)')};
+  display: ${(props) => (props.isBurgerMenu ? 'flex' : 'none')};
+  overflow: hidden;
+  white-space: nowrap;
+
+  ${media.xl`
+    display: flex;
+    font-size: 15px;
+    line-height: 22px;
+  `}
+
+  ${media.xxl`
+    display: flex;
+    font-size: 16px;
+    line-height: 24px;
+  `}
 `;
 
-const StyledUserId = styled.div`
-  font-size: 14px;
+const StyledUserId: FC<UserNameProps> = styled.div`
+  font-size: ${(props) => (props.isBurgerMenu ? '14px' : '13px')};
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0px;
   text-align: left;
   color: rgba(149, 151, 153, 1);
+  display: ${(props) => (props.isBurgerMenu ? 'flex' : 'none')};
+
+  ${media.xl`
+    display: flex;
+    font-size: 13px;
+  `}
+
+  ${media.xxl`
+    font-size: 14px;
+  `}
 `;
 
-const HeaderUserInfo = () => (
+const bellColor = (isBurgerMenu: boolean) => (isBurgerMenu ? 'rgba(73, 75, 77, 1)' : 'rgba(255, 255, 255, 1)');
+
+const HeaderUserInfo: FC<Props> = ({ isBurgerMenu }) => (
   <StyledUserInfo>
-    <BellIcon width={30} height={30} />
+    <BellIcon width={30} height={30} color={bellColor(isBurgerMenu)} />
     <StyledUserDetails>
       <StyledUserAvatar src={avatar} alt="Аватар" />
       <StyledUserNameWrapper>
-        <StyledUserName>Виталий Крымов</StyledUserName>
-        <StyledUserId>#45732</StyledUserId>
+        <StyledUserName isBurgerMenu={isBurgerMenu}>Виталий Крымов</StyledUserName>
+        <StyledUserId isBurgerMenu={isBurgerMenu}>#45732</StyledUserId>
       </StyledUserNameWrapper>
     </StyledUserDetails>
   </StyledUserInfo>

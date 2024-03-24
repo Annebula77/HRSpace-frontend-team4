@@ -15,6 +15,7 @@ import { fetchCities } from '../../store/slices/citiesSlice';
 import { FormErrors, setErrors } from '../../store/slices/firstPageSlice';
 import { media } from '../../styles/breakpoints';
 import CustomButton from '../button/CustomButton';
+
 import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
 import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
 import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
@@ -23,21 +24,23 @@ import hrFormStepOneValidation from '../hrFormStepOne/hrFormStepOneValidation';
 import { firstPageSchema } from '../../models/firstPageSchema';
 import { POST_VACANCY } from '../../utils/variables';
 import FormSkeleton from '../formSkeleton/FormSkeleton';
+import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
+
 
 const Line = styled.div<{ $completed: boolean }>`
   width: 300px;
   height: 3px;
   margin-top: 20px;
-  background-color: ${({ $completed }) => ($completed ? 'rgba(23, 133, 229, 1)' : 'rgba(186, 189, 191, 1)')}; 
-  
-  
+  background-color: ${({ $completed }) => ($completed ? 'rgba(23, 133, 229, 1)' : 'rgba(186, 189, 191, 1)')};
+
+
   ${media.sm`
-      width: 100px;      
+      width: 100px;
       margin-top: 0;
     `}
 
     ${media.lg`
-      width: 170px;      
+      width: 170px;
       margin-top: 0;
     `}
 `;
@@ -55,7 +58,7 @@ const StyledStepConnector = styled(StepConnector)`
 &.${stepConnectorClasses.alternativeLabel} {
   top: 10px;
   left: calc(-50% + 16px);
-  right: calc(50% + 16px);  
+  right: calc(50% + 16px);
 }
 & .${stepConnectorClasses.line} {
   border-color: rgba(234, 234, 240, 1);
@@ -71,18 +74,18 @@ const StyledStep = styled(Step) <{ orientation: Orientation }>`
   font-style: normal;
   font-weight: 700;
   line-height: 1.4;
-  color: rgba(186, 189, 191, 1); 
+  color: rgba(186, 189, 191, 1);
     }
 
   & .MuiStepLabel-label {
     ${({ orientation }) => (orientation === 'vertical' ? 'margin-top: -20px !important;' : 'margin-top: -40px !important;')}
-    color: rgba(186, 189, 191, 1); 
-   
+    color: rgba(186, 189, 191, 1);
+
     &.Mui-completed {
-      color: rgba(48, 50, 51, 1);      
+      color: rgba(48, 50, 51, 1);
     }
   }
-  
+
 `;
 
 const StepsWrapper = styled.section`
@@ -90,17 +93,17 @@ const StepsWrapper = styled.section`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin: 86px auto 0; 
+  margin: 86px auto 0;
   padding: 0;
 `;
 
 const ButtonBox = styled.div`
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 86px; 
+  margin: 0 0 86px;
   padding: 0;
   display: flex;
-  gap: 25px; 
+  gap: 25px;
 `;
 
 const getStepContent = (step: number, errors: FormErrors): JSX.Element | string => {
@@ -114,7 +117,52 @@ const getStepContent = (step: number, errors: FormErrors): JSX.Element | string 
     case 3:
       return <HrFormStepFour />;
     default:
-      return <p>4</p>;
+      return (
+        <p>
+          <HrRequestPreview
+            occupation="Менеджер по продажам (Маркетинг, реклама, PR)"
+            skills={
+              ['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4']
+            }
+            duties={
+              [
+                'Duty 1', 'Duty 2', 'Duty 3', 'Duty 4', 'Duty 5', 'Duty 6',
+                'Duty 7', 'Duty 8', 'Duty 9', 'Duty 10', 'Duty 11', 'Duty 12',
+                'Duty 13', 'Duty 14',
+              ]
+            }
+            minSalaryValue="100000"
+            maxSalaryValue="200000"
+            experience="1-3 года"
+            education="Высшее"
+            workPlace="Москва"
+            workFormat="В офисе"
+            employmentType="Полная"
+            registrationEmployee="по ТК"
+            medInsurance="Да"
+            compensations="На транспорт"
+            description="Мы за всё хорошее и против всего плохого"
+            searchPeriodBegin="13.03.2024"
+            searchPeriodEnd="14.03.2024"
+            feeModel="100% за выход сотрудника"
+            fee="140 000"
+            employeeNumber="1"
+            hrExperience="3-6 лет"
+            hrRequirements={
+              [
+                'Поиск и предоставление релевантного резюме',
+                'Запрос рекомендаций с предыдущих мест работы',
+              ]
+            }
+            resumeFormat={`Резюме кандидатов, с которыми проведено интервью,
+              с комментариями по кандидату`}
+            hrExtraRequirements="Живи по совести, не зная горести"
+            companiesStopList={['ООО «Рога и копыта»', 'ООО «Копыта и Рога»']}
+            employeesStopList={['Василий Пупкин', 'Дмитрий Нагиев']}
+            attachedFile="filename.pdf"
+          />
+        </p>
+      );
   }
 };
 

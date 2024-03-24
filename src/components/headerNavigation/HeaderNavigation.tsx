@@ -1,5 +1,6 @@
 import { type FC } from 'react';
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 interface ButtonProps {
   $primary?: boolean;
@@ -10,30 +11,47 @@ const StyledList = styled.ul`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #000000;
 `;
 
 const StyledListElement = styled.li`
   padding: 0;
-  margin: 0 24px 0 0;
+  margin: 0 8px 0 0;
   list-style: none;
 
-  &:last-child {
+  ${media.lg`
+    margin: 0 24px 0 0;
+
+    &:last-child {
     margin: 0;
   }
+  `}
 `;
 
 const StyledNavButton = styled.button<ButtonProps>`
   margin: 0;
-  padding: 0;
-  font-size: 16px;
+  padding: 0 10px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 18px;
   letter-spacing: 0px;
-  text-align: left;
+  text-align: center;
   border: none;
   background-color: rgba(0, 0, 0, 0);
   color: ${({ $primary }) => ($primary ? 'rgba(255, 255, 255, 1)' : 'rgba(149, 151, 153, 1)')};
+
+  ${media.lg`
+    font-size: 14px;
+    line-height: 22px;
+    padding: 0;
+  `}
+
+  ${media.xl`
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+  `}
 `;
 
 const HeaderNavigation: FC<ButtonProps> = () => (
