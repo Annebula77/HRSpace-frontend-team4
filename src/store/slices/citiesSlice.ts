@@ -10,14 +10,13 @@ export const fetchCities = createAsyncThunk<CityModel[], void, { rejectValue: st
       return await fetchData<CityModel[]>(
         GET_CITIES_URL,
         citySchema.array(),
-        rejectWithValue
+        rejectWithValue,
       );
     } catch (error) {
       return rejectWithValue('Failed to fetch cities');
     }
-  }
+  },
 );
-
 
 interface CitiesState {
   cities: CityModel[];
