@@ -17,9 +17,7 @@ import {
   toggleHideSalary,
   updateExperience,
   updateEducation,
-  toggleBusinessTrips,
-  FormErrors,
-
+  toggleBusinessTrips
 } from '../../store/slices/firstPageSlice';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
@@ -35,12 +33,9 @@ import {
   StyledUlInputList,
   ErrorContainer,
 } from '../../styles/formStepsStyles';
+import { type HrFormStepsProps } from '../../types/types';
 
-interface HrFormStepOneProps {
-  errors: FormErrors;
-}
-
-const HrFormStepOne: FC<HrFormStepOneProps> = ({ errors }) => {
+const HrFormStepOne: FC<HrFormStepsProps> = ({ errors }) => {
   const dispatch = useAppDispatch();
   const firstPageState = useAppSelector((state) => state.firstPage);
   const categories = useAppSelector((state) => state.categories.categories);

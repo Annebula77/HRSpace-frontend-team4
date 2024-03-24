@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export interface FormErrors {
-  [key: string]: string;
-}
+import { type FormErrors } from '../../types/types';
 
 export interface FirstPageFormData {
   job_title: string | null;

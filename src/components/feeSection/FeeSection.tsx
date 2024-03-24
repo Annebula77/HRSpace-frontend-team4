@@ -1,12 +1,17 @@
-import { type FC, useState } from 'react';
+import { useState, type FC } from 'react';
 import styled from 'styled-components';
 import InputWithText from '../inputWithText/InputWithText';
 import FeeSlider from '../feeSlider/FeeSlider';
+import ErrorMessage from '../errorText/errorText';
 
 interface FeeSectionProps {
-  model: string,
-  minSalaryValue: string,
-  maxSalaryValue: string,
+  minValue: number;
+  maxValue: number;
+  recommendedValue: number;
+  sliderValue: number;
+  isError: boolean;
+  onChange: (newValue: number) => void;
+  errorMessage?: string;
 }
 
 const StyledFeeSection = styled.section`
@@ -39,75 +44,63 @@ const StyledInputWrapper = styled.div`
 `;
 
 const FeeSection: FC<FeeSectionProps> = ({
-  model,
-  minSalaryValue,
-  maxSalaryValue,
+  minValue,
+  maxValue,
+  recommendedValue,
+  isError,
+  onChange,
+  errorMessage
 }) => {
-  // NOTE: Заглушки для расчета граничных значений слайдера и рекомендованного значения
-  const calculateMinSliderValue = () => {
-    switch (model) {
-      case 'model 1':
-        return 30000;
-      case 'model 2':
-        return 50000;
-      case 'model 3':
-        return 70000;
-      default:
-        return 30000;
-    }
-  };
-  const calculateMaxSliderValue = () => parseInt(maxSalaryValue, 10) * 3;
-  const calculateRecommendedValue = () => (
-    parseInt(minSalaryValue, 10) + parseInt(maxSalaryValue, 10)) / 2;
 
-  //  NOTE: Стейт переменные
-  const [sliderValue, setSliderValue] = useState(calculateRecommendedValue);
-  const [error, setError] = useState(false);
+  const [sliderValue, setSliderValue] = useState<number>(recommendedValue);
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    setSliderValue(newValue as number);
-    setError(false);
+  const handleSliderChange = (event: Event, newValue: number | number[]): void => {
+    const value = Array.isArray(newValue) ? newValue[0] : newValue;
+    setSliderValue(value);
+    onChange(value);
   };
 
-  const handleInputChange = (event: { target: { value: string; }; }) => {
-    const newValue = event.target.value;
-    setSliderValue(parseInt(newValue, 10));
-    if (parseInt(newValue, 10) < calculateMinSliderValue()) {
-      setError(true);
-    } else {
-      setError(false);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= minValue && value <= maxValue) {
+      setSliderValue(value);
+      onChange(value);
     }
   };
 
-  const handleBlur = () => {
-    if (sliderValue < calculateMinSliderValue()) {
-      setSliderValue(calculateMinSliderValue);
-    } else if (sliderValue > calculateMaxSliderValue()) {
-      setSliderValue(calculateMaxSliderValue);
+  const handleInputBlur = (): void => {
+    if (sliderValue < minValue) {
+      setSliderValue(minValue);
+      onChange(minValue);
+    } else if (sliderValue > maxValue) {
+      setSliderValue(maxValue);
+      onChange(maxValue);
     }
   };
-
   return (
     <StyledFeeSection>
       <StyledInputWrapper>
         <InputWithText
+          name="sliderValue"
+          placeholder="Введите значение"
+          value={sliderValue.toString()}
           onChange={handleInputChange}
-          name="имя"
-          value={sliderValue.toString()} //  NOTE: Нужно ли спейсинг в значениях в инпуте?
-          placeholder=""
-          onBlur={handleBlur}
-          error={error || undefined}
+          onBlur={handleInputBlur}
+          error={isError || undefined}
         />
         <span>рублей</span>
+
       </StyledInputWrapper>
+      <ErrorMessage errorText={errorMessage} />
+
       <FeeSlider
-        onChange={handleSliderChange}
-        minValue={calculateMinSliderValue()}
-        maxValue={calculateMaxSliderValue()}
-        label={calculateRecommendedValue()}
-        recommendedValue={calculateRecommendedValue()}
         sliderValue={sliderValue}
-        isError={error}
+        onChange={handleSliderChange}
+        minValue={minValue}
+        maxValue={maxValue}
+        recommendedValue={recommendedValue}
+        isError={isError}
       />
     </StyledFeeSection>
   );

@@ -1,26 +1,24 @@
 import { type FC } from 'react';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import dayjs, { Dayjs } from 'dayjs';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/ru';
 import CustomActionBar from '../../utils/MUICustomForCalendar';
 
 interface CalendarInputProps {
-  value: Date | null;
-  onChange: (date: Date | null) => void;
+  value: Dayjs | null;
+  onChange: (date: Dayjs | null) => void;
+  error?: boolean;
 }
 
-const CalendarInput: FC<CalendarInputProps> = ({ value, onChange }) => (
+const CalendarInput: FC<CalendarInputProps> = ({ value, onChange, error }) => (
   <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
-    <DatePicker
-      format="DD.MM.YY"
-      value={value}
+    <DesktopDatePicker
+      format="DD.MM.YYYY"
+      value={value ? dayjs(value) : null}
       disablePast
-      onChange={(newValue) => {
-        if (newValue instanceof Date && !Number.isNaN(newValue.valueOf())) {
-          onChange(newValue);
-        } else {
-          onChange(null);
-        }
+      onChange={(newValue: dayjs.Dayjs | null) => {
+        onChange(newValue);
       }}
       slots={{
         actionBar: CustomActionBar,
@@ -28,13 +26,13 @@ const CalendarInput: FC<CalendarInputProps> = ({ value, onChange }) => (
       slotProps={{
         textField: {
           inputProps: {
-            placeholder: 'ДД.ММ.ГГ',
+            placeholder: 'ДД.ММ.ГГГГ',
           },
           sx: {
             '& .MuiOutlinedInput-root': {
               borderRadius: '8px',
               '& fieldset': {
-                borderColor: 'rgba(186, 189, 191, 1)',
+                borderColor: () => (error ? 'rgba(255, 46, 46, 1)' : 'rgba(186, 189, 191, 1)'),
               },
               '&:hover fieldset': {
                 border: '1px solid rgba(23, 133, 229, 1)',
