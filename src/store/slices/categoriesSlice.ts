@@ -1,14 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { GET_CATEGORIES_URL } from "../../utils/variables";
-import { type CategoryInListModel, categoryInListSchema } from "../../models/categoryListSchema";
-import fetchData from "../../utils/fetchData";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { GET_CATEGORIES_URL } from '../../utils/variables';
+import { type CategoryInListModel, categoryInListSchema } from '../../models/categoryListSchema';
+import fetchData from '../../utils/fetchData';
 
 export const fetchCategories = createAsyncThunk<
-  CategoryInListModel[],
-  void,
-  { rejectValue: string }
+CategoryInListModel[],
+void,
+{ rejectValue: string }
 >(
-  "categories/fetchCategories",
+  'categories/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
       return await fetchData<CategoryInListModel[]>(
@@ -17,7 +17,7 @@ export const fetchCategories = createAsyncThunk<
         rejectWithValue,
       );
     } catch (error) {
-      return rejectWithValue("Failed to fetch categories");
+      return rejectWithValue('Failed to fetch categories');
     }
   },
 );
@@ -33,11 +33,11 @@ const initialState: CategoriesState = {
   categories: [],
   isLoading: false,
   isError: false,
-  errorMessage: "",
+  errorMessage: '',
 };
 
 const categoriesSlice = createSlice({
-  name: "categories",
+  name: 'categories',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -45,7 +45,7 @@ const categoriesSlice = createSlice({
       .addCase(fetchCategories.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
-        state.errorMessage = "";
+        state.errorMessage = '';
       })
       .addCase(fetchCategories.fulfilled, (state, action: PayloadAction<CategoryInListModel[]>) => {
         state.isLoading = false;
@@ -54,7 +54,7 @@ const categoriesSlice = createSlice({
       .addCase(fetchCategories.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.isLoading = false;
         state.isError = true;
-        state.errorMessage = action.payload || "Unknown error";
+        state.errorMessage = action.payload || 'Unknown error';
       });
   },
 });

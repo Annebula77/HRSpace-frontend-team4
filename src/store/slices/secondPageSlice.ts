@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { type FormErrors } from "../../types/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { type FormErrors } from '../../types/types';
 
 export const COMPENSATION_OPTIONS = {
-  meal: "На питание",
-  road: "На транспорт",
-  study: "На обучение",
-  living: "На жилье",
+  meal: 'На питание',
+  road: 'На транспорт',
+  study: 'На обучение',
+  living: 'На жилье',
 };
 
 export interface SecondPageFormData {
@@ -30,12 +30,12 @@ const initialState: SecondPageFormData = {
   compensation: [],
   driver_license: false,
   having_car: false,
-  company_descriptions: "",
+  company_descriptions: '',
   errors: {},
 };
 
 export const secondPageSlice = createSlice({
-  name: "form2",
+  name: 'form2',
   initialState,
   reducers: {
     updateWorkPlace: (state, action: PayloadAction<string | null>) => {

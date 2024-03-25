@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import { media } from "../styles/breakpoints";
-import Main from "../components/main/Main";
-import { StyledSection } from "../styles/formStepsStyles";
-import notFoundImg from "../assets/images/404_image.png";
-import CustomButton from "../components/CustomButton/CustomButton";
+import { media } from '../styles/breakpoints';
+import Main from '../components/main/Main';
+import { StyledSection } from '../styles/formStepsStyles';
+import notFoundImg from '../assets/images/404_image.png';
+import CustomButton from '../components/CustomButton/CustomButton';
 
 const StyledNotFoundContent = styled.div`
   margin: 0 auto;
@@ -94,7 +94,7 @@ const NotFound = () => (
           type="button"
           primary
           size="large"
-          style={{ flex: "1" }}
+          style={{ flex: '1' }}
         >
           <StyledLink to="/">Вернуться на главную</StyledLink>
         </CustomButton>

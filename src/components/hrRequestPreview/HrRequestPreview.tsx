@@ -1,16 +1,16 @@
-import { type FC } from "react";
-import styled from "styled-components";
-import { Chip, Stack } from "@mui/material";
-import { useAppSelector } from "../../store/hooks";
+import { type FC } from 'react';
+import styled from 'styled-components';
+import { Chip, Stack } from '@mui/material';
+import { useAppSelector } from '../../store/hooks';
 import {
   StyledSection,
   StyledDivTwoChildren,
-} from "../../styles/formStepsStyles";
+} from '../../styles/formStepsStyles';
 
-import { media } from "../../styles/breakpoints";
+import { media } from '../../styles/breakpoints';
 
-import FinalCalculations from "../finalCalculations/FinalCalculations";
-import FloatingButton from "../floatingButton/FloatingButton";
+import FinalCalculations from '../finalCalculations/FinalCalculations';
+import FloatingButton from '../floatingButton/FloatingButton';
 
 interface PreviewProps {
   occupation: string;
@@ -383,7 +383,8 @@ const HrRequestPreview: FC<PreviewProps> = ({
           </StyledDivTwoChildrenRow>
         </StyledSubSection>
         <FinalCalculations
-          finalAmount={thirdPageState.reward ? thirdPageState.reward : thirdPageState.recommendedReward}
+          finalAmount={thirdPageState.reward
+            ? thirdPageState.reward : thirdPageState.recommendedReward}
         />
       </StyledSection>
       <FloatingButton />

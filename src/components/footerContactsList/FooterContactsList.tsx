@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { media } from "../../styles/breakpoints";
+import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 const StyledContactsList = styled.ul`
   width: 100%;

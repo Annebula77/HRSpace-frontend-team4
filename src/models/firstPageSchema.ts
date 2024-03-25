@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const firstPageSchema = z.object({
   job_title: z.string().nullable(),

@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { type FC } from 'react';
 
 interface Props {
   width: number;
@@ -12,8 +12,8 @@ interface Props {
 const HrSpaceLogo: FC<Props> = ({
   width = 138,
   height = 46,
-  color = "#D6001D",
-  secondaryColor = "#fff",
+  color = '#D6001D',
+  secondaryColor = '#fff',
 }) => (
   <svg
     width={width}

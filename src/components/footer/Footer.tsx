@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { media } from "../../styles/breakpoints";
+import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
-import FooterContactsList from "../footerContactsList/FooterContactsList";
-import FooterLinks from "../footerLinks/FooterLinks";
+import FooterContactsList from '../footerContactsList/FooterContactsList';
+import FooterLinks from '../footerLinks/FooterLinks';
 
 const StyledFooter = styled.footer`
   width: 100%;

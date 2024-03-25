@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { type FormErrors } from "../../types/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { type FormErrors } from '../../types/types';
 
 export interface ForthPageFormData {
   recruiter_experience: string | null;
@@ -14,19 +14,19 @@ export interface ForthPageFormData {
 }
 
 const initialState: ForthPageFormData = {
-  recruiter_experience: "",
+  recruiter_experience: '',
   recruiter_job: [],
-  type_resume: "",
-  additional_requirements: "",
+  type_resume: '',
+  additional_requirements: '',
   isLegalEntity: false,
-  stoplist_companies: "",
-  stoplist_employee: "",
-  file_url: "",
+  stoplist_companies: '',
+  stoplist_employee: '',
+  file_url: '',
   errors: {},
 };
 
 export const forthPageSlice = createSlice({
-  name: "form4",
+  name: 'form4',
   initialState,
   reducers: {
     updateExperience: (state, action: PayloadAction<string | null>) => {

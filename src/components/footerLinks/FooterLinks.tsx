@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { media } from "../../styles/breakpoints";
-import HrSpaceLogo from "../icons/HrSpaceLogo";
-import TelegramLinkIcon from "../icons/TelegramLinkIcon";
-import VkLinkIcon from "../icons/VkLinkIcon";
-import OkLinkIcon from "../icons/OkLinkIcon";
+import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
+import HrSpaceLogo from '../icons/HrSpaceLogo';
+import TelegramLinkIcon from '../icons/TelegramLinkIcon';
+import VkLinkIcon from '../icons/VkLinkIcon';
+import OkLinkIcon from '../icons/OkLinkIcon';
 
 const StyledFooterNavigation = styled.nav`
   width: 100%;

@@ -1,4 +1,4 @@
-import { parseISO, differenceInDays } from "date-fns";
+import { parseISO, differenceInDays } from 'date-fns';
 
 const calculateSliderValues = (
   minSalary: number,
@@ -10,9 +10,9 @@ const calculateSliderValues = (
   let minBaseValue = 30000;
   const modelMultiplier = 2;
 
-  if (paymentModel === "50% за выход 50% по окончании испытательного срока") {
+  if (paymentModel === '50% за выход 50% по окончании испытательного срока') {
     minBaseValue = 50000;
-  } else if (paymentModel === "100% по окончании испытательного срока (1 месяц)") {
+  } else if (paymentModel === '100% по окончании испытательного срока (1 месяц)') {
     minBaseValue = 70000;
   }
 

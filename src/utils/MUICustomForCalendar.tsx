@@ -1,6 +1,6 @@
-import Button from "@mui/material/Button";
-import DialogActions from "@mui/material/DialogActions";
-import { PickersActionBarProps } from "@mui/x-date-pickers/PickersActionBar";
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
+import { PickersActionBarProps } from '@mui/x-date-pickers/PickersActionBar';
 
 const CustomActionBar = (props: PickersActionBarProps) => {
   const {
@@ -8,8 +8,8 @@ const CustomActionBar = (props: PickersActionBarProps) => {
   } = props;
 
   const dialogActionsStyles = {
-    justifyContent: "space-between",
-    padding: "0 20px 10px",
+    justifyContent: 'space-between',
+    padding: '0 20px 10px',
   };
 
   if (actions == null || actions.length === 0) {
@@ -18,16 +18,16 @@ const CustomActionBar = (props: PickersActionBarProps) => {
 
   return (
     <DialogActions className={className} style={dialogActionsStyles}>
-      {actions.includes("cancel") && (
+      {actions.includes('cancel') && (
         <Button variant="outlined" color="primary" onClick={onCancel}>Отмена</Button>
       )}
-      {actions.includes("clear") && (
+      {actions.includes('clear') && (
         <Button variant="outlined" color="primary" onClick={onClear}>Очистить</Button>
       )}
-      {actions.includes("today") && (
+      {actions.includes('today') && (
         <Button variant="outlined" color="primary" onClick={onSetToday}>Сегодня</Button>
       )}
-      {actions.includes("accept") && (
+      {actions.includes('accept') && (
         <Button variant="outlined" color="primary" onClick={onAccept}>Принять</Button>
       )}
     </DialogActions>

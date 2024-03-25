@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { media } from "./breakpoints";
+import styled from 'styled-components';
+import { media } from './breakpoints';
 
 export const StyledSection = styled.section`
   width: 100%;

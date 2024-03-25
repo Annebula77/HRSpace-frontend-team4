@@ -1,8 +1,8 @@
-import { useState, type FC } from "react";
-import styled from "styled-components";
-import InputWithText from "../inputWithText/InputWithText";
-import FeeSlider from "../feeSlider/FeeSlider";
-import ErrorMessage from "../errorText/errorText";
+import { useState, type FC } from 'react';
+import styled from 'styled-components';
+import InputWithText from '../inputWithText/InputWithText';
+import FeeSlider from '../feeSlider/FeeSlider';
+import ErrorMessage from '../errorText/errorText';
 
 interface FeeSectionProps {
   minValue: number;

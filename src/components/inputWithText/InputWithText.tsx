@@ -1,5 +1,5 @@
-import { type FC, type ChangeEvent, FocusEvent } from "react";
-import styled from "styled-components";
+import { type FC, type ChangeEvent, FocusEvent } from 'react';
+import styled from 'styled-components';
 
 interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -19,7 +19,7 @@ const StyledInput = styled.input<InputProps>`
   padding: 10px 16px 10px 16px;
   outline: none;
   margin: 0;
-  border: 1px solid ${(props) => (props.error ? "rgba(255, 46, 46, 1)" : "rgba(186, 189, 191, 1)")};
+  border: 1px solid ${(props) => (props.error ? 'rgba(255, 46, 46, 1)' : 'rgba(186, 189, 191, 1)')};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;

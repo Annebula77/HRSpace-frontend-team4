@@ -1,5 +1,5 @@
-import { SliderThumb } from "@mui/material/Slider";
-import { type FC } from "react";
+import { SliderThumb } from '@mui/material/Slider';
+import { type FC } from 'react';
 
 interface SliderThumbComponentProps extends React.HTMLAttributes<unknown> { }
 

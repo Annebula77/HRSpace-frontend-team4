@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const thirdPageSchema = z.object({
   number_employees: z.number().nullable(),

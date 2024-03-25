@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-import useResize from "../../hooks/useResize";
-import breakpoints, { media } from "../../styles/breakpoints";
+import useResize from '../../hooks/useResize';
+import breakpoints, { media } from '../../styles/breakpoints';
 
-import HrSpaceLogo from "../icons/HrSpaceLogo";
-import BurgerMenuIcon from "../icons/BurgerMenuIcon";
-import HeaderNavigation from "../headerNavigation/HeaderNavigation";
-import HeaderUserInfo from "../headerUserInfo/HeaderUserInfo";
-import BurgerMenu from "../burgerMenu/BurgerMenu";
+import HrSpaceLogo from '../icons/HrSpaceLogo';
+import BurgerMenuIcon from '../icons/BurgerMenuIcon';
+import HeaderNavigation from '../headerNavigation/HeaderNavigation';
+import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
+import BurgerMenu from '../burgerMenu/BurgerMenu';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -41,7 +41,6 @@ const StyledLogoWrapper = styled.div`
 const Header = () => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const width = useResize();
-
 
   const closeBurgerMenu = () => {
     setIsBurgerMenuOpen(false);

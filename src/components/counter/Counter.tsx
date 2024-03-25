@@ -1,5 +1,5 @@
-import { type FC } from "react";
-import styled from "styled-components";
+import { type FC } from 'react';
+import styled from 'styled-components';
 
 interface CounterProps {
   value: number;

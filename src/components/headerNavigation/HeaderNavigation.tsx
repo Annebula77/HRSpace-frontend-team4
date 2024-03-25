@@ -1,6 +1,6 @@
-import { type FC } from "react";
-import styled from "styled-components";
-import { media } from "../../styles/breakpoints";
+import { type FC } from 'react';
+import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 interface ButtonProps {
   $primary?: boolean;
@@ -39,7 +39,7 @@ const StyledNavButton = styled.button<ButtonProps>`
   text-align: center;
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  color: ${({ $primary }) => ($primary ? "rgba(255, 255, 255, 1)" : "rgba(149, 151, 153, 1)")};
+  color: ${({ $primary }) => ($primary ? 'rgba(255, 255, 255, 1)' : 'rgba(149, 151, 153, 1)')};
 
   ${media.lg`
     font-size: 14px;

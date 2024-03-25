@@ -1,40 +1,39 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { POST_FILE } from "../../utils/variables";
-import { fileSchema } from "../../models/fileSchema";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { POST_FILE } from '../../utils/variables';
+import { fileSchema } from '../../models/fileSchema';
 
 export const uploadFile = createAsyncThunk(
-  "files/upload",
+  'files/upload',
   async (file: File, { rejectWithValue }) => {
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
 
       const response = await fetch(POST_FILE, {
-        method: "POST",
+        method: 'POST',
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error('Network response was not ok');
       }
 
       const data = await response.json();
 
-      //  NOTE: если работать с моковым сервером, надо отключить проверку 
+      //  NOTE: если работать с моковым сервером, надо отключить проверку
       // (строгая проверка на соответствие cхемам)
       const safeResponse = fileSchema.safeParse(data);
       if (!safeResponse.success) {
-        console.error("Parsing errors", safeResponse.error);
-        return rejectWithValue("Parsing errors");
+        console.error('Parsing errors', safeResponse.error);
+        return rejectWithValue('Parsing errors');
       }
       return safeResponse.data.file_url;
     } catch (error) {
-
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
 
-      return rejectWithValue("An unknown error occurred");
+      return rejectWithValue('An unknown error occurred');
     }
   },
 );
@@ -45,12 +44,12 @@ interface FilesState {
 }
 
 const initialState: FilesState = {
-  url: "",
+  url: '',
   loading: false,
 };
 
 export const filesSlice = createSlice({
-  name: "files",
+  name: 'files',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { type FC } from 'react';
 
 interface Props {
   width: number;
@@ -6,7 +6,7 @@ interface Props {
   color?: string;
 }
 
-const BellIcon: FC<Props> = ({ width, height, color = "#fff" }) => (
+const BellIcon: FC<Props> = ({ width, height, color = '#fff' }) => (
   <svg
     width={width}
     height={height}
