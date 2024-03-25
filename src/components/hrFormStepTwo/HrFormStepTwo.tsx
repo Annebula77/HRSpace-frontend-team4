@@ -32,7 +32,6 @@ import {
   StyledDivThreeChildren,
 } from '../../styles/formStepsStyles';
 
-
 const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
   const dispatch = useAppDispatch();
   const secondPageState = useAppSelector((state) => state.secondPage);

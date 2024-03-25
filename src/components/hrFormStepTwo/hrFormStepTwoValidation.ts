@@ -24,10 +24,10 @@ const hrFormStepTwoValidation = (secondPageState: SecondPageFormData): {
     isValid = false;
   }
 
-  if (secondPageState.company_descriptions !== null &&
-    secondPageState.company_descriptions.trim() !== "" &&
-    !isValidTextAndNumbers(secondPageState.company_descriptions)) {
-    newErrors.company_descriptions = `Поле должно содержать только буквы, препинания, тире и цифры`;
+  if (secondPageState.company_descriptions !== null
+    && secondPageState.company_descriptions.trim() !== ''
+    && !isValidTextAndNumbers(secondPageState.company_descriptions)) {
+    newErrors.company_descriptions = 'Поле должно содержать только буквы, препинания, тире и цифры';
     isValid = false;
   }
 

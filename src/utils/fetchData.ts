@@ -4,7 +4,7 @@ import axios from 'axios';
 const fetchData = async <T>(
   url: string,
   schema: ZodSchema<T>,
-  rejectWithValue: (message: string) => void
+  rejectWithValue: (message: string) => void,
 ): Promise<T> => {
   try {
     const response = await axios.get(url);
@@ -24,5 +24,5 @@ const fetchData = async <T>(
     }
     throw new Error('Error fetching data');
   }
-}
+};
 export default fetchData;

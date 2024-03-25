@@ -10,12 +10,12 @@ export const fetchCategory = createAsyncThunk<SingleCategoryModel, number, { rej
       return await fetchData<SingleCategoryModel>(
         `${GET_CATEGORY_URL}/${categoryId}/`,
         singleCategorySchema,
-        rejectWithValue
+        rejectWithValue,
       );
     } catch (error) {
       return rejectWithValue('Failed to fetch category');
     }
-  }
+  },
 );
 
 interface SingleCategoryState {

@@ -8,7 +8,6 @@ export const COMPENSATION_OPTIONS = {
   living: 'На жилье',
 };
 
-
 export interface SecondPageFormData {
   work_place: string | null;
   work_format: string | null;
@@ -36,7 +35,7 @@ const initialState: SecondPageFormData = {
 };
 
 export const secondPageSlice = createSlice({
-  name: 'form',
+  name: 'form2',
   initialState,
   reducers: {
     updateWorkPlace: (state, action: PayloadAction<string | null>) => {

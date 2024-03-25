@@ -1,9 +1,22 @@
-import { useState } from 'react';
+import { type FC } from 'react';
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import TitleComponent from '../titleComponent/TitleComponent';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
+import ErrorMessage from '../errorText/errorText';
 import RadioInput from '../radioChip/RadioInput';
+import { type HrFormStepsProps } from '../../types/types';
+import {
+  updateExperience,
+  updateResponsibilities,
+  updateResumeType,
+  updateAdditionalRequirements,
+  toggleLICheck,
+  updateStopCompany,
+  updateStopEmployee,
+  updateFileUrl,
+} from '../../store/slices/forthPageSlice';
 import {
   StyledDivTwoChildren,
   StyledLiCheckboxList,
@@ -25,45 +38,39 @@ const CheckInputsInColumn = styled.ul`
   gap: 12px;
 `;
 
-const HrFormStepFour = () => {
-  const [inputValue, setInputValue] = useState('');
-
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value); // Обновляем значение инпута
-  };
-
+const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
+  const dispatch = useAppDispatch();
+  const forthPageState = useAppSelector((state) => state.forthPage);
+  const thirdPageState = useAppSelector((state) => state.thirdPage);
   return (
     <StyledSection>
-
       <StyledDivTwoChildren>
         <TitleComponent>Опыт работы рекрутёра</TitleComponent>
         <StyledUlInputList>
           <StyledLiInputList>
             <RadioInput
-              id="1"
+              id="beginner"
               name="beginner"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={forthPageState.recruiter_experience === '1-3 лет'}
+              onChange={() => dispatch(updateExperience('1-3 лет'))}
               label="1-3 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="2"
+              id="middle"
               name="middle"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={forthPageState.recruiter_experience === '3-6 лет'}
+              onChange={() => dispatch(updateExperience('3-6 лет'))}
               label="3-6 лет"
             />
           </StyledLiInputList>
           <StyledLiInputList>
             <RadioInput
-              id="3"
+              id="senior"
               name="senior"
-              checked={!isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={forthPageState.recruiter_experience === 'от 6 лет'}
+              onChange={() => dispatch(updateExperience('от 6 лет'))}
               label="от 6 лет"
             />
           </StyledLiInputList>
@@ -74,55 +81,55 @@ const HrFormStepFour = () => {
         <CheckInputsInColumn>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="4"
-              name="resumesearch"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              id="resumeSearch"
+              name="resumeSearch"
+              checked={!!forthPageState.recruiter_job?.includes('Поиск и предоставление релевантного резюме')}
+              onChange={() => dispatch(updateResponsibilities('Поиск и предоставление релевантного резюме'))}
               label="Поиск и предоставление релевантного резюме"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="5"
+              id="interview"
               name="interview"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={!!forthPageState.recruiter_job?.includes('Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика')}
+              onChange={() => dispatch(updateResponsibilities('Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика'))}
               label="Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="6"
+              id="recommendations"
               name="recommendations"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={!!forthPageState.recruiter_job?.includes('Запрос рекомендаций с предыдущих мест работы')}
+              onChange={() => dispatch(updateResponsibilities('Запрос рекомендаций с предыдущих мест работы'))}
               label="Запрос рекомендаций с предыдущих мест работы"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="7"
+              id="testing"
               name="testing"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={!!forthPageState.recruiter_job?.includes('Отправка кандидату тестового задания')}
+              onChange={() => dispatch(updateResponsibilities('Отправка кандидату тестового заданияе'))}
               label="Отправка кандидату тестового задания"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="8"
+              id="security"
               name="security"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={!!forthPageState.recruiter_job?.includes('Отправка кандидату анкеты службы безопасности вашей компании')}
+              onChange={() => dispatch(updateResponsibilities('Отправка кандидату анкеты службы безопасности вашей компании'))}
               label="Отправка кандидату анкеты службы безопасности вашей компании"
             />
           </StyledLiCheckboxList>
           <StyledLiCheckboxList>
             <CheckboxWithStyles
-              id="9"
+              id="invitation"
               name="invitation"
-              checked={isChecked}
-              onChange={() => setIsChecked((prev) => !prev)}
+              checked={!!forthPageState.recruiter_job?.includes('Отправка финалисту приглашения на работу')}
+              onChange={() => dispatch(updateResponsibilities('Отправка финалисту приглашения на работу'))}
               label="Отправка финалисту приглашения на работу"
             />
           </StyledLiCheckboxList>
@@ -135,16 +142,16 @@ const HrFormStepFour = () => {
           <RadioInput
             id="10"
             name="notInterviewed"
-            checked={!isChecked}
-            onChange={() => setIsChecked((prev) => !prev)}
-            label="Резюме без предварительного собеседовани"
+            checked={forthPageState.type_resume === 'Резюме без предварительного собеседования'}
+            onChange={() => dispatch(updateResumeType('Резюме без предварительного собеседования'))}
+            label="Резюме без предварительного собеседования"
           />
           <RadioInput
             id="12"
             name="interviewed"
-            checked={!isChecked}
-            onChange={() => setIsChecked((prev) => !prev)}
-            label="Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидат"
+            checked={forthPageState.type_resume === 'Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату'}
+            onChange={() => dispatch(updateResumeType('Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату'))}
+            label="Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату"
           />
         </CheckInputsInColumn>
       </StyledDivTwoChildren>
@@ -152,8 +159,8 @@ const HrFormStepFour = () => {
       <StyledDivTwoChildren>
         <TitleComponent>Дополнительные требования к рекрутёру</TitleComponent>
         <TextField
-          onChange={onInputChange}
-          value={inputValue}
+          onChange={(evt) => dispatch(updateAdditionalRequirements(evt.target.value))}
+          value={forthPageState.additional_requirements || ''}
           multiline
           maxRows={500}
           variant="outlined"
@@ -178,11 +185,12 @@ const HrFormStepFour = () => {
             },
           }}
         />
+        <ErrorMessage errorText={errors.additional_requirements} />
         <CheckboxWithStyles
           id="13"
           name="legalEntities"
-          checked={isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
+          checked={forthPageState.isLegalEntity}
+          onChange={() => dispatch(toggleLICheck(!forthPageState.isLegalEntity))}
           label="Только для юридических лиц, ИП и самозанятых"
         />
       </StyledDivTwoChildren>
@@ -190,8 +198,8 @@ const HrFormStepFour = () => {
       <StyledDivTwoChildren>
         <TitleComponent>Стоп-лист компаний</TitleComponent>
         <TextField
-          onChange={onInputChange}
-          value={inputValue}
+          onChange={(evt) => dispatch(updateStopCompany(evt.target.value))}
+          value={forthPageState.stoplist_companies || ''}
           multiline
           maxRows={500}
           variant="outlined"
@@ -216,12 +224,13 @@ const HrFormStepFour = () => {
           }}
         />
       </StyledDivTwoChildren>
+      <ErrorMessage errorText={errors.stoplist_companies} />
 
       <StyledDivTwoChildren>
         <TitleComponent>Стоп-лист сотрудников</TitleComponent>
         <TextField
-          onChange={onInputChange}
-          value={inputValue}
+          onChange={(evt) => dispatch(updateStopEmployee(evt.target.value))}
+          value={forthPageState.stoplist_employee || ''}
           multiline
           maxRows={500}
           variant="outlined"
@@ -246,14 +255,17 @@ const HrFormStepFour = () => {
           }}
         />
       </StyledDivTwoChildren>
+      <ErrorMessage errorText={errors.stoplist_employee} />
       <StyledDivTwoChildren>
         <TitleComponent>Дополнительные файлы для рекрутёра</TitleComponent>
-        <FileUploader />
+        <FileUploader
+          onFileUploaded={(url) => {
+            dispatch(updateFileUrl(url));
+          }}
+        />
       </StyledDivTwoChildren>
       <FinalCalculations
-        finalAmount={0}
-        awardPerEmployee={0}
-        serviceFee={0}
+        finalAmount={thirdPageState.recommendedReward}
       />
 
     </StyledSection>

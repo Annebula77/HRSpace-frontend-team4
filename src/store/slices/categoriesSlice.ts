@@ -3,14 +3,19 @@ import { GET_CATEGORIES_URL } from '../../utils/variables';
 import { type CategoryInListModel, categoryInListSchema } from '../../models/categoryListSchema';
 import fetchData from '../../utils/fetchData';
 
-export const fetchCategories = createAsyncThunk<CategoryInListModel[], void, { rejectValue: string }>(
+export const fetchCategories = createAsyncThunk<
+CategoryInListModel[],
+void,
+{ rejectValue: string }
+>(
   'categories/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
       return await fetchData<CategoryInListModel[]>(
         GET_CATEGORIES_URL,
         categoryInListSchema.array(),
-        rejectWithValue);
+        rejectWithValue,
+      );
     } catch (error) {
       return rejectWithValue('Failed to fetch categories');
     }

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { type FormErrors } from '../../types/types';
 
-
 export interface ThirdPageFormData {
   number_employees: number | null;
   start_search: string | null;

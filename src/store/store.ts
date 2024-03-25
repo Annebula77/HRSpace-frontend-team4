@@ -1,22 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
 import citiesReducer from './slices/citiesSlice';
 import categoriesReducer from './slices/categoriesSlice';
-import firstPageReducer from './slices/firstPageSlice';
 import singleCategoryReducer from './slices/singleCategorySlice';
-import thirdPageReducer from './slices/thirdPageSlice';
+import firstPageReducer from './slices/firstPageSlice';
 import secondPageReducer from './slices/secondPageSlice';
-import singleCategorySlice from './slices/singleCategorySlice';
-
+import thirdPageReducer from './slices/thirdPageSlice';
+import forthPageReducer from './slices/forthPageSlice';
+import fileUploadReducer from './slices/fileUploadSlice';
 
 export const store = configureStore({
   reducer: {
     cities: citiesReducer,
     categories: categoriesReducer,
     category: singleCategoryReducer,
+    file: fileUploadReducer,
     firstPage: firstPageReducer,
     secondPage: secondPageReducer,
-    thirdPage: thirdPageReducer,    
-    category: singleCategorySlice,
+    thirdPage: thirdPageReducer,
+    forthPage: forthPageReducer,
   },
 });
 
