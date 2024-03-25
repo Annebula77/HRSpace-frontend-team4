@@ -26,11 +26,11 @@ import hrFormStepOneValidation from '../hrFormStepOne/hrFormStepOneValidation';
 import hrFormStepThreeValidation from '../hrFormStepThree/hrFormStepThreeValidation';
 import { firstPageSchema } from '../../models/firstPageSchema';
 import { thirdPageSchema } from '../../models/thirdPageSchema';
-import { POST_PAYMENT, POST_VACANCY } from '../../utils/variables';
+import { POST_PAYMENT, POST_VACANCY, POST_CONDITIONS } from '../../utils/variables';
 import hrFormStepTwoValidation from '../hrFormStepTwo/hrFormStepTwoValidation';
-import { firstPageSchema } from '../../models/firstPageSchema';
+// import { firstPageSchema } from '../../models/firstPageSchema';
 import { secondPageSchema } from '../../models/secondPageSchema';
-import { POST_VACANCY, POST_CONDITIONS } from '../../utils/variables';
+// import { POST_VACANCY, POST_CONDITIONS } from '../../utils/variables';
 import FormSkeleton from '../formSkeleton/FormSkeleton';
 import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
 
@@ -220,15 +220,19 @@ const HrRequestFormWithStepper = () => {
         currentFormData = firstPageState;
         url = POST_VACANCY;
         break;
+      }
       case 1:
+      {
         const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
         isValid = validationResultsStep2.isValid;
         newErrors = validationResultsStep2.newErrors;
         schema = secondPageSchema;
         currentFormData = secondPageState;
         url = POST_CONDITIONS;
-        break
+        break;
+      }
       case 2:
+      {
         const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
         isValid = validationResultsStep3.isValid;
         newErrors = validationResultsStep3.newErrors;
@@ -236,6 +240,7 @@ const HrRequestFormWithStepper = () => {
         currentFormData = thirdPageState;
         url = POST_PAYMENT;
         break;
+      }
       default:
         // eslint-disable-next-line no-console
         console.error('Unknown step');
@@ -345,23 +350,23 @@ const HrRequestFormWithStepper = () => {
           arrow
           placement="top"
           disableHoverListener={!hasErrors} // Отключаем Tooltip, если нет ошибок
-          >
+        >
           <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}> {/* Оборачиваем кнопку в span, так как Tooltip требует, чтобы его дочерний элемент мог принимать ref */}
             <CustomButton
               label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
               primary={!hasErrors}
               size="large"
               onClick={handleSubmitAndPostData}
-            //   onClick={() => {
-            //     setActiveStep((prev) => prev + 1);
-            //   }}
+              // onClick={() => {
+              //   setActiveStep((prev) => prev + 1);
+              // }}
             >
               {activeStep === steps.length - 1 ? 'Закончить' : 'Далее'}
             </CustomButton>
           </span>
         </Tooltip>
       </ButtonBox>
-    </StepsWrapper >
+    </StepsWrapper>
   );
 };
 export default HrRequestFormWithStepper;
