@@ -18,7 +18,6 @@ export const Primary: Story = {
     minValue: 100000,
     maxValue: 200000,
     recommendedValue: 300000,
-    sliderValue: 150000,
     isError: true,
     onChange: onChange,
     errorMessage: "it is an error",

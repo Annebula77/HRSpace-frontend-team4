@@ -55,20 +55,18 @@ const FinalCalculations: FC<FinalCalculationsProps> = ({
       return;
     }
 
-    const formattedAmount = (finalAmount * 0.8).toLocaleString("ru-RU");
+    const formattedAmount = (finalAmount * 0.8).toLocaleString('ru-RU');
     // eslint-disable-next-line consistent-return
     return formattedAmount;
-
   };
   const serviceFee = () => {
     if (!finalAmount) {
       return;
     }
-    
-    const formattedAmount = (finalAmount * 0.2).toLocaleString("ru-RU");
+
+    const formattedAmount = (finalAmount * 0.2).toLocaleString('ru-RU');
     // eslint-disable-next-line consistent-return
     return formattedAmount;
-
   };
   return (
     <StyledSection>

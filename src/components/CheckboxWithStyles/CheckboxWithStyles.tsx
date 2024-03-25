@@ -1,7 +1,7 @@
-import { type FC, type ChangeEvent } from "react";
-import styled from "styled-components";
-import CheckIcon from "../icons/CheckIcon";
-import { media } from "../../styles/breakpoints";
+import { type FC, type ChangeEvent } from 'react';
+import styled from 'styled-components';
+import CheckIcon from '../icons/CheckIcon';
+import { media } from '../../styles/breakpoints';
 
 interface CheckboxProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -17,7 +17,7 @@ const CheckboxContainer = styled.label`
   cursor: pointer;
 `;
 
-const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   opacity: 0;
   position: absolute;
   z-index: -1;
@@ -29,14 +29,14 @@ const StyledCheckbox = styled.span<{ checked: boolean }>`
   align-items: center;
   width: 20px;
   height: 20px;
-  border: 2px solid ${({ checked }) => (checked ? "rgba(23, 133, 229, 1)" : "rgba(217, 224, 240, 1)")};
+  border: 2px solid ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'rgba(217, 224, 240, 1)')};
   border-radius: 6px;
-  background-color: ${({ checked }) => (checked ? "rgba(23, 133, 229, 1)" : "transparent")};
+  background-color: ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'transparent')};
   transition: all 0.3s;
 
   
   .check-icon {
-    visibility: ${({ checked }) => (checked ? "visible" : "hidden")};
+    visibility: ${({ checked }) => (checked ? 'visible' : 'hidden')};
     width: 12px;
     height: 12px;
   }

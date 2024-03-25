@@ -60,10 +60,10 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
     thirdPageState.end_search,
     thirdPageState.payment_model ?? '',
   ), [firstPageState.min_salary,
-    firstPageState.max_salary,
-    thirdPageState.start_search,
-    thirdPageState.end_search,
-    thirdPageState.payment_model]);
+  firstPageState.max_salary,
+  thirdPageState.start_search,
+  thirdPageState.end_search,
+  thirdPageState.payment_model]);
 
   useEffect(() => {
     dispatch(updateMinReward(minSliderValue));
@@ -92,7 +92,6 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <CalendarInput
               value={thirdPageState.start_search
                 ? dayjs(new Date(thirdPageState.start_search)) : null}
-
               onChange={(newDate: Dayjs | null) => {
                 if (newDate) {
                   dispatch(updateStartSearch(newDate.format('YYYY-MM-DD')));
@@ -167,7 +166,6 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
       <StyledDivTwoChildren>
         <TitleComponent includeAsterisk>Вознаграждение за сотрудника</TitleComponent>
         <FeeSection
-          sliderValue={recommendedValue}
           onChange={(newValue: number) => {
             dispatch(updateReward(newValue));
           }}
