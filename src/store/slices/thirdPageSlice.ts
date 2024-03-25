@@ -91,7 +91,7 @@ export const thirdPageSlice = createSlice({
         state.errors = newErrors;
       }
     },
-    setErrors: (state, action: PayloadAction<FormErrors>) => {
+    setErrorsThree: (state, action: PayloadAction<FormErrors>) => {
       state.errors = action.payload;
     },
   },
@@ -107,7 +107,7 @@ export const {
   updateMinReward,
   updateMaxReward,
   updateRecommendedReward,
-  setErrors,
+  setErrorsThree,
 } = thirdPageSlice.actions;
 
 export default thirdPageSlice.reducer;

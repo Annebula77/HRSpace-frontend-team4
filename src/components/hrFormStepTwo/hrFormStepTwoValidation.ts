@@ -1,5 +1,6 @@
-import { type SecondPageFormData, type FormErrors } from '../../store/slices/secondPageSlice';
-import { isValidText } from '../../utils/regexValidationFuncs';
+import { type SecondPageFormData } from '../../store/slices/secondPageSlice';
+import { type FormErrors } from '../../types/types';
+import { isValidTextAndNumbers } from '../../utils/regexValidationFuncs';
 
 const hrFormStepTwoValidation = (secondPageState: SecondPageFormData): {
   isValid: boolean;
@@ -10,9 +11,6 @@ const hrFormStepTwoValidation = (secondPageState: SecondPageFormData): {
 
   if (!secondPageState.work_place) {
     newErrors.work_place = 'Выберите город';
-    isValid = false;
-  } else if (!isValidText(secondPageState.work_place)) {
-    newErrors.work_place = 'Поле должно содержать только буквы и тире';
     isValid = false;
   }
 
@@ -26,11 +24,12 @@ const hrFormStepTwoValidation = (secondPageState: SecondPageFormData): {
     isValid = false;
   }
 
-  // if (!isValidText(secondPageState.company_descriptions)) {
-  //   newErrors.company_descriptions = `Поле должно содержать только буквы,
-  // препинания, тире и цифры`;
-  //   isValid = false;
-  // }
+  if (secondPageState.company_descriptions !== null &&
+    secondPageState.company_descriptions.trim() !== "" &&
+    !isValidTextAndNumbers(secondPageState.company_descriptions)) {
+    newErrors.company_descriptions = `Поле должно содержать только буквы, препинания, тире и цифры`;
+    isValid = false;
+  }
 
   return { isValid, newErrors };
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Stepper,
   Step,
@@ -14,7 +14,6 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchCategories } from '../../store/slices/categoriesSlice';
 import { fetchCities } from '../../store/slices/citiesSlice';
-import { setErrors } from '../../store/slices/firstPageSlice';
 import { type FormErrors } from '../../types/types';
 import { media } from '../../styles/breakpoints';
 import CustomButton from '../button/CustomButton';
@@ -25,12 +24,13 @@ import HrFormStepFour from '../hrFormStepFour/HrFormStepFour';
 import hrFormStepOneValidation from '../hrFormStepOne/hrFormStepOneValidation';
 import hrFormStepThreeValidation from '../hrFormStepThree/hrFormStepThreeValidation';
 import { firstPageSchema } from '../../models/firstPageSchema';
-import { thirdPageSchema } from '../../models/thirdPageSchema';
-import { POST_PAYMENT, POST_VACANCY } from '../../utils/variables';
-import hrFormStepTwoValidation from '../hrFormStepTwo/hrFormStepTwoValidation';
-import { firstPageSchema } from '../../models/firstPageSchema';
 import { secondPageSchema } from '../../models/secondPageSchema';
-import { POST_VACANCY, POST_CONDITIONS } from '../../utils/variables';
+import { thirdPageSchema } from '../../models/thirdPageSchema';
+import { setErrors } from '../../store/slices/firstPageSlice';
+import { setErrorsTwo } from '../../store/slices/secondPageSlice';
+import { setErrorsThree } from '../../store/slices/thirdPageSlice';
+import hrFormStepTwoValidation from '../hrFormStepTwo/hrFormStepTwoValidation';
+import { POST_VACANCY, POST_CONDITIONS, POST_PAYMENT } from '../../utils/variables';
 import FormSkeleton from '../formSkeleton/FormSkeleton';
 import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
 
@@ -187,10 +187,18 @@ const HrRequestFormWithStepper = () => {
   const citiesIsError = useAppSelector((state) => state.cities.isError);
   const citiesErrorMessage = useAppSelector((state) => state.cities.errorMessage);
 
+  const errorsFirstPage = useAppSelector((state) => state.firstPage.errors);
+  const errorsSecondPage = useAppSelector((state) => state.secondPage.errors);
+  const errorsThirdPage = useAppSelector((state) => state.thirdPage.errors);
+
+  const isInitLoading = categoriesIsLoading || citiesIsLoading;
+  const isInitError = categoriesIsError || citiesIsError;
+
   const [activeStep, setActiveStep] = useState(0);
   const [orientation, setOrientation] = useState<Orientation>('horizontal');
   const [hasErrors, setHasErrors] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
 
   const steps = ['О вакансии', 'Условия работы', 'Об оплате', 'Дополнительно'];
 
@@ -199,11 +207,42 @@ const HrRequestFormWithStepper = () => {
     dispatch(fetchCities());
   }, []);
 
-  const isInitLoading = categoriesIsLoading || citiesIsLoading;
-  const isInitError = categoriesIsError || citiesIsError;
+  const validateCurrentStep = () => {
+    let isValid = true;
+    let validationResults;
+
+    switch (activeStep) {
+      case 0:
+        validationResults = hrFormStepOneValidation(firstPageState);
+        break;
+      case 1:
+        validationResults = hrFormStepTwoValidation(secondPageState);
+        break;
+      case 2:
+        validationResults = hrFormStepThreeValidation(thirdPageState);
+        break;
+      default:
+        // Здесь может быть код для дефолтного состояния, если это необходимо
+        break;
+    }
+
+
+    if (validationResults && !validationResults.isValid) {
+      isValid = false;
+    }
+
+
+    setHasErrors(!isValid);
+  };
+
+  useEffect(() => {
+    validateCurrentStep();
+  }, [firstPageState, secondPageState, thirdPageState]);
+
+
 
   const handleSubmitAndPostData = async () => {
-    let isValid = false;
+    let isValid = true;
     let newErrors = {};
     let schema;
     let currentFormData;
@@ -212,10 +251,10 @@ const HrRequestFormWithStepper = () => {
 
     switch (activeStep) {
       case 0:
-      {
         const validationResultsStep1 = hrFormStepOneValidation(firstPageState);
         isValid = validationResultsStep1.isValid;
         newErrors = validationResultsStep1.newErrors;
+        dispatch(setErrors(newErrors));
         schema = firstPageSchema;
         currentFormData = firstPageState;
         url = POST_VACANCY;
@@ -224,33 +263,32 @@ const HrRequestFormWithStepper = () => {
         const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
         isValid = validationResultsStep2.isValid;
         newErrors = validationResultsStep2.newErrors;
+        dispatch(setErrorsTwo(newErrors));
         schema = secondPageSchema;
         currentFormData = secondPageState;
         url = POST_CONDITIONS;
-        break
+        break;
       case 2:
         const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
         isValid = validationResultsStep3.isValid;
         newErrors = validationResultsStep3.newErrors;
+        dispatch(setErrorsThree(newErrors));
         schema = thirdPageSchema;
         currentFormData = thirdPageState;
         url = POST_PAYMENT;
         break;
       default:
-        // eslint-disable-next-line no-console
         console.error('Unknown step');
         return;
     }
 
-    dispatch(setErrors(newErrors));
-    setHasErrors(!isValid);
-
     if (!isValid) {
-      // eslint-disable-next-line no-console
       console.log('Form has errors');
+      setHasErrors(true);
       return;
+    } else {
+      setHasErrors(false);
     }
-
     const result = schema.safeParse(currentFormData);
     if (!result.success) {
       // eslint-disable-next-line no-console
@@ -321,7 +359,7 @@ const HrRequestFormWithStepper = () => {
         ))}
       </StyledStepper>
       <div>
-        {getStepContent(activeStep, firstPageState.errors)}
+        {getStepContent(activeStep, activeStep === 0 ? errorsFirstPage : activeStep === 1 ? errorsSecondPage : activeStep === 2 ? errorsThirdPage : {})}
       </div>
       <ButtonBox>
         {activeStep > 0 && (
@@ -344,9 +382,9 @@ const HrRequestFormWithStepper = () => {
           TransitionProps={{ timeout: 300 }}
           arrow
           placement="top"
-          disableHoverListener={!hasErrors} // Отключаем Tooltip, если нет ошибок
-          >
-          <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}> {/* Оборачиваем кнопку в span, так как Tooltip требует, чтобы его дочерний элемент мог принимать ref */}
+          disableHoverListener={!hasErrors}
+        >
+          <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}>
             <CustomButton
               label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
               primary={!hasErrors}
