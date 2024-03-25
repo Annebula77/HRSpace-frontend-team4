@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import FooterLinks from '../components/footerLinks/FooterLinks';
+import FooterLinks from "../components/footerLinks/FooterLinks";
 
 const meta = {
-  title: 'Example/FooterLinks',
+  title: "Example/FooterLinks",
   component: FooterLinks,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof FooterLinks>;
 
 export default meta;

@@ -8,12 +8,12 @@ interface Breakpoints {
 }
 
 const breakpoints: Breakpoints = {
-  xs: '576px',
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1400px',
+  xs: "576px",
+  sm: "576px",
+  md: "768px",
+  lg: "992px",
+  xl: "1200px",
+  xxl: "1400px",
 };
 
 type MediaQueryFunction = (styles: TemplateStringsArray) => string;

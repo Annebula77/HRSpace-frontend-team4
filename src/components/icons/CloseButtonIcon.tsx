@@ -1,11 +1,11 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 
 interface Props {
   className?: string;
   style?: Record<string, string>;
 }
 
-const CloseButtonIcon : FC<Props> = ({ style, className }) => (
+const CloseButtonIcon: FC<Props> = ({ style, className }) => (
   <svg
     width="32"
     height="32"

@@ -1,5 +1,5 @@
-import { ZodError, ZodSchema } from 'zod';
-import axios from 'axios';
+import { ZodError, ZodSchema } from "zod";
+import axios from "axios";
 
 const fetchData = async <T>(
   url: string,
@@ -11,18 +11,18 @@ const fetchData = async <T>(
     return schema.parse(response.data);
   } catch (err) {
     if (err instanceof ZodError) {
-      console.error('Parsing errors', err.errors);
-      rejectWithValue('Parsing errors');
+      console.error("Parsing errors", err.errors);
+      rejectWithValue("Parsing errors");
     } else if (axios.isAxiosError(err)) {
       if (err.response) {
-        rejectWithValue(err.response.data.message || 'An unknown network error occurred');
+        rejectWithValue(err.response.data.message || "An unknown network error occurred");
       } else {
-        rejectWithValue('An unknown network error occurred');
+        rejectWithValue("An unknown network error occurred");
       }
     } else {
-      rejectWithValue('An unknown error occurred');
+      rejectWithValue("An unknown error occurred");
     }
-    throw new Error('Error fetching data');
+    throw new Error("Error fetching data");
   }
 };
 export default fetchData;

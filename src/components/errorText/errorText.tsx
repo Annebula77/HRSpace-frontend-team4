@@ -1,5 +1,5 @@
-import { type FC } from 'react';
-import styled from 'styled-components';
+import { type FC } from "react";
+import styled from "styled-components";
 
 const ErrorText = styled.div`
   color: rgba(217, 33, 33, 1);

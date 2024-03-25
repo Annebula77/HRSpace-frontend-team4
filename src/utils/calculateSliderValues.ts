@@ -1,4 +1,4 @@
-import { parseISO, differenceInDays } from 'date-fns';
+import { parseISO, differenceInDays } from "date-fns";
 
 const calculateSliderValues = (
   minSalary: number,
@@ -10,11 +10,11 @@ const calculateSliderValues = (
   let minBaseValue = (minSalary + maxSalary) / 2;
   const modelMultiplier = 3;
 
-  if (paymentModel === '100% за выход сотрудника') {
+  if (paymentModel === "100% за выход сотрудника") {
     minBaseValue = Math.max(minBaseValue, 30000);
-  } else if (paymentModel === '50% за выход 50% по окончании испытательного срока') {
+  } else if (paymentModel === "50% за выход 50% по окончании испытательного срока") {
     minBaseValue = Math.max(minBaseValue + 20000, 50000);
-  } else if (paymentModel === '100% по окончании испытательного срока (1 месяц)') {
+  } else if (paymentModel === "100% по окончании испытательного срока (1 месяц)") {
     minBaseValue = Math.max(minBaseValue + 40000, 70000);
   } else if (!paymentModel) {
     minBaseValue = Math.max(minBaseValue, 30000);

@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import FooterContactsList from '../components/footerContactsList/FooterContactsList';
+import FooterContactsList from "../components/footerContactsList/FooterContactsList";
 
 const meta = {
-  title: 'Example/FooterContactsList',
+  title: "Example/FooterContactsList",
   component: FooterContactsList,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof FooterContactsList>;
 
 export default meta;

@@ -1,10 +1,10 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { GET_CITIES_URL } from '../../utils/variables';
-import { type CityModel, citySchema } from '../../models/citySchema';
-import fetchData from '../../utils/fetchData';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { GET_CITIES_URL } from "../../utils/variables";
+import { type CityModel, citySchema } from "../../models/citySchema";
+import fetchData from "../../utils/fetchData";
 
 export const fetchCities = createAsyncThunk<CityModel[], void, { rejectValue: string }>(
-  'cities/fetchCities',
+  "cities/fetchCities",
   async (_, { rejectWithValue }) => {
     try {
       return await fetchData<CityModel[]>(
@@ -13,7 +13,7 @@ export const fetchCities = createAsyncThunk<CityModel[], void, { rejectValue: st
         rejectWithValue,
       );
     } catch (error) {
-      return rejectWithValue('Failed to fetch cities');
+      return rejectWithValue("Failed to fetch cities");
     }
   },
 );
@@ -29,11 +29,11 @@ const initialState: CitiesState = {
   cities: [],
   isLoading: false,
   isError: false,
-  errorMessage: '',
+  errorMessage: "",
 };
 
 const citiesSlice = createSlice({
-  name: 'regions',
+  name: "regions",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -41,7 +41,7 @@ const citiesSlice = createSlice({
       .addCase(fetchCities.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
-        state.errorMessage = '';
+        state.errorMessage = "";
       })
       .addCase(fetchCities.fulfilled, (state, action: PayloadAction<CityModel[]>) => {
         state.isLoading = false;
@@ -50,7 +50,7 @@ const citiesSlice = createSlice({
       .addCase(fetchCities.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.isLoading = false;
         state.isError = true;
-        state.errorMessage = action.payload || 'Unknown error';
+        state.errorMessage = action.payload || "Unknown error";
       });
   },
 });

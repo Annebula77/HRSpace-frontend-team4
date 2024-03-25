@@ -1,11 +1,11 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 
 interface Props {
   className?: string;
   style?: Record<string, string>;
 }
 
-const PrintIcon : FC<Props> = ({ style, className }) => (
+const PrintIcon: FC<Props> = ({ style, className }) => (
   <svg
     width="24"
     height="24"

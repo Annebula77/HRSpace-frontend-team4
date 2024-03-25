@@ -1,23 +1,23 @@
-import { Meta, StoryObj } from '@storybook/react';
-import SelectWithAutoComplete, { type OptionType, type SelectWithAutoCompleteProps } from '../components/selectWithAutocomplete/SelectWithAutoComplete';
-import { useState } from 'react';
+import { Meta, StoryObj } from "@storybook/react";
+import SelectWithAutoComplete, { type OptionType, type SelectWithAutoCompleteProps } from "../components/selectWithAutocomplete/SelectWithAutoComplete";
+import { useState } from "react";
 
 
 
 
 const meta: Meta<SelectWithAutoCompleteProps<OptionType>> = {
-  title: 'Components/SelectWithAutoComplete',
+  title: "Components/SelectWithAutoComplete",
   component: SelectWithAutoComplete,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 
 export default meta;
 
 const options = [
-  { id: '1', name: 'Option 1' },
-  { id: '2', name: 'Option 2' },
+  { id: "1", name: "Option 1" },
+  { id: "2", name: "Option 2" },
 ];
 
 const Primary: StoryObj<SelectWithAutoCompleteProps<OptionType>> = {
@@ -35,7 +35,7 @@ const Primary: StoryObj<SelectWithAutoCompleteProps<OptionType>> = {
   },
   args: {
     getOptionLabel: (option) => option.name,
-    placeholder: 'Введите или выберите опцию',
+    placeholder: "Введите или выберите опцию",
   },
 };
 
@@ -63,7 +63,7 @@ const Errored: StoryObj<SelectWithAutoCompleteProps<OptionType>> = {
   },
   args: {
     getOptionLabel: (option) => option.name,
-    placeholder: 'Введите или выберите опцию',
+    placeholder: "Введите или выберите опцию",
   },
 };
 

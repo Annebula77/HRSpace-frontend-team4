@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import CheckboxWithStyles from '../components/checkboxWithStyles/CheckboxWithStyles';
+import CheckboxWithStyles from "../components/checkboxWithStyles/CheckboxWithStyles";
 
 
 const meta = {
-  title: 'Example/CheckboxWithStyles',
+  title: "Example/CheckboxWithStyles",
   component: CheckboxWithStyles,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof CheckboxWithStyles>;
 
 export default meta;
@@ -20,9 +20,9 @@ const onChange = () => { };
 
 export const Primary: Story = {
   args: {
-    id: '1',
-    label: 'hello',
-    name: 'input-name',
+    id: "1",
+    label: "hello",
+    name: "input-name",
     checked: true,
     onChange: onChange,
   },

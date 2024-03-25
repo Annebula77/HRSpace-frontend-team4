@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import RadioChip from '../components/radioChip/RadioInput';
+import RadioChip from "../components/radioChip/RadioInput";
 
 
 const meta = {
-  title: 'Example/RadioChip',
+  title: "Example/RadioChip",
   component: RadioChip,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof RadioChip>;
 
 export default meta;
@@ -20,9 +20,9 @@ const onChange = () => { };
 
 export const Primary: Story = {
   args: {
-    id: '1',
-    label: 'hello',
-    name: 'input-name',
+    id: "1",
+    label: "hello",
+    name: "input-name",
     checked: true,
     onChange: onChange,
   },

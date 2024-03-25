@@ -1,4 +1,4 @@
-import { Skeleton, Grid } from '@mui/material';
+import { Skeleton, Grid } from "@mui/material";
 
 const FormSkeleton = () => (
   <Grid container spacing={2}>

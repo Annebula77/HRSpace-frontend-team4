@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const secondPageSchema = z.object({
   work_place: z.string().nullable(),

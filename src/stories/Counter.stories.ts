@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import Counter from '../components/counter/Counter';
+import Counter from "../components/counter/Counter";
 
 
 const meta = {
-  title: 'Example/Counter',
+  title: "Example/Counter",
   component: Counter,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Counter>;
 
 export default meta;

@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import SelectWithChips, { type SelectWithChipsProps } from '../components/selectWithChips/SelectWithChips';
+import { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import SelectWithChips, { type SelectWithChipsProps } from "../components/selectWithChips/SelectWithChips";
 
 
 export default {
-  title: 'Components/SelectWithChips',
+  title: "Components/SelectWithChips",
   component: SelectWithChips,
 } as Meta<SelectWithChipsProps>;
 
@@ -28,8 +28,8 @@ export const Primary: StoryObj<SelectWithChipsProps> = {
     );
   },
   args: {
-    options: ['Option 1', 'Option 2', 'Option 3'],
-    placeholder: 'Введите текст',
+    options: ["Option 1", "Option 2", "Option 3"],
+    placeholder: "Введите текст",
     error: false,
   },
 };
@@ -58,8 +58,8 @@ export const Errored: StoryObj<SelectWithChipsProps> = {
     );
   },
   args: {
-    options: ['Option 1', 'Option 2', 'Option 3'],
-    placeholder: 'Введите текст',
+    options: ["Option 1", "Option 2", "Option 3"],
+    placeholder: "Введите текст",
     error: false,
   },
 };

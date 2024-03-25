@@ -1,14 +1,14 @@
-import { type FC } from 'react';
-import { TextField } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import InputWithText from '../inputWithText/InputWithText';
-import SelectWithAutoComplete from '../selectWithAutocomplete/SelectWithAutoComplete';
-import TitleComponent from '../titleComponent/TitleComponent';
-import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
-import RadioInput from '../radioChip/RadioInput';
-import { fetchCities } from '../../store/slices/citiesSlice';
-import ErrorMessage from '../errorText/errorText';
-import { type HrFormStepsProps } from '../../types/types';
+import { type FC } from "react";
+import { TextField } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import InputWithText from "../inputWithText/InputWithText";
+import SelectWithAutoComplete from "../selectWithAutocomplete/SelectWithAutoComplete";
+import TitleComponent from "../titleComponent/TitleComponent";
+import CheckboxWithStyles from "../checkboxWithStyles/CheckboxWithStyles";
+import RadioInput from "../radioChip/RadioInput";
+import { fetchCities } from "../../store/slices/citiesSlice";
+import ErrorMessage from "../errorText/errorText";
+import { type HrFormStepsProps } from "../../types/types";
 import {
   updateWorkPlace,
   updateWorkFormat,
@@ -20,7 +20,7 @@ import {
   toggleHavingCar,
   updateCompanyDescriptions,
   COMPENSATION_OPTIONS,
-} from '../../store/slices/secondPageSlice';
+} from "../../store/slices/secondPageSlice";
 
 import {
   StyledDivTwoChildren,
@@ -30,7 +30,7 @@ import {
   StyledULCheckboxList,
   StyledUlInputList,
   StyledDivThreeChildren,
-} from '../../styles/formStepsStyles';
+} from "../../styles/formStepsStyles";
 
 const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
   const dispatch = useAppDispatch();
@@ -65,8 +65,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="1"
               name="office"
-              checked={secondPageState.work_format === 'В офисе'}
-              onChange={() => dispatch(updateWorkFormat('В офисе'))}
+              checked={secondPageState.work_format === "В офисе"}
+              onChange={() => dispatch(updateWorkFormat("В офисе"))}
               label="В офисе"
             />
           </StyledLiInputList>
@@ -74,8 +74,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="2"
               name="hybrid"
-              checked={secondPageState.work_format === 'Гибрид'}
-              onChange={() => dispatch(updateWorkFormat('Гибрид'))}
+              checked={secondPageState.work_format === "Гибрид"}
+              onChange={() => dispatch(updateWorkFormat("Гибрид"))}
               label="Гибрид"
             />
           </StyledLiInputList>
@@ -83,8 +83,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="3"
               name="remote"
-              checked={secondPageState.work_format === 'Удаленка'}
-              onChange={() => dispatch(updateWorkFormat('Удаленка'))}
+              checked={secondPageState.work_format === "Удаленка"}
+              onChange={() => dispatch(updateWorkFormat("Удаленка"))}
               label="Удаленка"
             />
           </StyledLiInputList>
@@ -99,8 +99,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="4"
               name="fulltime"
-              checked={secondPageState.employment_type === 'Полная'}
-              onChange={() => dispatch(updateEmploymentType('Полная'))}
+              checked={secondPageState.employment_type === "Полная"}
+              onChange={() => dispatch(updateEmploymentType("Полная"))}
               label="Полная"
             />
           </StyledLiInputList>
@@ -108,8 +108,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="5"
               name="partial"
-              checked={secondPageState.employment_type === 'Частичная'}
-              onChange={() => dispatch(updateEmploymentType('Частичная'))}
+              checked={secondPageState.employment_type === "Частичная"}
+              onChange={() => dispatch(updateEmploymentType("Частичная"))}
               label="Частичная"
             />
           </StyledLiInputList>
@@ -117,8 +117,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="5"
               name="shift"
-              checked={secondPageState.employment_type === 'По сменам'}
-              onChange={() => dispatch(updateEmploymentType('По сменам'))}
+              checked={secondPageState.employment_type === "По сменам"}
+              onChange={() => dispatch(updateEmploymentType("По сменам"))}
               label="По сменам"
             />
           </StyledLiInputList>
@@ -126,8 +126,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="7"
               name="fifo"
-              checked={secondPageState.employment_type === 'Вахта'}
-              onChange={() => dispatch(updateEmploymentType('Вахта'))}
+              checked={secondPageState.employment_type === "Вахта"}
+              onChange={() => dispatch(updateEmploymentType("Вахта"))}
               label="Вахта"
             />
           </StyledLiInputList>
@@ -142,8 +142,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="8"
               name="ll"
-              checked={secondPageState.employee_registration === 'По ТК'}
-              onChange={() => dispatch(updateEmploymentRegistration('По ТК'))}
+              checked={secondPageState.employee_registration === "По ТК"}
+              onChange={() => dispatch(updateEmploymentRegistration("По ТК"))}
               label="По ТК"
             />
           </StyledLiInputList>
@@ -151,8 +151,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="9"
               name="agreement"
-              checked={secondPageState.employee_registration === 'По ГПХ'}
-              onChange={() => dispatch(updateEmploymentRegistration('По ГПХ'))}
+              checked={secondPageState.employee_registration === "По ГПХ"}
+              onChange={() => dispatch(updateEmploymentRegistration("По ГПХ"))}
               label="По ГПХ"
             />
           </StyledLiInputList>
@@ -160,8 +160,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="10"
               name="self"
-              checked={secondPageState.employee_registration === 'Самозанятость'}
-              onChange={() => dispatch(updateEmploymentRegistration('Самозанятость'))}
+              checked={secondPageState.employee_registration === "Самозанятость"}
+              onChange={() => dispatch(updateEmploymentRegistration("Самозанятость"))}
               label="Самозанятость"
             />
           </StyledLiInputList>
@@ -169,8 +169,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="11"
               name="individual"
-              checked={secondPageState.employee_registration === 'ИП'}
-              onChange={() => dispatch(updateEmploymentRegistration('ИП'))}
+              checked={secondPageState.employee_registration === "ИП"}
+              onChange={() => dispatch(updateEmploymentRegistration("ИП"))}
               label="ИП"
             />
           </StyledLiInputList>
@@ -222,8 +222,8 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="16"
               name="living"
-              checked={secondPageState.compensation.includes('На жилье')}
-              onChange={() => dispatch(updateCompensation('На жилье'))}
+              checked={secondPageState.compensation.includes("На жилье")}
+              onChange={() => dispatch(updateCompensation("На жилье"))}
               label="На жилье"
             />
           </StyledLiCheckboxList>
@@ -233,7 +233,7 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
           name="redeem"
           value={secondPageState.compensation.find(
             (value) => !Object.values(COMPENSATION_OPTIONS).includes(value),
-          ) || ''}
+          ) || ""}
           placeholder="Или введите свое...."
         />
       </StyledDivThreeChildren>
@@ -264,26 +264,26 @@ const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
         <TitleComponent>Описание компании</TitleComponent>
         <TextField
           onChange={(evt) => dispatch(updateCompanyDescriptions(evt.target.value))}
-          value={secondPageState.company_descriptions || ''}
+          value={secondPageState.company_descriptions || ""}
           multiline
           maxRows={500}
           variant="outlined"
           placeholder="Опишите вашу компанию: её краткая история, основные принципы и ценности или просто о своём дружном коллективе :)"
           sx={{
-            width: '100%',
-            '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
-            '& .MuiOutlinedInput-root': {
-              minHeight: '128px',
-              alignItems: 'flex-start',
-              borderRadius: '8px',
-              '& fieldset': {
-                borderColor: 'rgba(186, 189, 191, 1)',
+            width: "100%",
+            "& .MuiFormLabel-root": { color: "rgba(186, 189, 191, 1)" },
+            "& .MuiOutlinedInput-root": {
+              minHeight: "128px",
+              alignItems: "flex-start",
+              borderRadius: "8px",
+              "& fieldset": {
+                borderColor: "rgba(186, 189, 191, 1)",
               },
-              '&:hover fieldset': {
-                border: '1px solid rgba(23, 133, 229, 1)',
+              "&:hover fieldset": {
+                border: "1px solid rgba(23, 133, 229, 1)",
               },
-              '&.Mui-focused fieldset': {
-                border: '2px solid rgba(23, 133, 229, 1)',
+              "&.Mui-focused fieldset": {
+                border: "2px solid rgba(23, 133, 229, 1)",
               },
             },
           }}
