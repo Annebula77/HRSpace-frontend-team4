@@ -90,7 +90,9 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
           <StyledParagraph>c</StyledParagraph>
           <div>
             <CalendarInput
-              value={thirdPageState.start_search ? dayjs(new Date(thirdPageState.start_search)) : null}
+              value={
+                thirdPageState.start_search ? dayjs(new Date(thirdPageState.start_search)) : null
+              }
               onChange={(newDate: Dayjs | null) => {
                 if (newDate) {
                   dispatch(updateStartSearch(newDate.format("YYYY-MM-DD")));
@@ -178,7 +180,9 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
       </StyledDivTwoChildren>
 
       <FinalCalculations
-        finalAmount={thirdPageState.reward ? thirdPageState.reward : thirdPageState.recommendedReward}
+        finalAmount={
+          thirdPageState.reward ? thirdPageState.reward : thirdPageState.recommendedReward
+        }
       />
     </StyledSection>
   );

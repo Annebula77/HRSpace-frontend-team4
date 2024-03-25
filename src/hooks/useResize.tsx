@@ -4,7 +4,7 @@ const getWidth = () => window.innerWidth
   || document.documentElement.clientWidth
   || document.body.clientWidth;
 
-function useResize() {
+const useResize = () => {
   const [width, setWidth] = useState(getWidth());
 
   useEffect(() => {
@@ -24,6 +24,6 @@ function useResize() {
   }, []);
 
   return width;
-}
+};
 
 export default useResize;

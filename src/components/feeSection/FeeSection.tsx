@@ -8,7 +8,7 @@ interface FeeSectionProps {
   minValue: number;
   maxValue: number;
   recommendedValue: number;
-  sliderValue: number;
+  // sliderValue: number;
   isError: boolean;
   onChange: (newValue: number) => void;
   errorMessage?: string;
@@ -62,7 +62,7 @@ const FeeSection: FC<FeeSectionProps> = ({
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = parseInt(event.target.value, 10);
     // eslint disable isnan  no-restricted-globals
-    if (!isNaN(value) && value >= minValue && value <= maxValue) {
+    if (!Number.isNaN(value) && value >= minValue && value <= maxValue) {
       setSliderValue(value);
       onChange(value);
     }
