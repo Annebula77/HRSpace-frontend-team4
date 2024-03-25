@@ -23,6 +23,7 @@ A microservice for a recruiter search application, which serves as a convenient 
 ## Libraries and Tools:
 
 - `@mui/x-date-pickers` for date pickers components.
+- `StoryBook` for developing UI in isolation.
 - `styled-components` for additional styling capabilities.
 - `eslint` with various plugins for code linting.
 - `typescript` for static type checking.
