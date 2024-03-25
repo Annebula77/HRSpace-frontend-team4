@@ -1,5 +1,5 @@
-import { FC, ChangeEvent } from 'react';
-import styled from 'styled-components';
+import { FC, ChangeEvent } from "react";
+import styled from "styled-components";
 
 interface RadioInputProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -17,8 +17,8 @@ const RadioContainer = styled.label<{ checked: boolean }>`
   align-items: flex-start;
   padding: 10px 16px 10px 10px;
   border-radius: 8px;
-  border: 1px solid ${({ checked }) => (checked ? 'transparent' : 'rgba(186, 189, 191, 1)')};
-  background-color: ${({ checked }) => (checked ? 'rgba(232, 244, 255, 1)' : 'transparent')};
+  border: 1px solid ${({ checked }) => (checked ? "transparent" : "rgba(186, 189, 191, 1)")};
+  background-color: ${({ checked }) => (checked ? "rgba(232, 244, 255, 1)" : "transparent")};
   cursor: pointer;
   transition: all 0.3s;
 
@@ -27,7 +27,7 @@ const RadioContainer = styled.label<{ checked: boolean }>`
   }
 `;
 
-const HiddenRadio = styled.input.attrs({ type: 'radio' })`
+const HiddenRadio = styled.input.attrs({ type: "radio" })`
   opacity: 0;
   position: absolute;
   margin: -1px;
@@ -38,15 +38,15 @@ const StyledRadio = styled.span<{ checked: boolean }>`
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'rgba(217, 224, 240, 1)')};
+  border: 2px solid ${({ checked }) => (checked ? "rgba(23, 133, 229, 1)" : "rgba(217, 224, 240, 1)")};
   border-radius: 50%;
-  background-color: ${({ checked }) => (checked ? 'rgba(23, 133, 229, 1)' : 'transparent')};
+  background-color: ${({ checked }) => (checked ? "rgba(23, 133, 229, 1)" : "transparent")};
   position: relative;
   margin-right: 10px;
 
   &::after {
-    content: '';
-    display: ${({ checked }) => (checked ? 'block' : 'none')};
+    content: "";
+    display: ${({ checked }) => (checked ? "block" : "none")};
     position: absolute;
     top: 50%;
     left: 50%;

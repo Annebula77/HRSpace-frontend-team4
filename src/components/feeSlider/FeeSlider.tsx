@@ -1,8 +1,8 @@
-import { useMemo, type FC } from 'react';
-import styled from 'styled-components';
-import Box from '@mui/material/Box';
-import MuiSlider from '@mui/material/Slider';
-import SliderIcon from '../icons/SliderIcon';
+import { useMemo, type FC } from "react";
+import styled from "styled-components";
+import Box from "@mui/material/Box";
+import MuiSlider from "@mui/material/Slider";
+import SliderIcon from "../icons/SliderIcon";
 
 interface SliderProps {
   onChange: (event: Event, value: number | number[]) => void;
@@ -36,7 +36,7 @@ ${({ $isError }) => `
     }
 
     & .MuiSlider-rail {
-      color: ${$isError ? 'rgba(235, 107, 107, 1)' : 'rgba(217, 224, 240, 1)'};
+      color: ${$isError ? "rgba(235, 107, 107, 1)" : "rgba(217, 224, 240, 1)"};
       height: 6px;
     }
 
@@ -100,7 +100,7 @@ const FeeSlider: FC<SliderProps> = ({
   sliderValue,
   isError,
 }) => {
-  const numberWithSpaces = (value: number) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const numberWithSpaces = (value: number) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
   const marks = useMemo(() => [
     { value: minValue, label: `${numberWithSpaces(minValue)} руб.` },
@@ -114,7 +114,7 @@ const FeeSlider: FC<SliderProps> = ({
         display="flex"
         flexDirection="column"
         alignItems="center"
-        sx={{ width: '100%' }}
+        sx={{ width: "100%" }}
       >
         <Slider
           value={sliderValue}

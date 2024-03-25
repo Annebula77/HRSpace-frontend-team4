@@ -6,7 +6,7 @@
 
 # HRSpace team 4
 
-A microservice for a recruiter search application, which serves as a convenient and interactive form for collecting information about an employer's requirements for a candidate and for the recruiter themselves. The service facilitates the interaction between the two parties, allowing employers to find relevant performers, and recruiters to select applications that are suitable in terms of profile.
+A microservice for a recruiter search application, which serves as a convenient and interactive form for collecting information about an employer"s requirements for a candidate and for the recruiter themselves. The service facilitates the interaction between the two parties, allowing employers to find relevant performers, and recruiters to select applications that are suitable in terms of profile.
 
 ## Technologies and Solutions Used
 

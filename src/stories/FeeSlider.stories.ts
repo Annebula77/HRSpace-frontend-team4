@@ -1,13 +1,13 @@
 // TODO: сделать работающую stories
-// import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+// import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import FeeSlider from '../components/feeSlider/FeeSlider';
+import FeeSlider from "../components/feeSlider/FeeSlider";
 
 const meta = {
-  title: 'Example/FeeSlider',
+  title: "Example/FeeSlider",
   component: FeeSlider,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof FeeSlider>;
 
 export default meta;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Stepper,
   Step,
@@ -10,45 +10,45 @@ import {
   Tooltip,
   Fade,
   Button,
-} from '@mui/material';
-import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { fetchCategories } from '../../store/slices/categoriesSlice';
-import { fetchCities } from '../../store/slices/citiesSlice';
-import { type FormErrors } from '../../types/types';
-import { media } from '../../styles/breakpoints';
-import CustomButton from '../CustomButton/CustomButton';
-import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
-import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
-import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
-import HrFormStepFour from '../hrFormStepFour/HrFormStepFour';
-import hrFormStepOneValidation from '../hrFormStepOne/hrFormStepOneValidation';
-import hrFormStepTwoValidation from '../hrFormStepTwo/hrFormStepTwoValidation';
-import hrFormStepThreeValidation from '../hrFormStepThree/hrFormStepThreeValidation';
-import hrFormStepFourValidation from '../hrFormStepFour/hrFormStepFourValidation';
-import { firstPageSchema } from '../../models/firstPageSchema';
-import { secondPageSchema } from '../../models/secondPageSchema';
-import { thirdPageSchema } from '../../models/thirdPageSchema';
-import { forthPageSchema } from '../../models/forthPageSchema';
-import { type FirstPageFormData } from '../../store/slices/firstPageSlice';
-import { type SecondPageFormData } from '../../store/slices/secondPageSlice';
-import { type ThirdPageFormData } from '../../store/slices/thirdPageSlice';
-import { ForthPageFormData, setErrorsFour } from '../../store/slices/forthPageSlice';
-import { setErrors } from '../../store/slices/firstPageSlice';
-import { setErrorsTwo } from '../../store/slices/secondPageSlice';
-import { setErrorsThree } from '../../store/slices/thirdPageSlice';
+} from "@mui/material";
+import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { fetchCategories } from "../../store/slices/categoriesSlice";
+import { fetchCities } from "../../store/slices/citiesSlice";
+import { type FormErrors } from "../../types/types";
+import { media } from "../../styles/breakpoints";
+import CustomButton from "../CustomButton/CustomButton";
+import HrFormStepOne from "../hrFormStepOne/HrFormStepOne";
+import HrFormStepTwo from "../hrFormStepTwo/HrFormStepTwo";
+import HrFormStepThree from "../hrFormStepThree/HrFormStepThree";
+import HrFormStepFour from "../hrFormStepFour/HrFormStepFour";
+import hrFormStepOneValidation from "../hrFormStepOne/hrFormStepOneValidation";
+import hrFormStepTwoValidation from "../hrFormStepTwo/hrFormStepTwoValidation";
+import hrFormStepThreeValidation from "../hrFormStepThree/hrFormStepThreeValidation";
+import hrFormStepFourValidation from "../hrFormStepFour/hrFormStepFourValidation";
+import { firstPageSchema } from "../../models/firstPageSchema";
+import { secondPageSchema } from "../../models/secondPageSchema";
+import { thirdPageSchema } from "../../models/thirdPageSchema";
+import { forthPageSchema } from "../../models/forthPageSchema";
+import { type FirstPageFormData } from "../../store/slices/firstPageSlice";
+import { type SecondPageFormData } from "../../store/slices/secondPageSlice";
+import { type ThirdPageFormData } from "../../store/slices/thirdPageSlice";
+import { ForthPageFormData, setErrorsFour } from "../../store/slices/forthPageSlice";
+import { setErrors } from "../../store/slices/firstPageSlice";
+import { setErrorsTwo } from "../../store/slices/secondPageSlice";
+import { setErrorsThree } from "../../store/slices/thirdPageSlice";
 import {
   POST_VACANCY, POST_CONDITIONS, POST_PAYMENT, POST_ADDITION,
-} from '../../utils/variables';
+} from "../../utils/variables";
 
-import FormSkeleton from '../formSkeleton/FormSkeleton';
-import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
+import FormSkeleton from "../formSkeleton/FormSkeleton";
+import HrRequestPreview from "../hrRequestPreview/HrRequestPreview";
 
 const Line = styled.div<{ $completed: boolean }>`
   width: 300px;
   height: 3px;
   margin-top: 20px;
-  background-color: ${({ $completed }) => ($completed ? 'rgba(23, 133, 229, 1)' : 'rgba(186, 189, 191, 1)')};
+  background-color: ${({ $completed }) => ($completed ? "rgba(23, 133, 229, 1)" : "rgba(186, 189, 191, 1)")};
 
 
   ${media.sm`
@@ -67,8 +67,8 @@ const CustomStepIcon = ({ completed }: StepIconProps) => (
 );
 
 const StyledStepper = styled(Stepper)`
-  background-color: 'transparent';
-  padding: '24px 0';
+  background-color: "transparent";
+  padding: "24px 0";
  `;
 
 const StyledStepConnector = styled(StepConnector)`
@@ -95,7 +95,7 @@ const StyledStep = styled(Step) <{ orientation: Orientation }>`
     }
 
   & .MuiStepLabel-label {
-    ${({ orientation }) => (orientation === 'vertical' ? 'margin-top: -20px !important;' : 'margin-top: -40px !important;')}
+    ${({ orientation }) => (orientation === "vertical" ? "margin-top: -20px !important;" : "margin-top: -40px !important;")}
     color: rgba(186, 189, 191, 1);
 
     &.Mui-completed {
@@ -150,32 +150,32 @@ const getStepContent = (
     default:
       return (
         <HrRequestPreview
-          occupation={firstPageState.job_title || ''}
+          occupation={firstPageState.job_title || ""}
           skills={firstPageState.skills}
           duties={firstPageState.responsibilities}
           minSalaryValue={firstPageState.min_salary || 0}
           maxSalaryValue={firstPageState.max_salary || 0}
-          experience={firstPageState.experience || ''}
-          education={firstPageState.education || ''}
-          workPlace={secondPageState.work_place || ''}
-          workFormat={secondPageState.work_format || ''}
-          employmentType={secondPageState.employment_type || ''}
-          registrationEmployee={secondPageState.employee_registration || ''}
+          experience={firstPageState.experience || ""}
+          education={firstPageState.education || ""}
+          workPlace={secondPageState.work_place || ""}
+          workFormat={secondPageState.work_format || ""}
+          employmentType={secondPageState.employment_type || ""}
+          registrationEmployee={secondPageState.employee_registration || ""}
           medInsurance={secondPageState.availability_DMS}
           compensations={secondPageState.compensation}
-          description={secondPageState.company_descriptions || ''}
-          searchPeriodBegin={thirdPageState.start_search || ''}
-          searchPeriodEnd={thirdPageState.end_search || ''}
-          feeModel={thirdPageState.payment_model || ''}
+          description={secondPageState.company_descriptions || ""}
+          searchPeriodBegin={thirdPageState.start_search || ""}
+          searchPeriodEnd={thirdPageState.end_search || ""}
+          feeModel={thirdPageState.payment_model || ""}
           fee={thirdPageState.reward || 0}
           employeeNumber={thirdPageState.number_employees || 0}
-          hrExperience={forthPageState.recruiter_experience || ''}
+          hrExperience={forthPageState.recruiter_experience || ""}
           hrRequirements={forthPageState.recruiter_job || []}
-          resumeFormat={forthPageState.type_resume || ''}
-          hrExtraRequirements={forthPageState.additional_requirements || ''}
-          companiesStopList={forthPageState.stoplist_companies || ''}
-          employeesStopList={forthPageState.stoplist_employee || ''}
-          attachedFile={forthPageState.file_url || ''}
+          resumeFormat={forthPageState.type_resume || ""}
+          hrExtraRequirements={forthPageState.additional_requirements || ""}
+          companiesStopList={forthPageState.stoplist_companies || ""}
+          employeesStopList={forthPageState.stoplist_employee || ""}
+          attachedFile={forthPageState.file_url || ""}
         />
       );
   }
@@ -204,11 +204,11 @@ const HrRequestFormWithStepper = () => {
   const isInitError = categoriesIsError || citiesIsError;
 
   const [activeStep, setActiveStep] = useState(0);
-  const [orientation, setOrientation] = useState<Orientation>('horizontal');
+  const [orientation, setOrientation] = useState<Orientation>("horizontal");
   const [hasErrors, setHasErrors] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const steps = ['О вакансии', 'Условия работы', 'Об оплате', 'Дополнительно'];
+  const steps = ["О вакансии", "Условия работы", "Об оплате", "Дополнительно"];
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -255,7 +255,7 @@ const HrRequestFormWithStepper = () => {
     let schema;
     let currentFormData;
     let safeData;
-    let url = '';
+    let url = "";
 
     switch (activeStep) {
       case 0: {
@@ -270,30 +270,30 @@ const HrRequestFormWithStepper = () => {
       }
 
       case 1:
-      {
+        {
 
-        const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
-        isValid = validationResultsStep2.isValid;
-        newErrors = validationResultsStep2.newErrors;
-        dispatch(setErrorsTwo(newErrors));
-        schema = secondPageSchema;
-        currentFormData = secondPageState;
-        url = POST_CONDITIONS;
-        break;
-      }
+          const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
+          isValid = validationResultsStep2.isValid;
+          newErrors = validationResultsStep2.newErrors;
+          dispatch(setErrorsTwo(newErrors));
+          schema = secondPageSchema;
+          currentFormData = secondPageState;
+          url = POST_CONDITIONS;
+          break;
+        }
 
       case 2:
-      {
+        {
 
-        const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
-        isValid = validationResultsStep3.isValid;
-        newErrors = validationResultsStep3.newErrors;
-        dispatch(setErrorsThree(newErrors));
-        schema = thirdPageSchema;
-        currentFormData = thirdPageState;
-        url = POST_PAYMENT;
-        break;
-      }
+          const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
+          isValid = validationResultsStep3.isValid;
+          newErrors = validationResultsStep3.newErrors;
+          dispatch(setErrorsThree(newErrors));
+          schema = thirdPageSchema;
+          currentFormData = thirdPageState;
+          url = POST_PAYMENT;
+          break;
+        }
 
       case 3: {
         const validationResultsStep4 = hrFormStepFourValidation(forthPageState);
@@ -307,12 +307,12 @@ const HrRequestFormWithStepper = () => {
       }
 
       default:
-        console.error('Unknown step');
+        console.error("Unknown step");
         return;
     }
 
     if (!isValid) {
-      console.log('Form has errors');
+      console.log("Form has errors");
       setHasErrors(true);
       return;
     }
@@ -322,15 +322,15 @@ const HrRequestFormWithStepper = () => {
     // const result = schema.safeParse(currentFormData);
     // if (!result.success) {
     //   // eslint-disable-next-line no-console
-    //   console.error('Parsing errors', result.error);
+    //   console.error("Parsing errors", result.error);
     //   return;
     // }
     // safeData = result.data;
     setIsLoading(true);
     try {
       const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(safeData),
       });
 
@@ -347,14 +347,14 @@ const HrRequestFormWithStepper = () => {
       // const safeResponse = schema.safeParse(responseData);
       // if (!safeResponse.success) {
       //   // eslint-disable-next-line no-console
-      //   console.error('Parsing errors', safeResponse.error);
+      //   console.error("Parsing errors", safeResponse.error);
       //   return;
       // }
 
       // return safeResponse.data;
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error posting data', error);
+      console.error("Error posting data", error);
     } finally {
       setIsLoading(false);
     }
@@ -362,13 +362,13 @@ const HrRequestFormWithStepper = () => {
 
   useEffect(() => {
     function updateOrientation() {
-      setOrientation(window.innerWidth < 576 ? 'vertical' : 'horizontal');
+      setOrientation(window.innerWidth < 576 ? "vertical" : "horizontal");
     }
 
-    window.addEventListener('resize', updateOrientation);
+    window.addEventListener("resize", updateOrientation);
     updateOrientation();
 
-    return () => window.removeEventListener('resize', updateOrientation);
+    return () => window.removeEventListener("resize", updateOrientation);
     // eslint-disable react-hooks/exhaustive-deps
   }, []);
 
@@ -423,12 +423,11 @@ const HrRequestFormWithStepper = () => {
               setActiveStep((prev) => prev - 1);
             }}
             disabled={activeStep === 0}
-            style={{ flex: '1' }}
+            style={{ flex: "1" }}
           >
             Назад
           </CustomButton>
         )}
-
         {activeStep === steps.length ? (
           <>
             <Button
@@ -437,57 +436,41 @@ const HrRequestFormWithStepper = () => {
               onClick={() => { }}
               sx={{
                 flex: 1,
-                borderRadius: '8px',
+                borderRadius: "8px",
               }}
             >
               Сохранить черновик
             </Button>
-
-        <Tooltip
-          title={hasErrors ? 'Для перехода нужно заполнить все обязательные поля' : ''}
-          TransitionComponent={Fade}
-          TransitionProps={{ timeout: 300 }}
-          arrow
-          placement="top"
-          disableHoverListener={!hasErrors} // Отключаем Tooltip, если нет ошибок
-        >
-          <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}> {/* Оборачиваем кнопку в span, так как Tooltip требует, чтобы его дочерний элемент мог принимать ref */}
-
             <CustomButton
               label="Перейти к оплате"
               primary
               size="large"
               onClick={() => { /* Логика перехода к оплате */ }}
-              style={{ flex: '1' }}
-              onClick={handleSubmitAndPostData}
-              // onClick={() => {
-              //   setActiveStep((prev) => prev + 1);
-              // }}
-
+              style={{ flex: "1" }}
             >
               Перейти к оплате
             </CustomButton>
           </>
         ) : (
           <Tooltip
-            title={hasErrors ? 'Для перехода нужно заполнить все обязательные поля' : ''}
+            title={hasErrors ? "Для перехода нужно заполнить все обязательные поля" : ""}
             TransitionComponent={Fade}
             TransitionProps={{ timeout: 300 }}
             arrow
             placement="top"
             disableHoverListener={!hasErrors}
           >
-            <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}>
+            <span style={{ flex: activeStep > 0 ? "1" : "auto" }}>
               <CustomButton
-                label={isLoading ? 'Загрузка...' : (activeStep === steps.length - 1 ? 'Закончить' : 'Далее')}
+                label={isLoading ? "Загрузка..." : (activeStep === steps.length - 1 ? "Закончить" : "Далее")}
                 primary={!hasErrors}
                 size="large"
-                // onClick={handleSubmitAndPostData}
-                onClick={() => {
-                  setActiveStep((prev) => prev + 1);
-                }}
+                onClick={handleSubmitAndPostData}
+              // onClick={() => {
+              //   setActiveStep((prev) => prev + 1);
+              // }}
               >
-                {activeStep === steps.length - 1 ? 'Закончить' : 'Далее'}
+                {activeStep === steps.length - 1 ? "Закончить" : "Далее"}
               </CustomButton>
             </span>
           </Tooltip>

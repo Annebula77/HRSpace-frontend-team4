@@ -1,11 +1,11 @@
-import React, { type FC, useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import styled from 'styled-components';
-import { useAppDispatch } from '../../store/hooks';
-import { uploadFile } from '../../store/slices/fileUploadSlice';
-import FileIcon from '../icons/FileIcon';
-import SmallFileIcon from '../icons/SmallFileIcon';
-import ErrorMessage from '../errorText/errorText';
+import React, { type FC, useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import styled from "styled-components";
+import { useAppDispatch } from "../../store/hooks";
+import { uploadFile } from "../../store/slices/fileUploadSlice";
+import FileIcon from "../icons/FileIcon";
+import SmallFileIcon from "../icons/SmallFileIcon";
+import ErrorMessage from "../errorText/errorText";
 
 const StyledWrapping = styled.div`
   width: 100%;
@@ -101,7 +101,7 @@ const FileUploader: FC<FileUploaderProps> = ({ onFileUploaded }) => {
     const file = acceptedFiles[0];
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
-        setError('Размер файла не должен превышать 10 МБ');
+        setError("Размер файла не должен превышать 10 МБ");
         setFile(null);
         return;
       }
@@ -110,7 +110,7 @@ const FileUploader: FC<FileUploaderProps> = ({ onFileUploaded }) => {
       dispatch(uploadFile(file))
         .unwrap()
         .then((url) => onFileUploaded(url))
-        .catch((error) => console.error('Error uploading file:', error));
+        .catch((error) => console.error("Error uploading file:", error));
     }
   }, [dispatch, onFileUploaded]);
 
@@ -122,9 +122,9 @@ const FileUploader: FC<FileUploaderProps> = ({ onFileUploaded }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
-      'application/msword': ['.doc', '.docx'],
-      'application/pdf': ['.pdf'],
-      'text/plain': ['.txt', '.rtf'],
+      "application/msword": [".doc", ".docx"],
+      "application/pdf": [".pdf"],
+      "text/plain": [".txt", ".rtf"],
     },
   });
 
@@ -141,10 +141,10 @@ const FileUploader: FC<FileUploaderProps> = ({ onFileUploaded }) => {
           <StyledP>Допустимые форматы: doc, pdf до 10 мб</StyledP>
         </StyledTextContainer>
       </StyledWrapping>
-      <ErrorMessage errorText={error || ''} />
+      <ErrorMessage errorText={error || ""} />
       {file && (
         <FileListContainer>
-          <SmallFileIcon style={{ width: '40px', height: '40px' }} />
+          <SmallFileIcon style={{ width: "40px", height: "40px" }} />
           <FileItemComponent key={file.name} file={file} onRemove={removeFile} />
         </FileListContainer>
       )}

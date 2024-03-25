@@ -1,7 +1,7 @@
-import { type FC } from 'react';
-import { Fab, Box } from '@mui/material';
+import { type FC } from "react";
+import { Fab, Box } from "@mui/material";
 
-import PrintIcon from '../icons/PrintIcon';
+import PrintIcon from "../icons/PrintIcon";
 
 interface Props {
   className?: string;
@@ -9,10 +9,10 @@ interface Props {
 }
 
 const FloatingButton: FC<Props> = () => (
-  <Box sx={{ '& > :not(style)': { m: 1 } }}>
+  <Box sx={{ "& > :not(style)": { m: 1 } }}>
     <Fab
       sx={{
-        position: 'fixed',
+        position: "fixed",
         bottom: (theme) => theme.spacing(20),
         right: (theme) => theme.spacing(5),
       }}

@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import InputWithText from '../components/inputWithText/InputWithText';
+import InputWithText from "../components/inputWithText/InputWithText";
 
 
 const meta = {
-  title: 'Example/InputWithText',
+  title: "Example/InputWithText",
   component: InputWithText,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta<typeof InputWithText>;
 
 export default meta;
@@ -20,9 +20,9 @@ const onChange = () => { };
 
 export const Primary: Story = {
   args: {
-    name: 'input-name',
-    value: '',
-    placeholder: 'input value', //NOTE: просто подставляем дефолтные значения 
+    name: "input-name",
+    value: "",
+    placeholder: "input value", //NOTE: просто подставляем дефолтные значения 
     onChange: onChange, // NOTE: В реальной ситуации здесь должна быть функция для обработки изменений
   },
 };
@@ -34,7 +34,7 @@ export const Error: Story = {
   },
   parameters: {
     docs: {
-      storyDescription: 'This is an input with an error state.',
+      storyDescription: "This is an input with an error state.",
     },
   },
 };

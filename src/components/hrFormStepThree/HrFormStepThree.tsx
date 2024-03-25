@@ -1,11 +1,11 @@
-import { useMemo, type FC, useEffect } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import TitleComponent from '../titleComponent/TitleComponent';
-import RadioInput from '../radioChip/RadioInput';
-import ErrorMessage from '../errorText/errorText';
-import { type HrFormStepsProps } from '../../types/types';
+import { useMemo, type FC, useEffect } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import TitleComponent from "../titleComponent/TitleComponent";
+import RadioInput from "../radioChip/RadioInput";
+import ErrorMessage from "../errorText/errorText";
+import { type HrFormStepsProps } from "../../types/types";
 
 import {
   StyledArticle,
@@ -14,7 +14,7 @@ import {
   StyledParagraph,
   StyledSection,
   StyledUlInputList,
-} from '../../styles/formStepsStyles';
+} from "../../styles/formStepsStyles";
 import {
   updateEmployeeNumber,
   updateStartSearch,
@@ -25,13 +25,13 @@ import {
   updateMinReward,
   updateMaxReward,
   updateRecommendedReward,
-} from '../../store/slices/thirdPageSlice';
-import Counter from '../counter/Counter';
-import CalendarInput from '../calendarInput/CalendarInput';
-import FeeSection from '../feeSection/FeeSection';
-import FinalCalculations from '../finalCalculations/FinalCalculations';
-import { media } from '../../styles/breakpoints';
-import calculateSliderValues from '../../utils/calculateSliderValues';
+} from "../../store/slices/thirdPageSlice";
+import Counter from "../counter/Counter";
+import CalendarInput from "../calendarInput/CalendarInput";
+import FeeSection from "../feeSection/FeeSection";
+import FinalCalculations from "../finalCalculations/FinalCalculations";
+import { media } from "../../styles/breakpoints";
+import calculateSliderValues from "../../utils/calculateSliderValues";
 
 const CalendarWrapper = styled.div`
    width: 100%;
@@ -58,12 +58,12 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
     firstPageState.max_salary ?? 0,
     thirdPageState.start_search,
     thirdPageState.end_search,
-    thirdPageState.payment_model ?? '',
+    thirdPageState.payment_model ?? "",
   ), [firstPageState.min_salary,
-    firstPageState.max_salary,
-    thirdPageState.start_search,
-    thirdPageState.end_search,
-    thirdPageState.payment_model]);
+  firstPageState.max_salary,
+  thirdPageState.start_search,
+  thirdPageState.end_search,
+  thirdPageState.payment_model]);
 
   useEffect(() => {
     dispatch(updateMinReward(minSliderValue));
@@ -93,7 +93,7 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
               value={thirdPageState.start_search ? dayjs(new Date(thirdPageState.start_search)) : null}
               onChange={(newDate: Dayjs | null) => {
                 if (newDate) {
-                  dispatch(updateStartSearch(newDate.format('YYYY-MM-DD')));
+                  dispatch(updateStartSearch(newDate.format("YYYY-MM-DD")));
                 } else {
                   dispatch(updateStartSearch(null));
                 }
@@ -108,7 +108,7 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
               value={thirdPageState.end_search ? dayjs(new Date(thirdPageState.end_search)) : null}
               onChange={(newDate: Dayjs | null) => {
                 if (newDate) {
-                  dispatch(updateEndSearch(newDate.format('YYYY-MM-DD')));
+                  dispatch(updateEndSearch(newDate.format("YYYY-MM-DD")));
                 } else {
                   dispatch(updateEndSearch(null));
                 }
@@ -136,8 +136,8 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="prepayment"
               name="payment"
-              checked={thirdPageState.payment_model === '100% за выход сотрудника'}
-              onChange={() => dispatch(updatePaymentModel('100% за выход сотрудника'))}
+              checked={thirdPageState.payment_model === "100% за выход сотрудника"}
+              onChange={() => dispatch(updatePaymentModel("100% за выход сотрудника"))}
               label="100% за выход сотрудника"
             />
           </StyledLiInputList>
@@ -145,8 +145,8 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="partial"
               name="payment"
-              checked={thirdPageState.payment_model === '50% за выход 50% по окончании испытательного срока'}
-              onChange={() => dispatch(updatePaymentModel('50% за выход 50% по окончании испытательного срока'))}
+              checked={thirdPageState.payment_model === "50% за выход 50% по окончании испытательного срока"}
+              onChange={() => dispatch(updatePaymentModel("50% за выход 50% по окончании испытательного срока"))}
               label="50% за выход 50% по окончании испытательного срока"
             />
           </StyledLiInputList>
@@ -154,8 +154,8 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="post-payment"
               name="payment"
-              checked={thirdPageState.payment_model === '100% по окончании испытательного срока (1 месяц)'}
-              onChange={() => dispatch(updatePaymentModel('100% по окончании испытательного срока (1 месяц)'))}
+              checked={thirdPageState.payment_model === "100% по окончании испытательного срока (1 месяц)"}
+              onChange={() => dispatch(updatePaymentModel("100% по окончании испытательного срока (1 месяц)"))}
               label="100% по окончании испытательного срока (1 месяц)"
             />
           </StyledLiInputList>

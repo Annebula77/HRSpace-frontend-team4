@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type FormErrors } from '../../types/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { type FormErrors } from "../../types/types";
 
 export interface FirstPageFormData {
   job_title: string | null;
@@ -16,7 +16,7 @@ export interface FirstPageFormData {
 }
 
 const initialState: FirstPageFormData = {
-  job_title: '',
+  job_title: "",
   specialization: null,
   skills: [],
   responsibilities: [],
@@ -30,7 +30,7 @@ const initialState: FirstPageFormData = {
 };
 
 export const firstPageSlice = createSlice({
-  name: 'form',
+  name: "form",
   initialState,
   reducers: {
     updateJobTitle: (state, action: PayloadAction<string>) => {

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type FormErrors } from '../../types/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { type FormErrors } from "../../types/types";
 
 export interface ThirdPageFormData {
   number_employees: number | null;
@@ -16,10 +16,10 @@ export interface ThirdPageFormData {
 
 const initialState: ThirdPageFormData = {
   number_employees: null,
-  start_search: '',
-  end_search: '',
+  start_search: "",
+  end_search: "",
   number_recruits: null,
-  payment_model: '',
+  payment_model: "",
   reward: null,
   minReward: 0,
   maxReward: 0,
@@ -28,7 +28,7 @@ const initialState: ThirdPageFormData = {
 };
 
 export const thirdPageSlice = createSlice({
-  name: 'form3',
+  name: "form3",
   initialState,
   reducers: {
     updateEmployeeNumber: (state, action: PayloadAction<number>) => {

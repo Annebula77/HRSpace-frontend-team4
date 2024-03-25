@@ -1,12 +1,12 @@
-import { type FC } from 'react';
-import { TextField } from '@mui/material';
-import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import TitleComponent from '../titleComponent/TitleComponent';
-import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
-import ErrorMessage from '../errorText/errorText';
-import RadioInput from '../radioChip/RadioInput';
-import { type HrFormStepsProps } from '../../types/types';
+import { type FC } from "react";
+import { TextField } from "@mui/material";
+import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import TitleComponent from "../titleComponent/TitleComponent";
+import CheckboxWithStyles from "../checkboxWithStyles/CheckboxWithStyles";
+import ErrorMessage from "../errorText/errorText";
+import RadioInput from "../radioChip/RadioInput";
+import { type HrFormStepsProps } from "../../types/types";
 import {
   updateExperience,
   updateResponsibilities,
@@ -16,16 +16,16 @@ import {
   updateStopCompany,
   updateStopEmployee,
   updateFileUrl,
-} from '../../store/slices/forthPageSlice';
+} from "../../store/slices/forthPageSlice";
 import {
   StyledDivTwoChildren,
   StyledLiCheckboxList,
   StyledLiInputList,
   StyledSection,
   StyledUlInputList,
-} from '../../styles/formStepsStyles';
-import FinalCalculations from '../finalCalculations/FinalCalculations';
-import FileUploader from '../fileUploader/FileUploader';
+} from "../../styles/formStepsStyles";
+import FinalCalculations from "../finalCalculations/FinalCalculations";
+import FileUploader from "../fileUploader/FileUploader";
 
 const CheckInputsInColumn = styled.ul`
   width: 100%;
@@ -51,8 +51,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="beginner"
               name="beginner"
-              checked={forthPageState.recruiter_experience === '1-3 лет'}
-              onChange={() => dispatch(updateExperience('1-3 лет'))}
+              checked={forthPageState.recruiter_experience === "1-3 лет"}
+              onChange={() => dispatch(updateExperience("1-3 лет"))}
               label="1-3 лет"
             />
           </StyledLiInputList>
@@ -60,8 +60,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="middle"
               name="middle"
-              checked={forthPageState.recruiter_experience === '3-6 лет'}
-              onChange={() => dispatch(updateExperience('3-6 лет'))}
+              checked={forthPageState.recruiter_experience === "3-6 лет"}
+              onChange={() => dispatch(updateExperience("3-6 лет"))}
               label="3-6 лет"
             />
           </StyledLiInputList>
@@ -69,8 +69,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="senior"
               name="senior"
-              checked={forthPageState.recruiter_experience === 'от 6 лет'}
-              onChange={() => dispatch(updateExperience('от 6 лет'))}
+              checked={forthPageState.recruiter_experience === "от 6 лет"}
+              onChange={() => dispatch(updateExperience("от 6 лет"))}
               label="от 6 лет"
             />
           </StyledLiInputList>
@@ -83,8 +83,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="resumeSearch"
               name="resumeSearch"
-              checked={!!forthPageState.recruiter_job?.includes('Поиск и предоставление релевантного резюме')}
-              onChange={() => dispatch(updateResponsibilities('Поиск и предоставление релевантного резюме'))}
+              checked={!!forthPageState.recruiter_job?.includes("Поиск и предоставление релевантного резюме")}
+              onChange={() => dispatch(updateResponsibilities("Поиск и предоставление релевантного резюме"))}
               label="Поиск и предоставление релевантного резюме"
             />
           </StyledLiCheckboxList>
@@ -92,8 +92,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="interview"
               name="interview"
-              checked={!!forthPageState.recruiter_job?.includes('Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика')}
-              onChange={() => dispatch(updateResponsibilities('Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика'))}
+              checked={!!forthPageState.recruiter_job?.includes("Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика")}
+              onChange={() => dispatch(updateResponsibilities("Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика"))}
               label="Организация собеседований с заказчиком, синхронизация по времени соискателя и заказчика"
             />
           </StyledLiCheckboxList>
@@ -101,8 +101,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="recommendations"
               name="recommendations"
-              checked={!!forthPageState.recruiter_job?.includes('Запрос рекомендаций с предыдущих мест работы')}
-              onChange={() => dispatch(updateResponsibilities('Запрос рекомендаций с предыдущих мест работы'))}
+              checked={!!forthPageState.recruiter_job?.includes("Запрос рекомендаций с предыдущих мест работы")}
+              onChange={() => dispatch(updateResponsibilities("Запрос рекомендаций с предыдущих мест работы"))}
               label="Запрос рекомендаций с предыдущих мест работы"
             />
           </StyledLiCheckboxList>
@@ -110,8 +110,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="testing"
               name="testing"
-              checked={!!forthPageState.recruiter_job?.includes('Отправка кандидату тестового задания')}
-              onChange={() => dispatch(updateResponsibilities('Отправка кандидату тестового заданияе'))}
+              checked={!!forthPageState.recruiter_job?.includes("Отправка кандидату тестового задания")}
+              onChange={() => dispatch(updateResponsibilities("Отправка кандидату тестового заданияе"))}
               label="Отправка кандидату тестового задания"
             />
           </StyledLiCheckboxList>
@@ -119,8 +119,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="security"
               name="security"
-              checked={!!forthPageState.recruiter_job?.includes('Отправка кандидату анкеты службы безопасности вашей компании')}
-              onChange={() => dispatch(updateResponsibilities('Отправка кандидату анкеты службы безопасности вашей компании'))}
+              checked={!!forthPageState.recruiter_job?.includes("Отправка кандидату анкеты службы безопасности вашей компании")}
+              onChange={() => dispatch(updateResponsibilities("Отправка кандидату анкеты службы безопасности вашей компании"))}
               label="Отправка кандидату анкеты службы безопасности вашей компании"
             />
           </StyledLiCheckboxList>
@@ -128,8 +128,8 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
             <CheckboxWithStyles
               id="invitation"
               name="invitation"
-              checked={!!forthPageState.recruiter_job?.includes('Отправка финалисту приглашения на работу')}
-              onChange={() => dispatch(updateResponsibilities('Отправка финалисту приглашения на работу'))}
+              checked={!!forthPageState.recruiter_job?.includes("Отправка финалисту приглашения на работу")}
+              onChange={() => dispatch(updateResponsibilities("Отправка финалисту приглашения на работу"))}
               label="Отправка финалисту приглашения на работу"
             />
           </StyledLiCheckboxList>
@@ -142,15 +142,15 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
           <RadioInput
             id="10"
             name="notInterviewed"
-            checked={forthPageState.type_resume === 'Резюме без предварительного собеседования'}
-            onChange={() => dispatch(updateResumeType('Резюме без предварительного собеседования'))}
+            checked={forthPageState.type_resume === "Резюме без предварительного собеседования"}
+            onChange={() => dispatch(updateResumeType("Резюме без предварительного собеседования"))}
             label="Резюме без предварительного собеседования"
           />
           <RadioInput
             id="12"
             name="interviewed"
-            checked={forthPageState.type_resume === 'Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату'}
-            onChange={() => dispatch(updateResumeType('Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату'))}
+            checked={forthPageState.type_resume === "Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату"}
+            onChange={() => dispatch(updateResumeType("Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату"))}
             label="Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату"
           />
         </CheckInputsInColumn>
@@ -160,27 +160,27 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
         <TitleComponent>Дополнительные требования к рекрутёру</TitleComponent>
         <TextField
           onChange={(evt) => dispatch(updateAdditionalRequirements(evt.target.value))}
-          value={forthPageState.additional_requirements || ''}
+          value={forthPageState.additional_requirements || ""}
           multiline
           maxRows={500}
           variant="outlined"
           placeholder="Дополнительная информация для рекрутёра: пожелания, основные принципы и ценности компании, рассказы о большом дружном коллективе :)"
           sx={{
-            width: '100%',
-            marginBottom: '12px',
-            '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
-            '& .MuiOutlinedInput-root': {
-              minHeight: '128px',
-              alignItems: 'flex-start',
-              borderRadius: '8px',
-              '& fieldset': {
-                borderColor: 'rgba(186, 189, 191, 1)',
+            width: "100%",
+            marginBottom: "12px",
+            "& .MuiFormLabel-root": { color: "rgba(186, 189, 191, 1)" },
+            "& .MuiOutlinedInput-root": {
+              minHeight: "128px",
+              alignItems: "flex-start",
+              borderRadius: "8px",
+              "& fieldset": {
+                borderColor: "rgba(186, 189, 191, 1)",
               },
-              '&:hover fieldset': {
-                border: '1px solid rgba(23, 133, 229, 1)',
+              "&:hover fieldset": {
+                border: "1px solid rgba(23, 133, 229, 1)",
               },
-              '&.Mui-focused fieldset': {
-                border: '2px solid rgba(23, 133, 229, 1)',
+              "&.Mui-focused fieldset": {
+                border: "2px solid rgba(23, 133, 229, 1)",
               },
             },
           }}
@@ -199,26 +199,26 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
         <TitleComponent>Стоп-лист компаний</TitleComponent>
         <TextField
           onChange={(evt) => dispatch(updateStopCompany(evt.target.value))}
-          value={forthPageState.stoplist_companies || ''}
+          value={forthPageState.stoplist_companies || ""}
           multiline
           maxRows={500}
           variant="outlined"
           placeholder="Список компаний, с которыми вы не хотите сотрудничать"
           sx={{
-            width: '100%',
-            '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
-            '& .MuiOutlinedInput-root': {
-              minHeight: '128px',
-              alignItems: 'flex-start',
-              borderRadius: '8px',
-              '& fieldset': {
-                borderColor: 'rgba(186, 189, 191, 1)',
+            width: "100%",
+            "& .MuiFormLabel-root": { color: "rgba(186, 189, 191, 1)" },
+            "& .MuiOutlinedInput-root": {
+              minHeight: "128px",
+              alignItems: "flex-start",
+              borderRadius: "8px",
+              "& fieldset": {
+                borderColor: "rgba(186, 189, 191, 1)",
               },
-              '&:hover fieldset': {
-                border: '1px solid rgba(23, 133, 229, 1)',
+              "&:hover fieldset": {
+                border: "1px solid rgba(23, 133, 229, 1)",
               },
-              '&.Mui-focused fieldset': {
-                border: '2px solid rgba(23, 133, 229, 1)',
+              "&.Mui-focused fieldset": {
+                border: "2px solid rgba(23, 133, 229, 1)",
               },
             },
           }}
@@ -230,26 +230,26 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
         <TitleComponent>Стоп-лист сотрудников</TitleComponent>
         <TextField
           onChange={(evt) => dispatch(updateStopEmployee(evt.target.value))}
-          value={forthPageState.stoplist_employee || ''}
+          value={forthPageState.stoplist_employee || ""}
           multiline
           maxRows={500}
           variant="outlined"
           placeholder="Имена и фамилии соискателей, которых вы не готовы рассматривать"
           sx={{
-            width: '100%',
-            '& .MuiFormLabel-root': { color: 'rgba(186, 189, 191, 1)' },
-            '& .MuiOutlinedInput-root': {
-              minHeight: '128px',
-              alignItems: 'flex-start',
-              borderRadius: '8px',
-              '& fieldset': {
-                borderColor: 'rgba(186, 189, 191, 1)',
+            width: "100%",
+            "& .MuiFormLabel-root": { color: "rgba(186, 189, 191, 1)" },
+            "& .MuiOutlinedInput-root": {
+              minHeight: "128px",
+              alignItems: "flex-start",
+              borderRadius: "8px",
+              "& fieldset": {
+                borderColor: "rgba(186, 189, 191, 1)",
               },
-              '&:hover fieldset': {
-                border: '1px solid rgba(23, 133, 229, 1)',
+              "&:hover fieldset": {
+                border: "1px solid rgba(23, 133, 229, 1)",
               },
-              '&.Mui-focused fieldset': {
-                border: '2px solid rgba(23, 133, 229, 1)',
+              "&.Mui-focused fieldset": {
+                border: "2px solid rgba(23, 133, 229, 1)",
               },
             },
           }}

@@ -1,11 +1,11 @@
-import { type FC } from 'react';
+import { type FC } from "react";
 
 interface Props {
   style?: Record<string, string>;
   fill?: string;
 }
 
-const CloseIcon: FC<Props> = ({ style, fill = 'rgb(48, 50, 51)' }) => (
+const CloseIcon: FC<Props> = ({ style, fill = "rgb(48, 50, 51)" }) => (
   <svg
     width="18"
     height="18"

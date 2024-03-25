@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import CustomButton from '../components/CustomButton/CustomButton';
+import type { Meta, StoryObj } from "@storybook/react";
+import CustomButton from "../components/CustomButton/CustomButton";
 
 const meta: Meta<typeof CustomButton> = {
-  title: 'Example/Button',
+  title: "Example/Button",
   component: CustomButton,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    backgroundColor: { control: 'color' },
+    backgroundColor: { control: "color" },
   },
 };
 
@@ -18,34 +18,34 @@ export default meta;
 export const Primary: StoryObj<typeof CustomButton> = {
   args: {
     primary: true,
-    children: 'Button',
+    children: "Button",
   },
 };
 
 export const Secondary: StoryObj<typeof CustomButton> = {
   args: {
-    children: 'Button',
+    children: "Button",
   },
 };
 
 export const Large: StoryObj<typeof CustomButton> = {
   args: {
-    size: 'large',
-    children: 'Button',
+    size: "large",
+    children: "Button",
   },
 };
 
 export const Small: StoryObj<typeof CustomButton> = {
   args: {
-    size: 'small',
-    children: 'Button',
+    size: "small",
+    children: "Button",
   },
 };
 
 export const Warning: StoryObj<typeof CustomButton> = {
   args: {
     primary: true,
-    children: 'Delete now',
-    backgroundColor: 'red',
+    children: "Delete now",
+    backgroundColor: "red",
   },
 };
