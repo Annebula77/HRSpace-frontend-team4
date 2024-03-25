@@ -77,7 +77,7 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
       <StyledDivTwoChildren>
         <TitleComponent>Количество сотрудников</TitleComponent>
         <Counter
-          value={thirdPageState.number_employees || 0}
+          value={thirdPageState.number_employees || 1}
           min={1}
           max={5}
           onChange={(newValue) => dispatch(updateEmployeeNumber(newValue))}
@@ -122,7 +122,7 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
       <StyledDivTwoChildren>
         <TitleComponent>Количество рекрутеров</TitleComponent>
         <Counter
-          value={thirdPageState.number_recruits || 0}
+          value={thirdPageState.number_recruits || 1}
           min={1}
           max={5}
           onChange={(newValue) => dispatch(updateRecruiterNumber(newValue))}

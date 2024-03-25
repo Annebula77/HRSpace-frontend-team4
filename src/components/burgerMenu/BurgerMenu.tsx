@@ -35,16 +35,15 @@ const StyledBurgerMenuOverlay: FC<OverlayProps> = styled.div`
 `;
 
 const StyledBurgerMenuContent = styled.div`
-  /* max-width: 450px; */
   margin: 0;
   width: 70%;
-  /* max-height: 50%; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 1);
   z-index: 3;
-  /* border-radius: 10px; */
+ 
 
   & button {
     align-self: flex-end;

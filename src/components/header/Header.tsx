@@ -42,7 +42,7 @@ const Header = () => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const width = useResize();
 
-  // NOTE: Обработчик закрытия бургер-меню
+
   const closeBurgerMenu = () => {
     setIsBurgerMenuOpen(false);
   };

@@ -109,7 +109,12 @@ const FileUploader: FC<FileUploaderProps> = ({ onFileUploaded }) => {
       setFile(file);
       dispatch(uploadFile(file))
         .unwrap()
-        .then((url) => onFileUploaded(url))
+        .then((url) => {
+          if (!url) {
+            return;
+          }
+          onFileUploaded(url);
+        })
         .catch((error) => console.error("Error uploading file:", error));
     }
   }, [dispatch, onFileUploaded]);

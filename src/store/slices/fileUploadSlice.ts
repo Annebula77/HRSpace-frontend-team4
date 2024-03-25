@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { POST_FILE } from "../../utils/variables";
-// import { fileSchema } from "../../models/fileSchema";
+import { fileSchema } from "../../models/fileSchema";
 
 export const uploadFile = createAsyncThunk(
   "files/upload",
@@ -19,19 +19,26 @@ export const uploadFile = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data.url;
-      // NOTE: закоментировано, потому что нет настроек мокового сервера
-      // const safeResponse = fileSchema.safeParse(data);
-      // if (!safeResponse.success) {
-      //   console.error("Parsing errors", safeResponse.error);
-      //   return rejectWithValue("Parsing errors");
-      // }
-      // return safeResponse.data.file_url;
+
+      //  NOTE: если работать с моковым сервером, надо отключить проверку 
+      // (строгая проверка на соответствие cхемам)
+      const safeResponse = fileSchema.safeParse(data);
+      if (!safeResponse.success) {
+        console.error("Parsing errors", safeResponse.error);
+        return rejectWithValue("Parsing errors");
+      }
+      return safeResponse.data.file_url;
     } catch (error) {
-      return rejectWithValue(error);
+
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue("An unknown error occurred");
     }
   },
 );
+
 interface FilesState {
   url: string;
   loading: boolean;
@@ -47,8 +54,8 @@ export const filesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(uploadFile.fulfilled, (state, action: PayloadAction<string>) => {
-      state.url = action.payload;
+    builder.addCase(uploadFile.fulfilled, (state, action: PayloadAction<string | null>) => {
+      state.url = action.payload ?? '';
       state.loading = false;
     });
     builder.addCase(uploadFile.pending, (state) => {

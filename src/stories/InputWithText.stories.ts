@@ -15,22 +15,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// NOTE: Так как InputWithText - это просто поле ввода, нам нужно пока замокать onChange
+
 const onChange = () => { };
 
 export const Primary: Story = {
   args: {
     name: "input-name",
     value: "",
-    placeholder: "input value", //NOTE: просто подставляем дефолтные значения 
-    onChange: onChange, // NOTE: В реальной ситуации здесь должна быть функция для обработки изменений
+    placeholder: "input value",
+    onChange: onChange,
   },
 };
 
 export const Error: Story = {
   args: {
     ...Primary.args,
-    error: true, //  NOTE: Активация стиля ошибки
+    error: true,
   },
   parameters: {
     docs: {

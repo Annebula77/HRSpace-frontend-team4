@@ -383,7 +383,7 @@ const HrRequestPreview: FC<PreviewProps> = ({
           </StyledDivTwoChildrenRow>
         </StyledSubSection>
         <FinalCalculations
-          finalAmount={thirdPageState.recommendedReward}
+          finalAmount={thirdPageState.reward ? thirdPageState.reward : thirdPageState.recommendedReward}
         />
       </StyledSection>
       <FloatingButton />

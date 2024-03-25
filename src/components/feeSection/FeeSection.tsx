@@ -52,8 +52,7 @@ const FeeSection: FC<FeeSectionProps> = ({
   errorMessage,
 }) => {
   const [sliderValue, setSliderValue] = useState<number>(recommendedValue);
-  //  react disable react/no-unused-prop-types
-  const handleSliderChange = (event: Event, newValue: number | number[]): void => {
+  const handleSliderChange = (_event: Event, newValue: number | number[]): void => {
     const value = Array.isArray(newValue) ? newValue[0] : newValue;
     setSliderValue(value);
     onChange(value);
@@ -61,8 +60,7 @@ const FeeSection: FC<FeeSectionProps> = ({
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = parseInt(event.target.value, 10);
-    // eslint disable isnan  no-restricted-globals
-    if (!isNaN(value) && value >= minValue && value <= maxValue) {
+    if (!Number.isNaN(value) && value >= minValue && value <= maxValue) {
       setSliderValue(value);
       onChange(value);
     }

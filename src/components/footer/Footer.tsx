@@ -10,8 +10,6 @@ const StyledFooter = styled.footer`
   padding: 40px 0;
   margin: 0;
   display: flex;
-  /* flex-direction: column-reverse; */
-  /* justify-content: space-between; */
   background-color: rgba(250, 250, 250, 1);
 `;
 

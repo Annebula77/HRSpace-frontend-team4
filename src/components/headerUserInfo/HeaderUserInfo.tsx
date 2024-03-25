@@ -19,7 +19,6 @@ const StyledUserInfo = styled.div`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  /* background-color: #000000; */
 
   ${media.lg`
     margin: 0 0 0 10px;
@@ -34,8 +33,7 @@ const StyledUserAvatar = styled.img`
   display: block;
   width: 40px;
   height: 100%;
-  margin: 2px 0;
-  /* padding: 2px 0; */
+  margin: 2px 0; 
   background-size: cover;
   box-sizing: border-box;
   border-radius: 50%;

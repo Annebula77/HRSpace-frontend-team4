@@ -254,7 +254,6 @@ const HrRequestFormWithStepper = () => {
     let newErrors = {};
     let schema;
     let currentFormData;
-    let safeData;
     let url = "";
 
     switch (activeStep) {
@@ -318,20 +317,18 @@ const HrRequestFormWithStepper = () => {
     }
     setHasErrors(false);
 
-    // NOTE: закоментировано, потому что нет настроек мокового сервера
-    // const result = schema.safeParse(currentFormData);
-    // if (!result.success) {
-    //   // eslint-disable-next-line no-console
-    //   console.error("Parsing errors", result.error);
-    //   return;
-    // }
-    // safeData = result.data;
+    // NOTE: схема может не соответствовать контракту, при работе с моками отключить
+    const result = schema.safeParse(currentFormData);
+    if (!result.success) {
+      console.error("Parsing errors", result.error);
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(safeData),
+        body: JSON.stringify(result),
       });
 
       if (!response.ok) {
@@ -341,17 +338,14 @@ const HrRequestFormWithStepper = () => {
 
       const responseData = await response.json();
 
+      // NOTE: схема может не соответствовать контракту, при работе с моками отключить
+      const safeResponse = schema.safeParse(responseData);
+      if (!safeResponse.success) {
+        // eslint-disable-next-line no-console
+        console.error("Parsing errors", safeResponse.error);
+        return;
+      }
       setActiveStep((prev) => prev + 1);
-      return responseData;
-      // NOTE: закоментировано, потому что нет настроек мокового сервера
-      // const safeResponse = schema.safeParse(responseData);
-      // if (!safeResponse.success) {
-      //   // eslint-disable-next-line no-console
-      //   console.error("Parsing errors", safeResponse.error);
-      //   return;
-      // }
-
-      // return safeResponse.data;
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error posting data", error);
@@ -466,9 +460,6 @@ const HrRequestFormWithStepper = () => {
                 primary={!hasErrors}
                 size="large"
                 onClick={handleSubmitAndPostData}
-              // onClick={() => {
-              //   setActiveStep((prev) => prev + 1);
-              // }}
               >
                 {activeStep === steps.length - 1 ? "Закончить" : "Далее"}
               </CustomButton>

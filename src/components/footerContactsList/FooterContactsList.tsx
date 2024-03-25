@@ -32,32 +32,27 @@ const StyledContactElement = styled.li`
   list-style: none;
 
   ${media.xs`
-    flex-direction: column;
-    /* justify-content: space-between; */
+    flex-direction: column;   
   `}
 
   ${media.lg`
-    flex-direction: column;
-    /* justify-content: space-between; */
+    flex-direction: column;   
   `}
 
   ${media.xl`
-    flex-direction: row;
-    /* justify-content: space-between; */
+    flex-direction: row;  
   `}
 `;
 
 const StyledContactDetails = styled.div`
-  margin-right: 8px;
-  /* max-width: 50px; */
+  margin-right: 8px; 
   font-size: 12px;
   font-weight: 300;
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
   color: rgba(48, 50, 51, 1);
-  /* overflow: hidden;
-  white-space: nowrap; */
+ 
 
   ${media.md`
     font-size: 13px;
