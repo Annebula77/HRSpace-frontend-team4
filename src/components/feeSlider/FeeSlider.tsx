@@ -105,7 +105,7 @@ const FeeSlider: FC<SliderProps> = ({
   const marks = useMemo(() => [
     { value: minValue, label: `${numberWithSpaces(minValue)} руб.` },
     { value: recommendedValue },
-    { value: maxValue, label: `${numberWithSpaces(maxValue)} руб.` }
+    { value: maxValue, label: `${numberWithSpaces(maxValue)} руб.` },
   ], [minValue, maxValue, recommendedValue]);
 
   return (

@@ -1,6 +1,7 @@
 import { type FC } from 'react';
 import styled from 'styled-components';
 import { Chip, Stack } from '@mui/material';
+import { useAppSelector } from '../../store/hooks';
 import {
   StyledSection,
   StyledDivTwoChildren,
@@ -15,28 +16,28 @@ interface PreviewProps {
   occupation: string;
   skills: string[],
   duties: string[],
-  minSalaryValue: string,
-  maxSalaryValue: string,
+  minSalaryValue: number,
+  maxSalaryValue: number,
   experience: string,
-  education: string,
+  education: string[],
   workPlace: string,
   workFormat: string,
   employmentType: string
   registrationEmployee: string
-  medInsurance: string
-  compensations: string
+  medInsurance: boolean
+  compensations: string[]
   description: string
   searchPeriodBegin: string
   searchPeriodEnd: string
   feeModel: string
-  fee: string
-  employeeNumber: string
+  fee: number
+  employeeNumber: number
   hrExperience: string
   hrRequirements: string[],
   resumeFormat: string,
   hrExtraRequirements: string,
-  companiesStopList: string[],
-  employeesStopList: string[],
+  companiesStopList: string,
+  employeesStopList: string,
   attachedFile: string,
 }
 
@@ -231,167 +232,163 @@ const HrRequestPreview: FC<PreviewProps> = ({
   companiesStopList,
   employeesStopList,
   attachedFile,
-}) => (
-  <>
-    <StyledSection>
-      <StyledSubSection>
-        <StyledSubSectionTitle>О вакансии</StyledSubSectionTitle>
-        <div>
-          <h3>{occupation}</h3>
-          <StyledDivTwoChildren>
-            <StyledElementTitle>Навыки</StyledElementTitle>
-            <StyledStack direction="row" spacing={1} useFlexGap flexWrap="wrap">
-              {skills.map((option) => (
-                <StyledChip
-                  key={option}
-                  label={option}
-                />
-              ))}
-            </StyledStack>
-          </StyledDivTwoChildren>
-          <StyledDivTwoChildren>
-            <StyledElementTitle>Обязанности</StyledElementTitle>
-            <StyledStack direction="row" spacing={1} useFlexGap flexWrap="wrap">
-              {duties.map((option) => (
-                <StyledChip
-                  key={option}
-                  label={option}
-                />
-              ))}
-            </StyledStack>
-          </StyledDivTwoChildren>
+}) => {
+  const thirdPageState = useAppSelector((state) => state.thirdPage);
+  const firstPageState = useAppSelector((state) => state.firstPage);
+  return (
+    <>
+      <StyledSection>
+        <StyledSubSection>
+          <StyledSubSectionTitle>О вакансии</StyledSubSectionTitle>
+          <div>
+            <h3>{occupation}</h3>
+            <StyledDivTwoChildren>
+              <StyledElementTitle>Навыки</StyledElementTitle>
+              <StyledStack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                {skills.map((option) => (
+                  <StyledChip
+                    key={option}
+                    label={option}
+                  />
+                ))}
+              </StyledStack>
+            </StyledDivTwoChildren>
+            <StyledDivTwoChildren>
+              <StyledElementTitle>Обязанности</StyledElementTitle>
+              <StyledStack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                {duties.map((option) => (
+                  <StyledChip
+                    key={option}
+                    label={option}
+                  />
+                ))}
+              </StyledStack>
+            </StyledDivTwoChildren>
 
+            <StyledDivTwoChildrenRow>
+              <StyledElementTitle>Зарплата кандидата (до вычета НДФЛ)</StyledElementTitle>
+              <div>
+                От&nbsp;
+                {minSalaryValue}
+                &nbsp;до&nbsp;
+                {maxSalaryValue}
+                &nbsp;рублей&nbsp;
+                <span>{firstPageState.hide_salary}</span>
+              </div>
+            </StyledDivTwoChildrenRow>
+            <StyledDivTwoChildrenRow>
+              <StyledElementTitle>Опыт работы кандидата</StyledElementTitle>
+              <div>{experience}</div>
+            </StyledDivTwoChildrenRow>
+            <StyledDivTwoChildrenRow>
+              <StyledElementTitle>Образование кандидата</StyledElementTitle>
+              <div>{education}</div>
+            </StyledDivTwoChildrenRow>
+          </div>
+        </StyledSubSection>
+        <StyledSubSection>
+          <StyledSubSectionTitle>Условия работы</StyledSubSectionTitle>
           <StyledDivTwoChildrenRow>
-            <StyledElementTitle>Зарплата кандидата (до вычета НДФЛ)</StyledElementTitle>
+            <StyledElementTitle>Место работы</StyledElementTitle>
+            <div>{workPlace}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Формат работы</StyledElementTitle>
+            <div>{workFormat}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Тип занятости</StyledElementTitle>
+            <div>{employmentType}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Оформление сотрудника</StyledElementTitle>
+            <div>{registrationEmployee}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Наличие ДМС</StyledElementTitle>
+            <div>{medInsurance}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Компенсация затрат</StyledElementTitle>
+            <div>{compensations}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Описание компании</StyledElementTitle>
+            <div>{description}</div>
+          </StyledDivTwoChildrenRow>
+        </StyledSubSection>
+        <StyledSubSection>
+          <StyledSubSectionTitle>Об оплате</StyledSubSectionTitle>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Желаемый период поиска сотрудника</StyledElementTitle>
             <div>
-              От&nbsp;
-              {minSalaryValue}
-              &nbsp;до&nbsp;
-              {maxSalaryValue}
-              &nbsp;рублей&nbsp;
-              <span>(зарплата для будущих кандидатов скрыта)</span>
+              {searchPeriodBegin}
+              &nbsp;&ndash;&nbsp;
+              {searchPeriodEnd}
             </div>
           </StyledDivTwoChildrenRow>
           <StyledDivTwoChildrenRow>
-            <StyledElementTitle>Опыт работы кандидата</StyledElementTitle>
-            <div>{experience}</div>
+            <StyledElementTitle>Модель оплаты</StyledElementTitle>
+            <div>{feeModel}</div>
           </StyledDivTwoChildrenRow>
           <StyledDivTwoChildrenRow>
-            <StyledElementTitle>Образование кандидата</StyledElementTitle>
-            <div>{education}</div>
+            <StyledElementTitle>Вознаграждение за одного сотрудника</StyledElementTitle>
+            <div>{fee}</div>
           </StyledDivTwoChildrenRow>
-        </div>
-      </StyledSubSection>
-      <StyledSubSection>
-        <StyledSubSectionTitle>Условия работы</StyledSubSectionTitle>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Место работы</StyledElementTitle>
-          <div>{workPlace}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Формат работы</StyledElementTitle>
-          <div>{workFormat}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Тип занятости</StyledElementTitle>
-          <div>{employmentType}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Оформление сотрудника</StyledElementTitle>
-          <div>{registrationEmployee}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Наличие ДМС</StyledElementTitle>
-          <div>{medInsurance}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Компенсация затрат</StyledElementTitle>
-          <div>{compensations}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Описание компании</StyledElementTitle>
-          <div>{description}</div>
-        </StyledDivTwoChildrenRow>
-      </StyledSubSection>
-      <StyledSubSection>
-        <StyledSubSectionTitle>Об оплате</StyledSubSectionTitle>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Желаемый период поиска сотрудника</StyledElementTitle>
-          <div>
-            {searchPeriodBegin}
-            &nbsp;&ndash;&nbsp;
-            {searchPeriodEnd}
-          </div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Модель оплаты</StyledElementTitle>
-          <div>{feeModel}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Вознаграждение за одного сотрудника</StyledElementTitle>
-          <div>{fee}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Количество сотрудников</StyledElementTitle>
-          <div>{employeeNumber}</div>
-        </StyledDivTwoChildrenRow>
-      </StyledSubSection>
-      <StyledSubSection>
-        <StyledSubSectionTitle>Дополнительно</StyledSubSectionTitle>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Опыт работы рекрутёра</StyledElementTitle>
-          <div>{hrExperience}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Что входит в работу рекрутера?</StyledElementTitle>
-          <ul>
-            {hrRequirements.map((element, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index}>{element}</li>
-            ))}
-          </ul>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>
-            В каком виде необходимо предоставить резюме кандидатов?
-          </StyledElementTitle>
-          <div>{resumeFormat}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Дополнительные требования к рекрутёру</StyledElementTitle>
-          <div>{hrExtraRequirements}</div>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Стоп-лист компаний</StyledElementTitle>
-          <ul>
-            {companiesStopList.map((element, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index}>{element}</li>
-            ))}
-          </ul>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Стоп-лист сотрудников</StyledElementTitle>
-          <ul>
-            {employeesStopList.map((element, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index}>{element}</li>
-            ))}
-          </ul>
-        </StyledDivTwoChildrenRow>
-        <StyledDivTwoChildrenRow>
-          <StyledElementTitle>Приложение</StyledElementTitle>
-          <div>{attachedFile}</div>
-        </StyledDivTwoChildrenRow>
-      </StyledSubSection>
-      <FinalCalculations
-        finalAmount={0}
-        awardPerEmployee={0}
-        serviceFee={0}
-      />
-    </StyledSection>
-    <FloatingButton />
-  </>
-);
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Количество сотрудников</StyledElementTitle>
+            <div>{employeeNumber}</div>
+          </StyledDivTwoChildrenRow>
+        </StyledSubSection>
+        <StyledSubSection>
+          <StyledSubSectionTitle>Дополнительно</StyledSubSectionTitle>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Опыт работы рекрутёра</StyledElementTitle>
+            <div>{hrExperience}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Что входит в работу рекрутера?</StyledElementTitle>
+            <ul>
+              {hrRequirements.map((element, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index}>{element}</li>
+              ))}
+            </ul>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>
+              В каком виде необходимо предоставить резюме кандидатов?
+            </StyledElementTitle>
+            <div>{resumeFormat}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Дополнительные требования к рекрутёру</StyledElementTitle>
+            <div>{hrExtraRequirements}</div>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Стоп-лист компаний</StyledElementTitle>
+            <ul>
+              {companiesStopList}
+            </ul>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Стоп-лист сотрудников</StyledElementTitle>
+            <ul>
+              {employeesStopList}
+            </ul>
+          </StyledDivTwoChildrenRow>
+          <StyledDivTwoChildrenRow>
+            <StyledElementTitle>Приложение</StyledElementTitle>
+            <div>{attachedFile}</div>
+          </StyledDivTwoChildrenRow>
+        </StyledSubSection>
+        <FinalCalculations
+          finalAmount={thirdPageState.recommendedReward}
+        />
+      </StyledSection>
+      <FloatingButton />
+    </>
+  );
+};
 
 export default HrRequestPreview;

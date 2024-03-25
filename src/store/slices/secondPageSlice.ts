@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { type FormErrors } from '../../types/types';
 
 export const COMPENSATION_OPTIONS = {
   meal: 'На питание',
@@ -6,10 +7,6 @@ export const COMPENSATION_OPTIONS = {
   study: 'На обучение',
   living: 'На жилье',
 };
-
-export interface FormErrors {
-  [key: string]: string;
-}
 
 export interface SecondPageFormData {
   work_place: string | null;
@@ -38,7 +35,7 @@ const initialState: SecondPageFormData = {
 };
 
 export const secondPageSlice = createSlice({
-  name: 'form',
+  name: 'form2',
   initialState,
   reducers: {
     updateWorkPlace: (state, action: PayloadAction<string | null>) => {
@@ -92,7 +89,7 @@ export const secondPageSlice = createSlice({
     updateCompanyDescriptions: (state, action: PayloadAction<string>) => {
       state.company_descriptions = action.payload;
     },
-    setErrors: (state, action: PayloadAction<FormErrors>) => {
+    setErrorsTwo: (state, action: PayloadAction<FormErrors>) => {
       state.errors = action.payload;
     },
   },
@@ -108,7 +105,7 @@ export const {
   toggleDriverLicense,
   toggleHavingCar,
   updateCompanyDescriptions,
-  setErrors,
+  setErrorsTwo,
 } = secondPageSlice.actions;
 
 export default secondPageSlice.reducer;

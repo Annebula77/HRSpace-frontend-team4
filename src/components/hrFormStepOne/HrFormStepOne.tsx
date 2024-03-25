@@ -17,7 +17,7 @@ import {
   toggleHideSalary,
   updateExperience,
   updateEducation,
-  toggleBusinessTrips
+  toggleBusinessTrips,
 } from '../../store/slices/firstPageSlice';
 import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';

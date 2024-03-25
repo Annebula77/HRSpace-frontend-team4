@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import styled from 'styled-components';
 
-const StyledSection = styled.section`
+const StyledSection = styled.div`
   width: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -49,7 +49,6 @@ interface FinalCalculationsProps {
 const FinalCalculations: FC<FinalCalculationsProps> = ({
   finalAmount,
 }) => {
-
   const formattedFinalAmount = finalAmount?.toLocaleString('ru-RU');
   const awardPerEmployee = () => {
     if (!finalAmount) {
@@ -65,7 +64,7 @@ const FinalCalculations: FC<FinalCalculationsProps> = ({
     }
     const formattedAmount = (finalAmount * 0.2).toLocaleString('ru-RU');
     return formattedAmount;
-  }
+  };
   return (
     <StyledSection>
       <StyledArticle>

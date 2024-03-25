@@ -1,7 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { type FC, useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
+import { useAppDispatch } from '../../store/hooks';
+import { uploadFile } from '../../store/slices/fileUploadSlice';
 import FileIcon from '../icons/FileIcon';
+import SmallFileIcon from '../icons/SmallFileIcon';
+import ErrorMessage from '../errorText/errorText';
 
 const StyledWrapping = styled.div`
   width: 100%;
@@ -56,13 +60,16 @@ const StyledP = styled.p`
 
 const FileListContainer = styled.div`
   margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 `;
 
 const FileItem = styled.div`
-  background-color: #E1E3E4; // Пример фона миниатюры файла
+  background-color: #E1E3E4; 
   border-radius: 4px;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 8px;  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,7 +79,7 @@ const RemoveButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #FF0000; // Пример цвета крестика
+  color: rgba(73, 75, 77, 1); 
 `;
 
 const FileItemComponent: React.FC<{ file: File; onRemove: () => void }> = ({ file, onRemove }) => (
@@ -82,18 +89,37 @@ const FileItemComponent: React.FC<{ file: File; onRemove: () => void }> = ({ fil
   </FileItem>
 );
 
-const FileUploader: React.FC = () => {
-  const [files, setFiles] = useState<File[]>([]);
+interface FileUploaderProps {
+  onFileUploaded: (url: string) => void;
+}
 
+const FileUploader: FC<FileUploaderProps> = ({ onFileUploaded }) => {
+  const dispatch = useAppDispatch();
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
-  }, []);
+    const file = acceptedFiles[0];
+    if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        setError('Размер файла не должен превышать 10 МБ');
+        setFile(null);
+        return;
+      }
+      setError(null);
+      setFile(file);
+      dispatch(uploadFile(file))
+        .unwrap()
+        .then((url) => onFileUploaded(url))
+        .catch((error) => console.error('Error uploading file:', error));
+    }
+  }, [dispatch, onFileUploaded]);
 
-  const removeFile = (fileToRemove: File) => {
-    setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+  const removeFile = () => {
+    setFile(null);
+    setError(null);
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       'application/msword': ['.doc', '.docx'],
@@ -109,17 +135,17 @@ const FileUploader: React.FC = () => {
         <FileIcon />
         <StyledTextContainer>
           <StyledH3>
-            Перетащите или
+            Перетащите или&nbsp;
             <span>выберите 1 файл</span>
           </StyledH3>
           <StyledP>Допустимые форматы: doc, pdf до 10 мб</StyledP>
         </StyledTextContainer>
       </StyledWrapping>
-      {files.length > 0 && (
+      <ErrorMessage errorText={error || ''} />
+      {file && (
         <FileListContainer>
-          {files.map((file) => (
-            <FileItemComponent key={file.name} file={file} onRemove={() => removeFile(file)} />
-          ))}
+          <SmallFileIcon style={{ width: '40px', height: '40px' }} />
+          <FileItemComponent key={file.name} file={file} onRemove={removeFile} />
         </FileListContainer>
       )}
     </>

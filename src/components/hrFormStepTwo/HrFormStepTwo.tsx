@@ -8,6 +8,7 @@ import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
 import { fetchCities } from '../../store/slices/citiesSlice';
 import ErrorMessage from '../errorText/errorText';
+import { type HrFormStepsProps } from '../../types/types';
 import {
   updateWorkPlace,
   updateWorkFormat,
@@ -18,7 +19,6 @@ import {
   toggleDriverLicense,
   toggleHavingCar,
   updateCompanyDescriptions,
-  FormErrors,
   COMPENSATION_OPTIONS,
 } from '../../store/slices/secondPageSlice';
 
@@ -32,11 +32,7 @@ import {
   StyledDivThreeChildren,
 } from '../../styles/formStepsStyles';
 
-interface HrFormStepOneProps {
-  errors: FormErrors;
-}
-
-const HrFormStepTwo: FC<HrFormStepOneProps> = ({ errors }) => {
+const HrFormStepTwo: FC<HrFormStepsProps> = ({ errors }) => {
   const dispatch = useAppDispatch();
   const secondPageState = useAppSelector((state) => state.secondPage);
   const cities = useAppSelector((state) => state.cities.cities);
@@ -59,7 +55,7 @@ const HrFormStepTwo: FC<HrFormStepOneProps> = ({ errors }) => {
           }}
           placeholder="Введите город"
         />
-        <ErrorMessage errorText={errors?.cities} />
+        <ErrorMessage errorText={errors?.work_place} />
       </StyledDivTwoChildren>
 
       <StyledDivTwoChildren>
@@ -293,6 +289,7 @@ const HrFormStepTwo: FC<HrFormStepOneProps> = ({ errors }) => {
           }}
         />
       </StyledDivTwoChildren>
+      <ErrorMessage errorText={errors?.company_descriptions} />
 
     </StyledSection>
   );

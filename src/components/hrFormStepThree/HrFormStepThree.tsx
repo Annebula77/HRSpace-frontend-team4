@@ -1,7 +1,7 @@
 import { useMemo, type FC, useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import TitleComponent from '../titleComponent/TitleComponent';
 import RadioInput from '../radioChip/RadioInput';
 import ErrorMessage from '../errorText/errorText';
@@ -33,7 +33,6 @@ import FinalCalculations from '../finalCalculations/FinalCalculations';
 import { media } from '../../styles/breakpoints';
 import calculateSliderValues from '../../utils/calculateSliderValues';
 
-
 const CalendarWrapper = styled.div`
    width: 100%;
    box-sizing: border-box;
@@ -50,26 +49,28 @@ const CalendarWrapper = styled.div`
 `;
 
 const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
-
   const dispatch = useAppDispatch();
   const thirdPageState = useAppSelector((state) => state.thirdPage);
   const firstPageState = useAppSelector((state) => state.firstPage);
-
 
   const { minSliderValue, maxSliderValue, recommendedValue } = useMemo(() => calculateSliderValues(
     firstPageState.min_salary ?? 0,
     firstPageState.max_salary ?? 0,
     thirdPageState.start_search,
     thirdPageState.end_search,
-    thirdPageState.payment_model ?? ''
-  ), [firstPageState.min_salary, firstPageState.max_salary, thirdPageState.start_search, thirdPageState.end_search, thirdPageState.payment_model]);
+    thirdPageState.payment_model ?? '',
+  ), [firstPageState.min_salary,
+    firstPageState.max_salary,
+    thirdPageState.start_search,
+    thirdPageState.end_search,
+    thirdPageState.payment_model]);
 
   useEffect(() => {
     dispatch(updateMinReward(minSliderValue));
     dispatch(updateMaxReward(maxSliderValue));
     dispatch(updateRecommendedReward(recommendedValue));
+    // eslint-disable react-hooks/exhaustive-deps
   }, [minSliderValue, maxSliderValue, recommendedValue]);
-
 
   return (
     <StyledSection>
@@ -135,8 +136,8 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="prepayment"
               name="payment"
-              checked={thirdPageState.payment_model === "100% за выход сотрудника"}
-              onChange={() => dispatch(updatePaymentModel("100% за выход сотрудника"))}
+              checked={thirdPageState.payment_model === '100% за выход сотрудника'}
+              onChange={() => dispatch(updatePaymentModel('100% за выход сотрудника'))}
               label="100% за выход сотрудника"
             />
           </StyledLiInputList>
@@ -144,8 +145,8 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="partial"
               name="payment"
-              checked={thirdPageState.payment_model === "50% за выход 50% по окончании испытательного срока"}
-              onChange={() => dispatch(updatePaymentModel("50% за выход 50% по окончании испытательного срока"))}
+              checked={thirdPageState.payment_model === '50% за выход 50% по окончании испытательного срока'}
+              onChange={() => dispatch(updatePaymentModel('50% за выход 50% по окончании испытательного срока'))}
               label="50% за выход 50% по окончании испытательного срока"
             />
           </StyledLiInputList>
@@ -153,8 +154,8 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
             <RadioInput
               id="post-payment"
               name="payment"
-              checked={thirdPageState.payment_model === "100% по окончании испытательного срока (1 месяц)"}
-              onChange={() => dispatch(updatePaymentModel("100% по окончании испытательного срока (1 месяц)"))}
+              checked={thirdPageState.payment_model === '100% по окончании испытательного срока (1 месяц)'}
+              onChange={() => dispatch(updatePaymentModel('100% по окончании испытательного срока (1 месяц)'))}
               label="100% по окончании испытательного срока (1 месяц)"
             />
           </StyledLiInputList>
@@ -166,7 +167,7 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
         <FeeSection
           sliderValue={recommendedValue}
           onChange={(newValue: number) => {
-            dispatch(updateReward(newValue))
+            dispatch(updateReward(newValue));
           }}
           minValue={minSliderValue}
           maxValue={maxSliderValue}
@@ -177,7 +178,7 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
       </StyledDivTwoChildren>
 
       <FinalCalculations
-        finalAmount={thirdPageState.reward}
+        finalAmount={thirdPageState.recommendedReward}
       />
     </StyledSection>
   );

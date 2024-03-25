@@ -5,10 +5,10 @@ const calculateSliderValues = (
   maxSalary: number,
   startSearch: string | null,
   endSearch: string | null,
-  paymentModel: string
+  paymentModel: string,
 ): { minSliderValue: number; maxSliderValue: number; recommendedValue: number } => {
   let minBaseValue = (minSalary + maxSalary) / 2;
-  let modelMultiplier = 3;
+  const modelMultiplier = 3;
 
   if (paymentModel === '100% за выход сотрудника') {
     minBaseValue = Math.max(minBaseValue, 30000);
@@ -19,8 +19,6 @@ const calculateSliderValues = (
   } else if (!paymentModel) {
     minBaseValue = Math.max(minBaseValue, 30000);
   }
-
-
 
   if (startSearch && endSearch) {
     const daysDiff = differenceInDays(parseISO(endSearch), parseISO(startSearch));
@@ -36,7 +34,7 @@ const calculateSliderValues = (
   return {
     minSliderValue: Math.round(minBaseValue),
     maxSliderValue: Math.round(maxSliderValue),
-    recommendedValue: Math.round(recommendedValue)
+    recommendedValue: Math.round(recommendedValue),
   };
 };
 

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { type FormErrors } from '../../types/types';
 
-
 export interface ThirdPageFormData {
   number_employees: number | null;
   start_search: string | null;
@@ -91,7 +90,7 @@ export const thirdPageSlice = createSlice({
         state.errors = newErrors;
       }
     },
-    setErrors: (state, action: PayloadAction<FormErrors>) => {
+    setErrorsThree: (state, action: PayloadAction<FormErrors>) => {
       state.errors = action.payload;
     },
   },
@@ -107,7 +106,7 @@ export const {
   updateMinReward,
   updateMaxReward,
   updateRecommendedReward,
-  setErrors,
+  setErrorsThree,
 } = thirdPageSlice.actions;
 
 export default thirdPageSlice.reducer;
