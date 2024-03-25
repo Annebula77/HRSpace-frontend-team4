@@ -40,6 +40,7 @@ import { setErrorsThree } from '../../store/slices/thirdPageSlice';
 import {
   POST_VACANCY, POST_CONDITIONS, POST_PAYMENT, POST_ADDITION,
 } from '../../utils/variables';
+
 import FormSkeleton from '../formSkeleton/FormSkeleton';
 import HrRequestPreview from '../hrRequestPreview/HrRequestPreview';
 
@@ -267,7 +268,10 @@ const HrRequestFormWithStepper = () => {
         url = POST_VACANCY;
         break;
       }
-      case 1: {
+
+      case 1:
+      {
+
         const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
         isValid = validationResultsStep2.isValid;
         newErrors = validationResultsStep2.newErrors;
@@ -277,7 +281,10 @@ const HrRequestFormWithStepper = () => {
         url = POST_CONDITIONS;
         break;
       }
-      case 2: {
+
+      case 2:
+      {
+
         const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
         isValid = validationResultsStep3.isValid;
         newErrors = validationResultsStep3.newErrors;
@@ -287,6 +294,7 @@ const HrRequestFormWithStepper = () => {
         url = POST_PAYMENT;
         break;
       }
+
       case 3: {
         const validationResultsStep4 = hrFormStepFourValidation(forthPageState);
         isValid = validationResultsStep4.isValid;
@@ -297,6 +305,7 @@ const HrRequestFormWithStepper = () => {
         url = POST_ADDITION;
         break;
       }
+
       default:
         console.error('Unknown step');
         return;
@@ -419,6 +428,7 @@ const HrRequestFormWithStepper = () => {
             Назад
           </CustomButton>
         )}
+
         {activeStep === steps.length ? (
           <>
             <Button
@@ -432,12 +442,28 @@ const HrRequestFormWithStepper = () => {
             >
               Сохранить черновик
             </Button>
+
+        <Tooltip
+          title={hasErrors ? 'Для перехода нужно заполнить все обязательные поля' : ''}
+          TransitionComponent={Fade}
+          TransitionProps={{ timeout: 300 }}
+          arrow
+          placement="top"
+          disableHoverListener={!hasErrors} // Отключаем Tooltip, если нет ошибок
+        >
+          <span style={{ flex: activeStep > 0 ? '1' : 'auto' }}> {/* Оборачиваем кнопку в span, так как Tooltip требует, чтобы его дочерний элемент мог принимать ref */}
+
             <CustomButton
               label="Перейти к оплате"
               primary
               size="large"
               onClick={() => { /* Логика перехода к оплате */ }}
               style={{ flex: '1' }}
+              onClick={handleSubmitAndPostData}
+              // onClick={() => {
+              //   setActiveStep((prev) => prev + 1);
+              // }}
+
             >
               Перейти к оплате
             </CustomButton>
