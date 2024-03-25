@@ -19,7 +19,7 @@ import {
   updateEducation,
   toggleBusinessTrips,
 } from '../../store/slices/firstPageSlice';
-import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
+import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles'
 import RadioInput from '../radioChip/RadioInput';
 import {
   ForkInputStyles,
