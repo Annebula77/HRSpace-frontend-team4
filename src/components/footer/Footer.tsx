@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { media } from "../../styles/breakpoints";
+import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
-import FooterContactsList from "../footerContactsList/FooterContactsList";
-import FooterLinks from "../footerLinks/FooterLinks";
+import FooterContactsList from '../footerContactsList/FooterContactsList';
+import FooterLinks from '../footerLinks/FooterLinks';
 
 const StyledFooter = styled.footer`
   width: 100%;
@@ -10,8 +10,6 @@ const StyledFooter = styled.footer`
   padding: 40px 0;
   margin: 0;
   display: flex;
-  /* flex-direction: column-reverse; */
-  /* justify-content: space-between; */
   background-color: rgba(250, 250, 250, 1);
 `;
 

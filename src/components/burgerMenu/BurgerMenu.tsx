@@ -1,8 +1,8 @@
-import { type FC, useEffect } from "react";
-import styled from "styled-components";
+import { type FC, useEffect } from 'react';
+import styled from 'styled-components';
 
-import HeaderUserInfo from "../headerUserInfo/HeaderUserInfo";
-import CloseButtonIcon from "../icons/CloseButtonIcon";
+import HeaderUserInfo from '../headerUserInfo/HeaderUserInfo';
+import CloseButtonIcon from '../icons/CloseButtonIcon';
 
 interface BurgerMenuProps {
   isOpen: boolean,
@@ -28,23 +28,22 @@ const StyledBurgerMenuOverlay: FC<OverlayProps> = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
-  opacity: ${(props) => (props.isOpen ? "1" : "0")};
+  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.isOpen ? '1' : '0')};
   transition: visibility 0.3s, opacity 0.3s linear;
   z-index: 2;
 `;
 
 const StyledBurgerMenuContent = styled.div`
-  /* max-width: 450px; */
   margin: 0;
   width: 70%;
-  /* max-height: 50%; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 1);
   z-index: 3;
-  /* border-radius: 10px; */
+ 
 
   & button {
     align-self: flex-end;
@@ -82,7 +81,7 @@ const StyledNavButton = styled.button<ButtonProps>`
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-weight: ${({ $primary }) => ($primary ? "700" : "400")};
+  font-weight: ${({ $primary }) => ($primary ? '700' : '400')};
   line-height: 24px;
   letter-spacing: 0px;
   text-align: left;
@@ -94,14 +93,14 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (!isOpen) return;
     const closeByEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         onClose();
       }
     };
-    document.addEventListener("keydown", closeByEscape);
+    document.addEventListener('keydown', closeByEscape);
     // eslint-disable-next-line consistent-return
     return () => {
-      document.removeEventListener("keydown", closeByEscape);
+      document.removeEventListener('keydown', closeByEscape);
     };
   }, [isOpen, onClose]);
 

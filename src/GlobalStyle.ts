@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { media } from "./styles/breakpoints";
+import { createGlobalStyle } from 'styled-components';
+import { media } from './styles/breakpoints';
 
 const GlobalStyle = createGlobalStyle`
   body {

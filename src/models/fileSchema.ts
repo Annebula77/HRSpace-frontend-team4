@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const fileSchema = z.object({
   // NOTE: nullble потому что работали с моковым сервером

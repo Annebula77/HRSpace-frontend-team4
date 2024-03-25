@@ -1,10 +1,10 @@
-import { type FC, type ComponentType, type HTMLAttributes } from "react";
+import { type FC, type ComponentType, type HTMLAttributes } from 'react';
 import {
   Autocomplete, Chip, Stack, TextField, Box,
-} from "@mui/material";
-import styled from "styled-components";
-import OpenSelectIcon from "../icons/OpenSelectIcon";
-import CloseIcon from "../icons/CloseIcon";
+} from '@mui/material';
+import styled from 'styled-components';
+import OpenSelectIcon from '../icons/OpenSelectIcon';
+import CloseIcon from '../icons/CloseIcon';
 
 export interface SelectWithChipsProps {
   options: string[];
@@ -47,7 +47,7 @@ const InvisibleButton = styled.button`
 
 const DynamicMarginBox = styled(Box) <{ $hasSelectedValues: boolean }>`
   width: 100%;
-  margin: ${({ $hasSelectedValues }) => ($hasSelectedValues ? "0" : "-26px 0 0")};
+  margin: ${({ $hasSelectedValues }) => ($hasSelectedValues ? '0' : '-26px 0 0')};
   overflow: auto;
 `;
 
@@ -65,15 +65,15 @@ const SelectWithChips: FC<SelectWithChipsProps> = ({
 
   return (
     <DynamicMarginBox $hasSelectedValues={selectedValues.length > 0}>
-      <Stack spacing={3} sx={{ width: "100%" }}>
-        <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", rowGap: "12px" }}>
+      <Stack spacing={3} sx={{ width: '100%' }}>
+        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', rowGap: '12px' }}>
           {selectedValues.map((option) => (
             <StyledSelectedChip
               key={option}
               label={option}
               deleteIcon={(
                 <InvisibleButton>
-                  <CloseIcon style={{ width: "18px", height: "18px" }} />
+                  <CloseIcon style={{ width: '18px', height: '18px' }} />
                 </InvisibleButton>
               )}
               onDelete={() => {
@@ -108,31 +108,31 @@ const SelectWithChips: FC<SelectWithChipsProps> = ({
               placeholder={placeholder}
               error={!!error}
               sx={{
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "8px",
-                  "& fieldset": {
-                    borderColor: () => (error ? "rgba(255, 46, 46, 1)" : "rgba(186, 189, 191, 1)"),
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '8px',
+                  '& fieldset': {
+                    borderColor: () => (error ? 'rgba(255, 46, 46, 1)' : 'rgba(186, 189, 191, 1)'),
                   },
-                  "&:hover fieldset": {
-                    borderColor: "rgba(23, 133, 229, 1)",
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(23, 133, 229, 1)',
                   },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "rgba(23, 133, 229, 1)",
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'rgba(23, 133, 229, 1)',
                   },
                 },
-                "& .MuiFormLabel-root": {
-                  color: "rgb(255, 255, 255, 1)",
+                '& .MuiFormLabel-root': {
+                  color: 'rgb(255, 255, 255, 1)',
                 },
-                "& .MuiInput-underline:after": {
-                  borderBottom: "none",
+                '& .MuiInput-underline:after': {
+                  borderBottom: 'none',
                 },
-                "& .MuiInput-underline:before": {
-                  borderBottom: "none",
+                '& .MuiInput-underline:before': {
+                  borderBottom: 'none',
                 },
               }}
             />
           )}
-          popupIcon={<OpenSelectIcon style={{ width: "20px", height: "20px", marginRight: "16px" }} />}
+          popupIcon={<OpenSelectIcon style={{ width: '20px', height: '20px', marginRight: '16px' }} />}
         />
       </Stack>
     </DynamicMarginBox>

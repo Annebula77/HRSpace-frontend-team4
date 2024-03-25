@@ -16,8 +16,8 @@ const meta: Meta<SelectWithAutoCompleteProps<OptionType>> = {
 export default meta;
 
 const options = [
-  { id: "1", name: "Option 1" },
-  { id: "2", name: "Option 2" },
+  { id: 1, name: "Option 1" },
+  { id: 2, name: "Option 2" },
 ];
 
 const Primary: StoryObj<SelectWithAutoCompleteProps<OptionType>> = {

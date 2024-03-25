@@ -7,7 +7,6 @@ const meta = {
   component: Footer,
   tags: ["autodocs"],
   parameters: {
-    // NOTE: More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
 } satisfies Meta<typeof Footer>;

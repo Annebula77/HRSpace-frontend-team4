@@ -11,10 +11,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const onChange = () => { };
+
 export const Primary: Story = {
   args: {
-    model: "model 1",
-    minSalaryValue: "100000",
-    maxSalaryValue: "200000",
+    minValue: 100000,
+    maxValue: 200000,
+    recommendedValue: 300000,
+    sliderValue: 150000,
+    isError: true,
+    onChange: onChange,
+    errorMessage: "it is an error",
   }
 };

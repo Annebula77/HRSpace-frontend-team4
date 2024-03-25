@@ -1,5 +1,5 @@
-import { type FC } from "react";
-import styled from "styled-components";
+import { type FC } from 'react';
+import styled from 'styled-components';
 
 const StyledSection = styled.div`
   width: 100%;
@@ -49,7 +49,7 @@ interface FinalCalculationsProps {
 const FinalCalculations: FC<FinalCalculationsProps> = ({
   finalAmount,
 }) => {
-  const formattedFinalAmount = finalAmount?.toLocaleString("ru-RU");
+  const formattedFinalAmount = finalAmount?.toLocaleString('ru-RU');
   const awardPerEmployee = () => {
     if (!finalAmount) {
       return;
@@ -58,14 +58,17 @@ const FinalCalculations: FC<FinalCalculationsProps> = ({
     const formattedAmount = (finalAmount * 0.8).toLocaleString("ru-RU");
     // eslint-disable-next-line consistent-return
     return formattedAmount;
+
   };
   const serviceFee = () => {
     if (!finalAmount) {
       return;
     }
+    
     const formattedAmount = (finalAmount * 0.2).toLocaleString("ru-RU");
     // eslint-disable-next-line consistent-return
     return formattedAmount;
+
   };
   return (
     <StyledSection>

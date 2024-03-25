@@ -1,6 +1,6 @@
-import { type FC, ReactNode } from "react";
-import styled from "styled-components";
-import { media } from "../../styles/breakpoints";
+import { type FC, ReactNode } from 'react';
+import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 interface MainProps {
   children: ReactNode;

@@ -41,7 +41,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: "detect", //NOTE: Автоопределение версии React для eslint-plugin-react
+      version: "detect", 
     },
   },
 }
