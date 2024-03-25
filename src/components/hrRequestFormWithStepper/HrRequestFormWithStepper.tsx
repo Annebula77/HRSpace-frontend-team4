@@ -123,7 +123,7 @@ const ButtonBox = styled.div`
   flex-direction: column;
   gap: 25px;
 
-  
+
   ${media.sm`
     flex-direction: row;
     `}

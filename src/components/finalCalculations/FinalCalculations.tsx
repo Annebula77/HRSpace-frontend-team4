@@ -35,7 +35,7 @@ const StyledH3 = styled.h3`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; 
+  line-height: 140%;
   color: rgba(73, 75, 77, 1);
   margin: 0;
   padding: 0;
@@ -55,13 +55,20 @@ const FinalCalculations: FC<FinalCalculationsProps> = ({
       return;
     }
 
-    return (finalAmount * 0.8).toLocaleString('ru-RU');
+    const formattedAmount = (finalAmount * 0.8).toLocaleString("ru-RU");
+    // eslint-disable-next-line consistent-return
+    return formattedAmount;
+
   };
   const serviceFee = () => {
     if (!finalAmount) {
       return;
     }
-    return (finalAmount * 0.2).toLocaleString('ru-RU');
+    
+    const formattedAmount = (finalAmount * 0.2).toLocaleString("ru-RU");
+    // eslint-disable-next-line consistent-return
+    return formattedAmount;
+
   };
   return (
     <StyledSection>
