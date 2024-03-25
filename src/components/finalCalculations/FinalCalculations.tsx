@@ -52,17 +52,19 @@ const FinalCalculations: FC<FinalCalculationsProps> = ({
   const formattedFinalAmount = finalAmount?.toLocaleString("ru-RU");
   const awardPerEmployee = () => {
     if (!finalAmount) {
-      return undefined;
+      return;
     }
 
     const formattedAmount = (finalAmount * 0.8).toLocaleString("ru-RU");
+    // eslint-disable-next-line consistent-return
     return formattedAmount;
   };
   const serviceFee = () => {
     if (!finalAmount) {
-      return undefined;
+      return;
     }
     const formattedAmount = (finalAmount * 0.2).toLocaleString("ru-RU");
+    // eslint-disable-next-line consistent-return
     return formattedAmount;
   };
   return (
