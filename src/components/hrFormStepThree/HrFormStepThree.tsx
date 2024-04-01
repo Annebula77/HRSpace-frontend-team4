@@ -60,10 +60,10 @@ const HrFormStepThree: FC<HrFormStepsProps> = ({ errors }) => {
     thirdPageState.end_search,
     thirdPageState.payment_model ?? '',
   ), [firstPageState.min_salary,
-  firstPageState.max_salary,
-  thirdPageState.start_search,
-  thirdPageState.end_search,
-  thirdPageState.payment_model]);
+    firstPageState.max_salary,
+    thirdPageState.start_search,
+    thirdPageState.end_search,
+    thirdPageState.payment_model]);
 
   useEffect(() => {
     dispatch(updateMinReward(minSliderValue));
