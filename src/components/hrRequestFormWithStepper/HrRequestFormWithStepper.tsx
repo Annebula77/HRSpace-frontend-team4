@@ -17,7 +17,7 @@ import { fetchCategories } from '../../store/slices/categoriesSlice';
 import { fetchCities } from '../../store/slices/citiesSlice';
 import { type FormErrors } from '../../types/types';
 import { media } from '../../styles/breakpoints';
-import CustomButton from '../customButton/CustomButton';
+import CustomButton from '../СustomButton/CustomButton';
 import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
 import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
 import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
@@ -269,28 +269,28 @@ const HrRequestFormWithStepper = () => {
       }
 
       case 1:
-      {
-        const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
-        isValid = validationResultsStep2.isValid;
-        newErrors = validationResultsStep2.newErrors;
-        dispatch(setErrorsTwo(newErrors));
-        schema = secondPageSchema;
-        currentFormData = secondPageState;
-        url = POST_CONDITIONS;
-        break;
-      }
+        {
+          const validationResultsStep2 = hrFormStepTwoValidation(secondPageState);
+          isValid = validationResultsStep2.isValid;
+          newErrors = validationResultsStep2.newErrors;
+          dispatch(setErrorsTwo(newErrors));
+          schema = secondPageSchema;
+          currentFormData = secondPageState;
+          url = POST_CONDITIONS;
+          break;
+        }
 
       case 2:
-      {
-        const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
-        isValid = validationResultsStep3.isValid;
-        newErrors = validationResultsStep3.newErrors;
-        dispatch(setErrorsThree(newErrors));
-        schema = thirdPageSchema;
-        currentFormData = thirdPageState;
-        url = POST_PAYMENT;
-        break;
-      }
+        {
+          const validationResultsStep3 = hrFormStepThreeValidation(thirdPageState);
+          isValid = validationResultsStep3.isValid;
+          newErrors = validationResultsStep3.newErrors;
+          dispatch(setErrorsThree(newErrors));
+          schema = thirdPageSchema;
+          currentFormData = thirdPageState;
+          url = POST_PAYMENT;
+          break;
+        }
 
       case 3: {
         const validationResultsStep4 = hrFormStepFourValidation(forthPageState);

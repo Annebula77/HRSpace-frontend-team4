@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import TitleComponent from '../titleComponent/TitleComponent';
-import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
+import CheckboxWithStyles from '../СheckboxWithStyles/CheckboxWithStyles';
 import ErrorMessage from '../errorText/errorText';
 import RadioInput from '../radioChip/RadioInput';
 import { type HrFormStepsProps } from '../../types/types';
@@ -268,7 +268,7 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
         finalAmount={
           thirdPageState.reward
             ? thirdPageState.reward : thirdPageState.recommendedReward
-}
+        }
       />
 
     </StyledSection>
