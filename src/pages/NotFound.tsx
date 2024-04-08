@@ -5,7 +5,7 @@ import { media } from '../styles/breakpoints';
 import Main from '../components/main/Main';
 import { StyledSection } from '../styles/formStepsStyles';
 import notFoundImg from '../assets/images/404_image.png';
-import CustomButton from '../components/СustomButton/CustomButton';
+import CustomButton from '../components/customButton/CustomButton';
 
 const StyledNotFoundContent = styled.div`
   margin: 0 auto;

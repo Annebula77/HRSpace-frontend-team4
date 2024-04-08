@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import InputWithText from '../inputWithText/InputWithText';
 import SelectWithAutoComplete from '../selectWithAutocomplete/SelectWithAutoComplete';
 import TitleComponent from '../titleComponent/TitleComponent';
-import CheckboxWithStyles from '../СheckboxWithStyles/CheckboxWithStyles';
+import CheckboxWithStyles from '../checkboxWithStyles/CheckboxWithStyles';
 import RadioInput from '../radioChip/RadioInput';
 import { fetchCities } from '../../store/slices/citiesSlice';
 import ErrorMessage from '../errorText/errorText';

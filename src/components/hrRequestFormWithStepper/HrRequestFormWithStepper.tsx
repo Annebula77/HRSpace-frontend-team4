@@ -17,7 +17,7 @@ import { fetchCategories } from '../../store/slices/categoriesSlice';
 import { fetchCities } from '../../store/slices/citiesSlice';
 import { type FormErrors } from '../../types/types';
 import { media } from '../../styles/breakpoints';
-import CustomButton from '../СustomButton/CustomButton';
+import CustomButton from '../customButton/CustomButton';
 import HrFormStepOne from '../hrFormStepOne/HrFormStepOne';
 import HrFormStepTwo from '../hrFormStepTwo/HrFormStepTwo';
 import HrFormStepThree from '../hrFormStepThree/HrFormStepThree';
