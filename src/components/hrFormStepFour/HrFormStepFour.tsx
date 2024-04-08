@@ -268,7 +268,7 @@ const HrFormStepFour: FC<HrFormStepsProps> = ({ errors }) => {
         finalAmount={
           thirdPageState.reward
             ? thirdPageState.reward : thirdPageState.recommendedReward
-}
+        }
       />
 
     </StyledSection>
